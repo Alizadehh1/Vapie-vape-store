@@ -12,21 +12,16 @@ namespace Vapie.WebUI.AppCode.Extensions
         {
             StringBuilder sb = new StringBuilder();
             sb.Append("<ul class=\"widget-body filter-items search-ul\">");
-            foreach (var category in categories.Where(c=>c.DeletedById==null))
+            foreach (var category in categories.Where(c => c.ParentId == null))
             {
-                if (categories.Any(c=>c.Id == category.ParentId))
-                {
-                    continue;
-                }
-                bool hasChild = categories.Any(c => c.ParentId == category.Id);
-                AppendCategory(category, sb, hasChild);
+                AppendCategory(category, sb);
             }
             sb.Append("</ul>");
             return new HtmlString(sb.ToString());
         }
-        static void AppendCategory(Category category, StringBuilder sb,bool hasChild)
+        static void AppendCategory(Category category, StringBuilder sb)
         {
-            //bool hasChild = category.Children.Any();
+            bool hasChild = category.Children.Any();
             sb.Append($"<li {(hasChild ? "class=with-ul" : "")}>" +
                 $"<a href=\"#\">{category.Name}");
             if (hasChild)
@@ -35,10 +30,9 @@ namespace Vapie.WebUI.AppCode.Extensions
             if (hasChild)
             {
                 sb.Append("<ul style=\"display: none\">");
-                foreach (var item in category.Children.Where(c => c.DeletedById == null))
+                foreach (var item in category.Children)
                 {
-                    bool hasChild1 = category.Children.Any(c => c.ParentId == item.Id);
-                    AppendCategory(item, sb, hasChild1);
+                    AppendCategory(item, sb);
                 }
                 sb.Append("</ul>");
             }

@@ -7242,11 +7242,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\alide\\source\\repos\\Vapie Solution\\Vapie.WebUI\\Vapie.WebUI.csproj",
+      "projectUniqueName": "C:\\Users\\alide\\OneDrive\\Desktop\\final-project\\Vapie.WebUI\\Vapie.WebUI.csproj",
       "projectName": "Vapie.WebUI",
-      "projectPath": "C:\\Users\\alide\\source\\repos\\Vapie Solution\\Vapie.WebUI\\Vapie.WebUI.csproj",
+      "projectPath": "C:\\Users\\alide\\OneDrive\\Desktop\\final-project\\Vapie.WebUI\\Vapie.WebUI.csproj",
       "packagesPath": "C:\\Users\\alide\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\alide\\source\\repos\\Vapie Solution\\Vapie.WebUI\\obj\\",
+      "outputPath": "C:\\Users\\alide\\OneDrive\\Desktop\\final-project\\Vapie.WebUI\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\alide\\AppData\\Roaming\\NuGet\\NuGet.Config",
