@@ -1,0 +1,51 @@
+﻿@model List<Blog>
+@{
+    ViewData["Title"] = "SinglePost";
+}
+
+<div class="single-blog-wrapper">
+
+    <div class="single-blog-post-thumb">
+        @foreach (var item in Model)
+        {
+            @if (ViewBag.BlogId==item.Id)
+            {
+                <img style="height: auto;width: 100%;" src="~/uploads/images/@item.ImagePath" alt="">
+            }
+        }
+    </div>
+
+    <div class="single-blog-content-wrapper d-flex">
+
+        <div class="single-blog--text">
+            @foreach (var item in Model)
+            {
+                @if (ViewBag.BlogId == item.Id)
+                {
+                    <h1>@item.Title</h1>
+                    @Html.Raw(item.Paragraph)
+                }
+            }
+        </div>
+
+        <div class="related-blog-post">
+            @foreach (var item in Model)
+            {
+                if (!(ViewBag.BlogId == item.Id))
+                {
+                    if (ViewBag.CategoryId == item.CategoryId)
+                    {
+                        <div class="single-related-blog-post">
+                            <img src="~/uploads/images/@item.ImagePath" alt="">
+                            <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId">
+                                <h5>@item.Title</h5>
+                            </a>
+                        </div>
+                    }
+                }
+            }
+        </div>
+
+    </div>
+</div>
+

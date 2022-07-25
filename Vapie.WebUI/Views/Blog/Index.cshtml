@@ -1,7 +1,32 @@
-﻿
+﻿@model PagedViewModel<Blog>
 @{
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<div class="blog-wrapper section-padding-80">
+    <div class="container">
+        <div class="row">
+            @foreach (var item in Model.Items)
+            {
+                <div class="col-12 col-lg-6 mt-5">
+                    <div class="single-blog-area mb-50">
+                        <img src="~/uploads/images/@item.ImagePath" alt="">
+                        <div class="post-title">
+                            <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">@item.Title</a>
+                        </div>
+                        <div class="hover-content">
+                            <div class="hover-post-title">
+                                <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">@item.Title</a>
+                            </div>
+                            <p>@item.Paragraph.HtmlToPlainText().ToEllipse(50)</p>
+                            <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">Continue reading <i class="fa fa-angle-right"></i></a>
+                        </div>
+                    </div>
+                </div>
+            }
+        </div>
+        @Model.GetPagenation(Url, "Index")
+    </div>
+    
+</div>
 

@@ -314,3 +314,10 @@ C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Details.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Create.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Categories\Edit.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Views\Blog\Index.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Views\Blog\SinglePost.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Blogs\Create.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Blogs\Delete.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Blogs\Details.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Blogs\Edit.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Blogs\Index.cshtml.g.cs

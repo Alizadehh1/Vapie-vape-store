@@ -16,5 +16,7 @@ namespace Vapie.WebUI.Models.DataContexts
         }
         public DbSet<Brand> Brands { get; set; }
         public DbSet<Category> Categories { get; set; }
+        public DbSet<Blog> Blogs { get; set; }
+        
     }
 }
