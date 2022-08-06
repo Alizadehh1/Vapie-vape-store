@@ -95,8 +95,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="FluentValidation.AspNetCore" Version="11.1.2" />
     <PackageReference Include="MediatR" Version="10.0.1" />
     <PackageReference Include="MediatR.Extensions.Microsoft.DependencyInjection" Version="10.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.Http.Features" Version="5.0.17" />
     <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.2.0" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="5.0.17" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.17" />
@@ -349,6 +351,7 @@
     <None Include="wwwroot\libs\ckeditor5\translations\zh-cn.min.js" />
     <None Include="wwwroot\libs\ckeditor5\translations\zh.js" />
     <None Include="wwwroot\libs\ckeditor5\translations\zh.min.js" />
+    <None Include="wwwroot\libs\multiple-imager-js\js\imager.js" />
   </ItemGroup>
 
 </Project>

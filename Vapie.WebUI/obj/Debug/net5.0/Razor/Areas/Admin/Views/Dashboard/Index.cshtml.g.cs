@@ -54,8 +54,15 @@ using Vapie.WebUI.Models.Entities.Membership;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 8 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
+using Vapie.WebUI.AppCode.Modules.ProductModule;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"50aea28f5d02d312ae5ed7fdced7e5dbc913522f", @"/Areas/Admin/Views/Dashboard/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"295cfea56a765283ad99718cb2b49a76efcce4fe", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"18eb8fa958da6f163ef3b7620c63e4591d672cad", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Dashboard_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("href", new global::Microsoft.AspNetCore.Html.HtmlString("~/admin/https://www.amcharts.com/online-store/"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -206,7 +213,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                     <h5>Sales Analytics</h5>
                ");
             WriteLiteral("     <span class=\"text-muted\">\r\n                        For more details about usage, please\r\n                        refer ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f17664", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f17890", async() => {
                 WriteLiteral("amCharts");
             }
             );
@@ -245,7 +252,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                     <div class=""risk-rate"">
                         <span><b>5</b><");
             WriteLiteral("/span>\r\n                    </div>\r\n                    <h6 class=\"m-b-10 m-t-10\">Balanced</h6>\r\n                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f20028", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f20254", async() => {
                 WriteLiteral("\r\n                        Change Your\r\n                        Risk\r\n                    ");
             }
             );
@@ -454,7 +461,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                         </table>
                         <div class=""text-center"">
                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f32224", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f32450", async() => {
                 WriteLiteral("\r\n                                View all\r\n                                Projects\r\n                            ");
             }
             );
@@ -485,7 +492,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                         <div class=""col-auto p-r-0"">
                             <div class=""u-img"">
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f34057", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f34283", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -501,7 +508,7 @@ using Vapie.WebUI.Models.Entities.Membership;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f35287", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f35513", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -534,7 +541,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                         <div class=""col-auto p-r-0"">
                             <div class=""u-img"">
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f37281", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f37507", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -550,7 +557,7 @@ using Vapie.WebUI.Models.Entities.Membership;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f38511", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f38737", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -583,7 +590,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                         <div class=""col-auto p-r-0"">
                             <div class=""u-img"">
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f40505", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f40731", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -599,7 +606,7 @@ using Vapie.WebUI.Models.Entities.Membership;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f41735", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f41961", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -632,7 +639,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                         <div class=""col-auto p-r-0"">
                             <div class=""u-img"">
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f43728", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f43954", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -648,7 +655,7 @@ using Vapie.WebUI.Models.Entities.Membership;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f44958", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f45184", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -680,7 +687,7 @@ using Vapie.WebUI.Models.Entities.Membership;
 
                     <div class=""text-center"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f46840", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f47066", async() => {
                 WriteLiteral("\r\n                            View all\r\n                            Projects\r\n                        ");
             }
             );
@@ -762,9 +769,9 @@ using Vapie.WebUI.Models.Entities.Membership;
                                             <tr>
                                                 <td class=""b-none"">
                                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f51692", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f51918", async() => {
                 WriteLiteral("\r\n                                                        ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f52004", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f52230", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -811,7 +818,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                     </div>
                     <div class=""text-center"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f55105", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f55331", async() => {
                 WriteLiteral("\r\n                            View all\r\n                            Projects\r\n                        ");
             }
             );
@@ -839,7 +846,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                         <div class=""card-block text-center text-white"">
                             <div class=""m-b-25"">
                                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f56832", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f57058", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -902,7 +909,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                             <ul class=""social-link list-unstyled m-t-40 m-b-10"">
                                 <li>
                                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f60511", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f60737", async() => {
                 WriteLiteral("\r\n                                        <i class=\"feather icon-facebook facebook\"\r\n                                           aria-hidden=\"true\"></i>\r\n                                    ");
             }
             );
@@ -921,7 +928,7 @@ using Vapie.WebUI.Models.Entities.Membership;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </li>\r\n                                <li>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f62233", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f62459", async() => {
                 WriteLiteral("\r\n                                        <i class=\"feather icon-twitter twitter\"\r\n                                           aria-hidden=\"true\"></i>\r\n                                    ");
             }
             );
@@ -940,7 +947,7 @@ using Vapie.WebUI.Models.Entities.Membership;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                </li>\r\n                                <li>\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f63953", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f64179", async() => {
                 WriteLiteral("\r\n                                        <i class=\"feather icon-instagram instagram\"\r\n                                           aria-hidden=\"true\"></i>\r\n                                    ");
             }
             );
@@ -985,7 +992,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                         </div>
   ");
             WriteLiteral("                  </div>\r\n                </div>\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f66700", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f66926", async() => {
                 WriteLiteral("\r\n                    <i class=\"feather icon-arrow-down\"></i>\r\n                ");
             }
             );
@@ -1021,7 +1028,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                     </div>
                 </div>
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f68821", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f69047", async() => {
                 WriteLiteral("\r\n                    <i class=\"feather icon-arrow-down\"></i>\r\n                ");
             }
             );
@@ -1057,7 +1064,7 @@ using Vapie.WebUI.Models.Entities.Membership;
                     </div>
                 </div>
                 ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f70949", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f71175", async() => {
                 WriteLiteral("\r\n                    <i class=\"feather icon-arrow-down\"></i>\r\n                ");
             }
             );
@@ -1075,7 +1082,7 @@ using Vapie.WebUI.Models.Entities.Membership;
             WriteLiteral("\r\n            </div>\r\n        </div>\r\n        <!-- social download  end -->\r\n\r\n    </div>\r\n</div>\r\n\r\n");
             DefineSection("js", async() => {
                 WriteLiteral("\r\n\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f72398", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "50aea28f5d02d312ae5ed7fdced7e5dbc913522f72624", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

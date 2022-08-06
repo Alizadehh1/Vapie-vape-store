@@ -1,0 +1,104 @@
+﻿@model PagedViewModel<Product>
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="page-header breadcrumb-wrap">
+    <div class="container">
+        <div class="breadcrumb">
+            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Home</a>
+            <i class="fa-solid fa-basket-shopping"></i> Shop
+        </div>
+    </div>
+</div>
+<div class="col-12">
+    <div class="row">
+        <div class="col-12 py-3">
+            <div class="row">
+                <div class="col-12 text-center text-uppercase">
+                    <h2>Vapie</h2>
+                </div>
+            </div>
+            <div class="row">
+                @foreach (var item in Model.Items)
+                {
+                    var imagePath = item.Images.FirstOrDefault(i => i.IsMain == true).ImagePath;
+                    <div class="col-xl-2 col-lg-3 col-sm-6 my-3">
+                        <div class="col-12 bg-white text-center h-100 product-item">
+                            <div class="row h-100">
+                                <div class="col-12 p-0 mb-3">
+                                    <a asp-action="singleproduct" asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId">
+                                        <img src="~/uploads/images/@imagePath" class="img-fluid">
+                                    </a>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <a asp-action="singleproduct" asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" class="product-name">@item.Name</a>
+                                </div>
+                                <div class="col-12 mb-3">
+                                    <span class="product-price">
+                                        @item.Price ₼
+                                    </span>
+                                </div>
+                                <div class="col-12 mb-3 align-self-end">
+                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Add to cart</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+
+    </div>
+</div>
+<div class="col-12">
+    @Model.GetPagenation(Url, "Index")
+    @*<nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-long-arrow-alt-left"></i></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
+                </li>
+            </ul>
+        </nav>*@
+</div>
+
+@section css{
+    <link rel="stylesheet" href="~/assets/css/pagination.css" />
+}
+@section js{
+    <script>
+        function addToCart(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            let data = $(ev.currentTarget).data();
+            addToBasket(data.itemId);
+
+            console.log(readFromBasket())
+        }
+        function readFromBasket() {
+            return ($.cookie('cards') || '').split(',');
+        }
+        function addToBasket(cardId) {
+            let items = readFromBasket();
+            let length = items.filter(item => item == cardId).length;
+            if (length > 0) return;
+            items.push(cardId);
+            $.cookie('cards', items.toString(), { expires: 7, path: '/' });
+        }
+
+        function showCardCount() {
+            let items = readFromBasket();
+            $('#header-qty').html(items.length - 1);
+
+        }
+        showCardCount();
+
+    </script>
+}

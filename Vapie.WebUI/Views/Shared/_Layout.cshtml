@@ -11,120 +11,14 @@
     <link href="~/fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+    @RenderSection("css", required: false)
 </head>
 <body>
     <div class="container-fluid">
         <div class="row min-vh-100">
             <div class="col-12">
-                <header class="row">
-                    <div class="col-12 bg-dark py-2 d-md-block d-none">
-                        <div class="row">
-                            <div class="col-auto me-auto">
-                                <ul class="top-nav">
-                                    <li>
-                                        <a href="tel:+123-456-7890"><i class="fa fa-phone-square me-2"></i>+123-456-7890</a>
-                                    </li>
-                                    <li>
-                                        <a href="mailto:mail@ecom.com"><i class="fa fa-envelope me-2"></i>mail@ecom.com</a>
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="col-auto">
-                                <ul class="top-nav">
-                                    @if (User.Identity.IsAuthenticated)
-                                    {
-                                        <li>
-                                            <a asp-action="Profile" asp-controller="account"><i class="fa-solid fa-user"></i>@User.GetPrincipalName()</a>
-                                        </li>
-                                    }
-                                    else
-                                    {
-                                        <li>
-                                            <a asp-action="Register" asp-controller="account"><i class="fas fa-user-edit me-2"></i>Register</a>
-                                        </li>
-                                        <li>
-                                            <a asp-action="SignIn" asp-controller="account"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
-                                        </li>
-                                    }
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-12 bg-white pt-4">
-                        <div class="row">
-                            <div class="col-lg-auto">
-                                <div class="site-logo text-center text-lg-left">
-                                    <a href="index.html">E-Commerce</a>
-                                </div>
-                            </div>
-                            <div class="col-lg-5 mx-auto mt-4 mt-lg-0">
-                                <form action="#">
-                                    <div class="form-group">
-                                        <div class="input-group">
-                                            <input type="search" class="form-control border-dark" placeholder="Search..." required>
-                                            <button class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
-                                        </div>
-                                    </div>
-                                </form>
-                            </div>
-                            <div class="col-lg-auto text-center text-lg-left header-item-holder">
-                                <a href="#" class="header-item">
-                                    <i class="fas fa-heart me-2"></i><span id="header-favorite">0</span>
-                                </a>
-                                <a href="cart.html" class="header-item">
-                                    <i class="fas fa-shopping-bag me-2"></i><span id="header-qty" class="me-3">2</span>
-                                    <i class="fas fa-money-bill-wave me-2"></i><span id="header-price">$4,000</span>
-                                </a>
-                            </div>
-                        </div>
-
-                        <div class="row">
-                            <nav class="navbar navbar-expand-lg navbar-light bg-white col-12">
-                                <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-                                    <span class="navbar-toggler-icon"></span>
-                                </button>
-                                <div class="collapse navbar-collapse" id="mainNav">
-                                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
-                                        <li class="nav-item active">
-                                            <a class="nav-link" href="index.html">Home <span class="sr-only">(current)</span></a>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="electronics" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Electronics</a>
-                                            <div class="dropdown-menu" aria-labelledby="electronics">
-                                                <a class="dropdown-item" href="category.html">Computers</a>
-                                                <a class="dropdown-item" href="category.html">Mobile Phones</a>
-                                                <a class="dropdown-item" href="category.html">Television Sets</a>
-                                                <a class="dropdown-item" href="category.html">DSLR Cameras</a>
-                                                <a class="dropdown-item" href="category.html">Projectors</a>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="fashion" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Fashion</a>
-                                            <div class="dropdown-menu" aria-labelledby="fashion">
-                                                <a class="dropdown-item" href="category.html">Men's</a>
-                                                <a class="dropdown-item" href="category.html">Women's</a>
-                                                <a class="dropdown-item" href="category.html">Children's</a>
-                                                <a class="dropdown-item" href="category.html">Accessories</a>
-                                                <a class="dropdown-item" href="category.html">Footwear</a>
-                                            </div>
-                                        </li>
-                                        <li class="nav-item dropdown">
-                                            <a class="nav-link dropdown-toggle" href="#" id="books" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Books</a>
-                                            <div class="dropdown-menu" aria-labelledby="books">
-                                                <a class="dropdown-item" href="category.html">Adventure</a>
-                                                <a class="dropdown-item" href="category.html">Horror</a>
-                                                <a class="dropdown-item" href="category.html">Romantic</a>
-                                                <a class="dropdown-item" href="category.html">Children's</a>
-                                                <a class="dropdown-item" href="category.html">Non-Fiction</a>
-                                            </div>
-                                        </li>
-                                    </ul>
-                                </div>
-                            </nav>
-                        </div>
-                    </div>
-
-                </header>
+                @await Component.InvokeAsync("Header")
             </div>
 
             <div class="col-12">
@@ -141,7 +35,7 @@
                                 <div class="row">
                                     <div class="col-12">
                                         <div class="footer-logo">
-                                            <a href="index.html">E-Commerce</a>
+                                            <a asp-controller="Home" asp-action="Index">Vapie</a>
                                         </div>
                                     </div>
                                     <div class="col-12">
@@ -227,12 +121,12 @@
                                         <h4>Newsletter</h4>
                                     </div>
                                     <div class="col-12">
-                                        <form action="#">
+                                        <form method="post" id="subscribeForm">
                                             <div class="mb-3">
                                                 <input type="text" class="form-control" placeholder="Enter your email..." required>
                                             </div>
                                             <div class="mb-3">
-                                                <button class="btn btn-outline-light text-uppercase">Subscribe</button>
+                                                <button id="btnSubs" type="submit" class="btn btn-outline-light text-uppercase">Subscribe</button>
                                             </div>
                                         </form>
                                     </div>
@@ -245,7 +139,64 @@
         </div>
     </div>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-cookie/1.4.1/jquery.cookie.min.js" integrity="sha512-3j3VU6WC5rPQB4Ld1jnLV7Kd5xr+cq9avvhwqzbH/taCRNURoeEpoPBK9pDyeukwSxwRPJ8fDgvYXd6SkaZ2TA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <script type="text/javascript" src="~/assets/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="~/assets/js/script.js"></script>
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script src="~/admin/files/assets/js/customize.js"></script>
+    <script>
+        
+        let btn = document.getElementById('btnSubs');
+        $(document).ready(function () {
+            function showCardCount() {
+                let items = ($.cookie('cards') || '').split(',');
+                $('#header-qty').html(items.length - 1);
+
+            }
+            showCardCount();
+            $('#subscribeForm').submit(function (e) {
+                e.preventDefault();
+                let formData = new FormData(e.currentTarget);
+                btn.disabled = true;
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Subscribe", "Home")",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response.error == true) {
+                            e.currentTarget.reset();
+                            btn.disabled = false;
+                            toastr.error(response.message, 'Texniki xeta bash verdi!');
+                            return;
+                        }
+                        e.currentTarget.reset();
+                        btn.disabled = false;
+                        toastr.success(response.message, 'Subscribe confirmation sended to your mail');
+                    },
+                    error: function (response) {
+                        toastr.error(response.message, "Texniki Xeta!");
+                        btn.disabled = false;
+                    }
+
+                });
+            });
+
+        });
+    </script>
+    <script>
+        $(document).on("keyup", "#searchBtn", function (e) {
+            e.preventDefault()
+            console.log($(this).val())
+            let url = $("#searchForm").attr("action");
+            fetch(url + "?key=" + $(this).val()).then(res => {
+                return res.text()
+            }).then(data => {
+                $("#productList").html(data)
+            })
+        })
+    </script>
+    @RenderSection("js", required: false)
 </body>
 </html>

@@ -2,7 +2,20 @@
 @{
     ViewData["Title"] = "SinglePost";
 }
-
+<div class="page-header breadcrumb-wrap">
+    <div class="container">
+        <div class="breadcrumb">
+            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Home</a>
+            <i class="fa-solid fa-quote-left"></i> @foreach (var item in Model)
+            {
+                @if (ViewBag.BlogId == item.Id)
+                {
+                    @item.Title
+                }
+            }
+        </div>
+    </div>
+</div>
 <div class="single-blog-wrapper">
 
     <div class="single-blog-post-thumb">

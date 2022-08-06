@@ -1,0 +1,125 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Əlaqə";
+}
+<div class="page-header breadcrumb-wrap">
+    <div class="container">
+        <div class="breadcrumb">
+            <a class="me-1" asp-action="index"><i class="fa-solid fa-house me-1"></i>Home</a>
+            <i class="fa-solid fa-headset"></i> Contact
+        </div>
+    </div>
+</div>
+<div class="page-content pt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 col-lg-12 m-auto">
+                <section class="row align-items-end mb-5">
+                    <div class="col-lg-4 mb-lg-0 mb-md-5 mb-sm-5">
+                        <h4 class="mb-2 text-brand">How can help you ?</h4>
+                        <h1 class="mb-3">Let us know how we can help you</h1>
+                        <p class="mb-2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                    </div>
+                    <div class="col-lg-8">
+                        <div class="row">
+                            <div class="col-lg-6 mb-4">
+                                <h5 class="mb-2">01. Visit Feedback</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                            </div>
+                            <div class="col-lg-6 mb-4">
+                                <h5 class="mb-2">02. Employer Services</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                            </div>
+                            <div class="col-lg-6 mb-lg-0 mb-4">
+                                <h5 class="mb-2 text-brand">03. Billing Inquiries</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                            </div>
+                            <div class="col-lg-6">
+                                <h5 class="mb-2">04.General Inquiries</h5>
+                                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut elit tellus, luctus nec ullamcorper mattis, pulvinar dapibus leo.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-xl-10 col-lg-12 m-auto">
+                <section class="mb-5">
+                    <div class="row">
+                        <div class="col-xl-8">
+                            <div class="contact-from-area">
+                                <h5 class="text-brand mb-1">Contact form</h5>
+                                <h2 class="mb-1">Drop Us a Line</h2>
+                                <p class="text-muted mb-3 font-sm">Your email address will not be published. Required fields are marked *</p>
+                                <form class="contact-form-style mt-3" id="contactForm" method="post">
+                                    <div class="row">
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="input-style mb-2">
+                                                <input asp-for="Name" placeholder="First Name" />
+                                                <span asp-validation-for="Name"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-6 col-md-6">
+                                            <div class="input-style mb-2">
+                                                <input asp-for="Email" placeholder="Your Email" />
+                                                <span asp-validation-for="Email"></span>
+                                            </div>
+                                        </div>
+                                        <div class="col-lg-12 col-md-12">
+                                            <div class="textarea-style mb-3">
+                                                <textarea asp-for="Comment" placeholder="Message"></textarea>
+                                                <span asp-validation-for="Comment"></span>
+                                            </div>
+                                            <button class="submit submit-auto-width" type="submit">Send message</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <div class="col-lg-4 pl-5 d-lg-block d-none">
+                            <img width="350" class="border-radius-15 mt-5" src="~/assets/images/contact-2.png" alt="" />
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section js{
+    <script src="~/libs/toastr.js/toastr.min.js"></script>
+    <script src="~/admin/files/assets/js/customize.js"></script>
+
+    <script>
+        $(document).ready(function () {
+            $('#contactForm').submit(function (e) {
+                e.preventDefault();
+                let formData = new FormData(e.currentTarget);
+                $.ajax({
+                    type: "POST",
+                    url: "@Url.Action("Contact")",
+                    data: formData,
+                    processData: false,
+                    contentType: false,
+                    success: function (response) {
+                        if (response.error == true) {
+                            toastr.error(response.message, 'Error!');
+                            return;
+                        }
+                        toastr.success(response.message, 'Success!');
+
+                        e.currentTarget.reset();
+                    }
+                });
+            });
+        });
+
+    </script>
+}
+@section css{
+    <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
+}

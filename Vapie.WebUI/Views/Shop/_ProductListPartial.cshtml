@@ -1,0 +1,36 @@
+﻿<style>
+    .image {
+        width: 65px;
+        height: 65px;
+        background-size: cover;
+    }
+</style>
+
+@model List<Product>
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6">
+            <ul id="search-ul" style="position: absolute; left: 25%; width: 40%; z-index: 99; top:20%;" class="list-group">
+                @foreach (Product product in Model)
+                {
+                    @if (product.DeletedById==null)
+                    {
+                        var imagePath = product.Images.FirstOrDefault(i => i.IsMain).ImagePath;
+                        <li class="list-group-item" style="background-color: white;">
+                            <a asp-action="singleproduct" asp-route-id="@product.Id" asp-route-categoryId="@product.CategoryId" class="d-flex align-items-center ">
+                                <div style="width:30%;">
+                                    <img class="image" src="~/uploads/images/@imagePath" />
+                                </div>
+                                <div>
+                                    <h6 style=" margin:0px; font-family:Arial, Helvetica, sans-serif;">Məhsulun adı: @product.Name</h6>
+                                    <p style=" color: black; margin: 0px;">Məhsulun Kateqoriyası: @product.Category.Name</p>
+                                    <p style=" color: gray; margin: 0px;">Məhsulun qiyməti: @product.Price ₼</p>
+                                </div>
+                            </a>
+                        </li>
+                    }
+                }
+            </ul>
+        </div>
+    </div>
+</div>

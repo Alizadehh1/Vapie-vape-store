@@ -1,0 +1,91 @@
+﻿@model IEnumerable<Contact>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <div class="d-inline">
+                    <h4>List Of Contacts</h4>
+                    @*<span>
+                            lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit
+                        </span>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item" style="float: left;">
+                        <a asp-action="index" asp-controller="dashboard"> <i class="feather icon-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item" style="float: left;">
+                        <a href="#!">Contacts</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-body">
+    <div class="card">
+        <div class="card-header">
+            <h5>Contacts</h5>
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                Comment
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr data-entity-id="@item.Id">
+                                <td>
+                                    @item.Comment
+                                </td>
+                                <td>
+                                    @if (item.AnsweredById == null)
+                                    {
+                                        <span class="badge badge-warning text-white">
+                                            Cavab Gozleyir
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="badge badge-success">
+                                            Cavablandirilib (@item.AnswerDate?.ToString("dd.MM.yyyy HH:mm:ss"))
+                                        </span>
+                                    }
+                                </td>
+                                <td class="actionBtns">
+                                    @if (item.AnsweredById == null)
+                                    {
+                                        <a asp-action="Answer" asp-route-id="@item.Id" class="btn btn-warning btn-icon">
+                                            <i class="icofont-envelope-open"></i>
+                                        </a>
+                                    }
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-icon">
+                                        <i class="icofont icofont-eye-alt"></i>
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

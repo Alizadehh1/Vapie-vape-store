@@ -1,0 +1,95 @@
+﻿<header class="row">
+    <div class="col-12 bg-dark py-2 d-md-block d-none">
+        <div class="row">
+            <div class="col-auto me-auto">
+                <ul class="top-nav">
+                    <li>
+                        <a href="tel:+994105237585"><i class="fa fa-phone-square me-2"></i>+994105237585</a>
+                    </li>
+                    <li>
+                        <a href="mailto:alizadehh541@gmail.com"><i class="fa fa-envelope me-2"></i>alizadehh541@gmail.com</a>
+                    </li>
+                </ul>
+            </div>
+            <div class="col-auto">
+                <ul class="top-nav">
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                    <li>
+                        <a asp-action="Profile" asp-controller="account"><i class="fa-solid fa-user me-1"></i>@User.GetPrincipalName()</a>
+                    </li>
+                    }
+                    else
+                    {
+                    <li>
+                        <a asp-action="Register" asp-controller="account"><i class="fas fa-user-edit me-2"></i>Register</a>
+                    </li>
+                    <li>
+                        <a asp-action="SignIn" asp-controller="account"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+                    </li>
+                    }
+                </ul>
+            </div>
+        </div>
+    </div>
+    <div class="col-12 bg-white pt-4">
+        <div class="row">
+            <div class="col-lg-auto">
+                <div class="site-logo text-center text-lg-left">
+                    <a asp-controller="Home" asp-action="Index">Vapie</a>
+                </div>
+            </div>
+            <div class="col-lg-5 mx-auto mt-4 mt-lg-0">
+                <form method="post" enctype="multipart/form-data" id="searchForm" asp-controller="Shop" asp-action="SearchInput">
+                    <div class="form-group">
+                        <div class="input-group">
+                            <input id="searchBtn" type="search" class="form-control border-dark" placeholder="Search..." required>
+                            <button type="submit" class="btn btn-outline-dark"><i class="fas fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <div id="productList" class="row">
+
+                </div>
+            </div>
+            <div class="col-lg-auto text-center text-lg-left header-item-holder">
+                <a href="#" class="header-item">
+                    <i class="fas fa-heart me-2"></i><span id="header-favorite">0</span>
+                </a>
+                <a asp-controller="Shop" asp-action="Basket" class="header-item">
+                    <i class="fas fa-shopping-bag me-2"></i><span id="header-qty" class="me-3">2</span>
+                    <i class="fas fa-money-bill-wave me-2"></i><span id="header-price">$4,000</span>
+                </a>
+            </div>
+        </div>
+
+        <div class="row">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white col-12">
+                <button class="navbar-toggler d-lg-none border-0" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="mainNav">
+                    <ul class="navbar-nav mx-auto mt-2 mt-lg-0">
+                        <li class="nav-item active">
+                            <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" asp-controller="Shop" asp-action="Index" id="electronics" >Shop</a>
+                            <div class="dropdown-menu" aria-labelledby="shop">
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <a class="dropdown-item" asp-controller="Shop" asp-action="Category" asp-route-categoryId="@item.Id">@item.Name</a>
+                                }
+                            </div>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </div>
+
+</header>
+
