@@ -38,7 +38,7 @@
             </div>
             <div class="col-12">
                 <ul>
-                    <li>Capacity: @Model.Product.Capacity</li>
+                    <li>Capacity: @Model.Product.Capacity puff</li>
                     <li>Flavor: @Model.Product.Flavor</li>
                     <li>Nicotine Strength: @Model.Product.NicotineStrength</li>
                     <li>Size: @Model.Product.Size</li>
@@ -82,7 +82,7 @@
                         <h2><u>Details</u></h2>
                     </div>
                     <div class="col-12" id="details">
-                        @Model.Product.Description
+                        @Html.Raw(Model.Product.Description)
                     </div>
                 </div>
             </div>

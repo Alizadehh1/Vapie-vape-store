@@ -34,7 +34,7 @@
                             @foreach (var item in Model)
                             {
                                 var imagePath = item.Images.FirstOrDefault(i => i.IsMain == true).ImagePath;
-                                <tr>
+                                <tr data-quantity="1" data-price="@item.Price">
                                     <td style="display:flex;justify-content:center;">
                                         <img src="~/uploads/images/@imagePath" class="img-fluid">
                                     </td>
@@ -45,10 +45,12 @@
                                         @item.Price ₼
                                     </td>
                                     <td>
-                                        <input type="number" min="1" value="1">
+                                        <button onclick="minusQuantity(event)" type="button" class="btn btn-danger"><i class="fa-solid fa-minus"></i></button>
+                                        <span class="quantity">1</span>
+                                        <button onclick="plusQuantity(event)" type="button" class="btn btn-primary"><i class="fa-solid fa-plus"></i></button>
                                     </td>
-                                    <td>
-                                        $1,500
+                                    <td class="product-price">
+                                        <span class="amount">@item.Price ₼</span>
                                     </td>
                                     <td>
                                         <button class="btn btn-link text-danger"><i class="fas fa-times"></i></button>
@@ -73,5 +75,45 @@
         </div>
     </div>
 </div>
+
+@section js{ 
+    <script>
+        function plusQuantity(e) {
+            e.preventDefault();
+            let row = $(e.currentTarget).closest('tr');
+
+            let data = $(row).data();
+
+            let quantity = $(row).find('span.quantity').html();
+            if (!isNaN(quantity)) {
+                quantity++;
+                $(row).data('quantity', quantity);
+            }
+            $(row).find('span.quantity').html(quantity);
+            $(row).find('td.product-price .amount').html(`${(data.price * quantity)}₼`)
+
+            console.log(data);
+        }
+        function minusQuantity(e) {
+            e.preventDefault();
+            let row = $(e.currentTarget).closest('tr');
+
+            let data = $(row).data();
+
+            let quantity = $(row).find('span.quantity').html();
+            if (quantity == 1) {
+                return;
+            }
+            if (!isNaN(quantity)) {
+                quantity--;
+                $(row).data('quantity', quantity);
+            }
+            $(row).find('span.quantity').html(quantity);
+            $(row).find('td.product-price .amount').html(`${(data.price * quantity)}₼`)
+
+            console.log(data);
+        }
+    </script>
+}
 
 

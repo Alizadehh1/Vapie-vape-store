@@ -9,10 +9,7 @@
         <div class="col-lg-8">
             <div class="page-header-title">
                 <div class="d-inline">
-                    <h4>Brands</h4>
-                    <span>
-                        Butun brandlar
-                    </span>
+                    <h4>Məhsul</h4>
                 </div>
             </div>
         </div>
@@ -23,7 +20,7 @@
                         <a asp-controller="dashboard" asp-action="index"> <i class="feather icon-home"></i> </a>
                     </li>
                     <li class="breadcrumb-item" style="float: left;">
-                        <a href="#!">Brendler</a>
+                        <a href="#!">Məhsul</a>
                     </li>
                 </ul>
             </div>
@@ -51,7 +48,8 @@
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="Description" class="control-label"></label>
-                                <input asp-for="Description" class="form-control" />
+                                <textarea asp-for="Description" class="form-control editor"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
@@ -115,7 +113,19 @@
 
 @section js{
     <script src="~/libs/multiple-imager-js/js/imager.js"></script>
+    <script src="~/libs/ckeditor5/ckeditor.min.js"></script>
     <script>
+        document.querySelectorAll('.editor').forEach(function (item, index) {
+            ClassicEditor
+                .create(item)
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
+
+        });
         $(document).ready(function () {
 
             $('#viewer1').imgadd({
