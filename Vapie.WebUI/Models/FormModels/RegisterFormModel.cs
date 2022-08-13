@@ -16,6 +16,7 @@ namespace Vapie.WebUI.Models.FormModels
         public string ConfirmPassword { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
+        public string Username { get; set; }
 
     }
 }

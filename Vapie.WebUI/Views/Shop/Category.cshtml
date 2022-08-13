@@ -39,7 +39,7 @@
                                     </span>
                                 </div>
                                 <div class="col-12 mb-3 align-self-end">
-                                    <button class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Add to cart</button>
+                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Add to cart</button>
                                 </div>
                             </div>
                         </div>
@@ -50,22 +50,69 @@
     </div>
 </div>
 @Model.GetPagenation(Url, "Index")
-<div class="col-12">
-    <nav aria-label="Page navigation example">
-        <ul class="pagination justify-content-center">
-            <li class="page-item disabled">
-                <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-long-arrow-alt-left"></i></a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">1</a></li>
-            <li class="page-item active" aria-current="page">
-                <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
-            </li>
-            <li class="page-item"><a class="page-link" href="#">3</a></li>
-            <li class="page-item">
-                <a class="page-link" href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
-            </li>
-        </ul>
-    </nav>
-</div>
+@*<div class="col-12">
+        <nav aria-label="Page navigation example">
+            <ul class="pagination justify-content-center">
+                <li class="page-item disabled">
+                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true"><i class="fas fa-long-arrow-alt-left"></i></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">1</a></li>
+                <li class="page-item active" aria-current="page">
+                    <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                <li class="page-item">
+                    <a class="page-link" href="#"><i class="fas fa-long-arrow-alt-right"></i></a>
+                </li>
+            </ul>
+        </nav>
+    </div>*@
+
+@section css{
+    <link rel="stylesheet" href="~/assets/css/pagination.css" />
+}
+@section js{
+    <script>
+        function addToCart(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            let data = $(ev.currentTarget).data();
+            addToBasket(data.itemId);
+
+            console.log(readFromBasket())
+        }
+        function readFromBasket() {
+            return ($.cookie('cards') || '').split(',');
+        }
+        function addToBasket(cardId) {
+            let items = readFromBasket();
+            let length = items.filter(item => item == cardId).length;
+            if (length > 0) return;
+            items.push(cardId);
+            $.cookie('cards', items.toString(), { expires: 7, path: '/' });
+            $.ajax({
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, "Error!");
+                        return;
+                    }
+                    toastr.success("Successfully Added", response.message)
+                    showCardCount();
+                },
+                error: function (response) {
+                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                }
+            })
+        }
+
+        function showCardCount() {
+            let items = readFromBasket();
+            $('#header-qty').html(items.length - 1);
+
+        }
+        showCardCount();
+
+    </script>
+}
 
 

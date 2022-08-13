@@ -1,0 +1,28 @@
+﻿@model IEnumerable<Faq>
+@{
+    ViewData["Title"] = "Faqs";
+}
+<div class="page-header breadcrumb-wrap">
+    <div class="container">
+        <div class="breadcrumb">
+            <a class="me-1" asp-action="index"><i class="fa-solid fa-house me-1"></i>Home</a>
+            <i class="fa-solid fa-question"></i> Frequently asked questions
+        </div>
+    </div>
+</div>
+<div class="container">
+    <ul class="acc">
+        @foreach (var item in Model)
+        {
+            <li>
+                <button class="acc_ctrl"><h2>@item.Question</h2></button>
+                <div class="acc_panel">
+                    <p>@item.Answer</p>
+                </div>
+            </li>
+        }
+    </ul>
+</div>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+
+

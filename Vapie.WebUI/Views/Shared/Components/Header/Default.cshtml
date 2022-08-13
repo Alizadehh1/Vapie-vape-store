@@ -11,22 +11,31 @@
                     </li>
                 </ul>
             </div>
-            <div class="col-auto">
+            <div style="margin-right:90px;" class="col-auto">
                 <ul class="top-nav">
                     @if (User.Identity.IsAuthenticated)
                     {
-                    <li>
-                        <a asp-action="Profile" asp-controller="account"><i class="fa-solid fa-user me-1"></i>@User.GetPrincipalName()</a>
-                    </li>
+                        <li class="nav-item dropdown">
+                            <a asp-action="Profile" asp-controller="account"><i class="fa-solid fa-user me-1"></i>@User.GetPrincipalName()</a>
+                            <div class="dropdown-menu" aria-labelledby="profile">
+                                @if (User.HasAccess("admin.dashboard.index"))
+                                {
+                                    <a class="dropdown-item adminDrop" asp-action="index" asp-controller="dashboard" asp-area="admin"><i class="fa-solid fa-lock-open"></i>Admin Panel</a>
+                                }
+                                <a class="dropdown-item profileDrop" asp-action="Profile" asp-controller="account"><i class="fa-solid fa-user"></i>Profile</a>
+                                <a class="dropdown-item settingsDrop" asp-action="changepassword" asp-controller="account"><i class="fa-solid fa-gear"></i> Change Password</a>
+                                <a class="dropdown-item logoutDrop" asp-action="logout" asp-controller="account"><i class="fa-solid fa-arrow-right-from-bracket"></i>Logout</a>
+                            </div>
+                        </li>
                     }
                     else
                     {
-                    <li>
-                        <a asp-action="Register" asp-controller="account"><i class="fas fa-user-edit me-2"></i>Register</a>
-                    </li>
-                    <li>
-                        <a asp-action="SignIn" asp-controller="account"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
-                    </li>
+                        <li>
+                            <a asp-action="Register" asp-controller="account"><i class="fas fa-user-edit me-2"></i>Register</a>
+                        </li>
+                        <li>
+                            <a asp-action="SignIn" asp-controller="account"><i class="fas fa-sign-in-alt me-2"></i>Login</a>
+                        </li>
                     }
                 </ul>
             </div>
@@ -74,7 +83,7 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" asp-controller="Shop" asp-action="Index" id="electronics" >Shop</a>
+                            <a class="nav-link dropdown-toggle" asp-controller="Shop" asp-action="Index" id="electronics">Shop</a>
                             <div class="dropdown-menu" aria-labelledby="shop">
                                 @foreach (var item in ViewBag.Categories)
                                 {
@@ -84,6 +93,9 @@
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Home" asp-action="Contact">Contact</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-controller="Home" asp-action="Faqs">FAQs</a>
                         </li>
                     </ul>
                 </div>

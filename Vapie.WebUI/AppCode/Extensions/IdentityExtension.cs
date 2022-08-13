@@ -1,9 +1,10 @@
-﻿using System.Linq;
+﻿using Microsoft.AspNetCore.Http;
+using System.Linq;
 using System.Security.Claims;
 
 namespace Vapie.WebUI.AppCode.Extensions
 {
-    static public partial class Extension
+    public partial class Extension
     {
         static public string GetPrincipalName(this ClaimsPrincipal principal)
         {
@@ -15,6 +16,10 @@ namespace Vapie.WebUI.AppCode.Extensions
             }
 
             return principal.Claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.Email))?.Value;
+        }
+        public static string GetUserId(this ClaimsPrincipal principal)
+        {
+            return principal.Claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.NameIdentifier))?.Value;
         }
         static public bool HasAccess(this ClaimsPrincipal principal,string policyName)
         {

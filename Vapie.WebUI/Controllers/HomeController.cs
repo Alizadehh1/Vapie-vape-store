@@ -27,6 +27,10 @@ namespace Vapie.WebUI.Controllers
         {
             return View();
         }
+        public IActionResult Preloader()
+        {
+            return View();
+        }
         public IActionResult Contact()
         {
             return View();
@@ -53,7 +57,9 @@ namespace Vapie.WebUI.Controllers
         [HttpPost]
         public async Task<IActionResult> Subscribe(SubscribeCreateCommand command)
         {
+
             var response = await mediator.Send(command);
+
             return Json(response);
         }
 
@@ -64,6 +70,12 @@ namespace Vapie.WebUI.Controllers
             var response = await mediator.Send(command);
 
             return View(response);
+        }
+
+        public IActionResult Faqs()
+        {
+            var faqs = db.Faqs.ToList();
+            return View(faqs);
         }
     }
 }

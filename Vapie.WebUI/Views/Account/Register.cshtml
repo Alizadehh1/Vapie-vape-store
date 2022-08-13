@@ -1,51 +1,89 @@
 ﻿@model RegisterFormModel
 @{
     ViewData["Title"] = "Register";
+    Layout = null;
 }
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SignIn</title>
+    <link href="~/assets/css/login.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css" integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+<body>
+    <section>
 
-<div class="col-lg-4 col-md-6 col-sm-8 mx-auto bg-white py-3 mb-4">
-    <div class="row">
-        <div class="col-12">
-            <form method="post" asp-action="Register">
-                <div asp-validation-summary="All"></div>
-                @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
-                {
-                    <div class="form-group mb-3">
-                        <div class="alert alert-danger text-white">
-                            @ViewBag.Message
+        <div class="box">
+
+            <div class="square" style="--i:0;"></div>
+            <div class="square" style="--i:1;"></div>
+            <div class="square" style="--i:2;"></div>
+            <div class="square" style="--i:3;"></div>
+            <div class="square" style="--i:4;"></div>
+            <div class="square" style="--i:5;"></div>
+
+            <div class="container">
+                <div class="form">
+                    <h2>Signup from Vapie</h2>
+                    <form asp-action="register" method="post">
+                        <div asp-validation-summary="All"></div>
+                        @if (!string.IsNullOrWhiteSpace(ViewBag.Message))
+                        {
+                            <div class="form-group mb-3">
+                                <div class="alert alert-danger text-white">
+                                    @ViewBag.Message
+                                </div>
+                            </div>
+                        }
+                        <div class="inputBx">
+                            <input asp-for="Name">
+                            <span>Name</span>
+                            <i class="fas fa-user-circle"></i>
                         </div>
-                    </div>
-                }
-                <div class="mb-3">
-                    <label asp-for="Name" class="form-label">Name</label>
-                    <input asp-for="Name" id="name" class="form-control" >
+                        <div class="inputBx">
+                            <input asp-for="Surname">
+                            <span>Surname</span>
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="inputBx">
+                            <input asp-for="Username">
+                            <span>Username</span>
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="inputBx">
+                            <input asp-for="Email">
+                            <span>Email</span>
+                            <i class="fas fa-user-circle"></i>
+                        </div>
+                        <div class="inputBx password">
+                            <input id="password-input" asp-for="Password" name="password">
+                            <span>Password</span>
+                            <a href="#" class="password-control" onclick="return show_hide_password(this);"></a>
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <div class="inputBx password">
+                            <input id="confirmpassword-input" asp-for="ConfirmPassword" name="confirmpassword">
+                            <span>ConfirmPassword</span>
+                            <a href="#" class="password-control" onclick="return show_hide_confirmpassword(this);"></a>
+                            <i class="fas fa-key"></i>
+                        </div>
+                        <label class="remember">
+                            <input type="checkbox" required>
+                            I agree to Terms and Conditions
+                        </label>
+                        <div class="inputBx">
+                            <input type="submit" value="Sign Up">
+                        </div>
+                    </form>
+                    <p>Already have an account? <a asp-action="signin">Log in</a></p>
                 </div>
-                <div class="mb-3">
-                    <label asp-for="Surname" class="form-label">Surname</label>
-                    <input asp-for="Surname" id="surname" class="form-control" >
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Email" class="form-label">Email</label>
-                    <input asp-for="Email" id="email" class="form-control" >
-                </div>
-                <div class="mb-3">
-                    <label asp-for="Password" class="form-label">Password</label>
-                    <input asp-for="Password" id="password" class="form-control" >
-                </div>
-                <div class="mb-3">
-                    <label asp-for="ConfirmPassword" class="form-label">Confirm Password</label>
-                    <input asp-for="ConfirmPassword" id="password-confirm" class="form-control" >
-                </div>
-                <div class="mb-3">
-                    <div class="form-check">
-                        <input type="checkbox" id="agree" class="form-check-input" required>
-                        <label for="agree" class="form-check-label ml-2">I agree to Terms and Conditions</label>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <button type="submit" class="btn btn-outline-dark">Register</button>
-                </div>
-            </form>
+            </div>
+
         </div>
-    </div>
-</div>
+    </section>
+    <script src="~/assets/js/login.js"></script>
+</body>
+</html>

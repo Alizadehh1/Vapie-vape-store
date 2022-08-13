@@ -39,7 +39,7 @@ namespace Vapie.WebUI.AppCode.Modules.SubscribeModule
                 var smtpPort = Convert.ToInt32(configuration["emailAccount:smtpPort"]);
                 var userName = configuration["emailAccount:userName"];
                 var password = configuration["emailAccount:password"];
-                var cc = configuration["emailAccount:cc"];
+                //var cc = configuration["emailAccount:cc"];
 
                 var subscribe = await db.Subscribes
                     .FirstOrDefaultAsync(s=>s.Email.Equals(request.Email),cancellationToken);
@@ -76,12 +76,12 @@ namespace Vapie.WebUI.AppCode.Modules.SubscribeModule
                     message.Subject = "Riode Confirmation Mail";
                     message.Body = $"Please confirm subscribtion with <a href=\"{link}\">link</a>";
                     message.IsBodyHtml = true;
-                    string[] ccs = cc.Split(';', StringSplitOptions.RemoveEmptyEntries);
+                    //string[] ccs = cc.Split(';', StringSplitOptions.RemoveEmptyEntries);
 
-                    foreach (var item in ccs)
-                    {
-                        message.Bcc.Add(item);
-                    }
+                    //foreach (var item in ccs)
+                    //{
+                    //    message.Bcc.Add(item);
+                    //}
 
                     client.Send(message);
 
@@ -95,7 +95,7 @@ namespace Vapie.WebUI.AppCode.Modules.SubscribeModule
                     return new CommandJsonResponse
                     {
                         Error = true,
-                        Message = "E BIR BIR"
+                        Message = ex.Message
                     };
                 }
 

@@ -71,22 +71,6 @@ namespace Vapie.WebUI.AppCode.Modules.BlogModule
                     currentEntity.Title = request.Title;
                     currentEntity.Paragraph = request.Paragraph;
                     await db.SaveChangesAsync(cancellationToken);
-                    //if (request.TagIds != null && request.TagIds.Length > 0)
-                    //{
-                    //    foreach (var item in request.TagIds)
-                    //    {
-                    //        if (db.BlogPostTagCloud.Any(bptc => bptc.PostTagId == item && bptc.BlogId == request.Id))
-                    //        {
-                    //            continue;
-                    //        }
-                    //        await db.BlogPostTagCloud.AddAsync(new BlogPostTag
-                    //        {
-                    //            BlogId = request.Id,
-                    //            PostTagId = item
-                    //        }, cancellationToken);
-                    //    }
-                    //    await db.SaveChangesAsync(cancellationToken);
-                    //}
                     return currentEntity;
                 }
                 return null;

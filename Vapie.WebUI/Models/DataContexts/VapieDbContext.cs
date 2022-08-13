@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Vapie.WebUI.Models.Entities;
 using Vapie.WebUI.Models.Entities.Membership;
+using Vapie.WebUI.Models.FormModels;
 
 namespace Vapie.WebUI.Models.DataContexts
 {
@@ -20,9 +21,16 @@ namespace Vapie.WebUI.Models.DataContexts
         public DbSet<Contact> Contacts { get; set; }
         public DbSet<Subscribe> Subscribes { get; set; }
 
+        public DbSet<Faq> Faqs { get; set; }
+
         protected override void OnModelCreating(ModelBuilder builder)
         {
             base.OnModelCreating(builder);
+
+            builder.Entity<ChangePasswordFormModel>(e =>
+            {
+                e.HasNoKey();
+            });
 
             builder.Entity<VapieUser>(e =>
             {
@@ -53,6 +61,8 @@ namespace Vapie.WebUI.Models.DataContexts
                 e.ToTable("UserTokens", "Membership");
             });
         }
+
+        public DbSet<Vapie.WebUI.Models.FormModels.ChangePasswordFormModel> ChangePasswordFormModel { get; set; }
 
     }
 }

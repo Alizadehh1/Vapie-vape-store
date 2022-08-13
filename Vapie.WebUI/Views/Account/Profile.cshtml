@@ -1,118 +1,122 @@
-﻿
+﻿@model ProfileEditCommand
 @{
     ViewData["Title"] = "Profile";
 }
-<section class="page-top-section d-flex align-items-center">
-    <div class="page-top-bg" data-img-src="https://wordpressriverthemes.com/adhira/wp-content/themes/adhira/assets/img/pagetop/1.jpg"></div>
+<div class="page-header breadcrumb-wrap">
     <div class="container">
-        <h2 class="page-title">Team Single<span class="text-theme">.</span></h2>
-    </div>
-    <div class="top-img d-xl-block d-none"><img src="https://wordpressriverthemes.com/adhira/wp-content/themes/adhira/assets/img/pagetop/1.png"></div>
-    <div class="shape-left circle_shape"></div>
-    <div class="shape-right rectangle_shape"></div>
-</section>
-<div class="vc_row wpb_row vc_row-fluid">
-    <div class="wpb_column vc_column_container vc_col-sm-12">
-        <div class="vc_column-inner">
-            <div class="wpb_wrapper">
-                <section class="sec-pt-120 sec-pb-120">
-                    <div class="container">
-                        <div class="team-single-area">
-                            <div class="top-info">
-                                <div class="row align-center">
-                                    <div class="col-lg-5 thumb">
-                                        <img src="https://wordpressriverthemes.com/adhira/wp-content/uploads/2021/05/team.jpg" alt="Thumb">
-                                    </div>
-                                    <div class="col-lg-7 content">
-                                        <h2>Mothan Jobie</h2>
-                                        <span>PRESIDENT &amp; CEO</span>
-                                        <p>
-                                            Another journey chamber way yet females man. Way extensive and dejection get delivered deficient sincerity gentleman age. Too end instrument possession contrasted motionless. Calling offence six joy feeling. Coming merits and was talent.
-                                        </p>
-                                        <div class="social">
-                                            <ul>
-                                                <li class="facebook">
-                                                    <a href="#">
-                                                        <i class="fab fa-facebook-f"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="twitter">
-                                                    <a href="#">
-                                                        <i class="fab fa-twitter"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="youtube">
-                                                    <a href="#">
-                                                        <i class="fab fa-youtube"></i>
-                                                    </a>
-                                                </li>
-                                                <li class="linkedin">
-                                                    <a href="#">
-                                                        <i class="fab fa-linkedin-in"></i>
-                                                    </a>
-                                                </li>
-                                            </ul>
-                                        </div>
-                                        <ul class="basic-info">
-                                            <li>
-                                                <strong>Phone: </strong> <span>+123 4569008</span>
-                                            </li>
-                                            <li>
-                                                <strong>Email: </strong> <span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="c1a0a5aca8af81b7a0ada8a5b5a9a4aca4b2efa2aeac">[email&#160;protected]</a></span>
-                                            </li>
-                                            <li>
-                                                <strong>Website: </strong> <span><a href="https://creativedigital.tech/">https://creativedigital.tech/</a></span>
-                                            </li>
-                                            <li>
-                                                <strong>Experience: </strong> <span>12 Years</span>
-                                            </li>
-                                        </ul>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="bottom-info">
-                                <div class="row">
-                                    <div class="col-lg-6">
-                                        <h2>Skills</h2>
-                                        <p>
-                                            Securing as informed declared or margaret. Joy horrible moreover man feelings own shy. Request norland neither mistake for yet. Between the for morning assured country believe. On even feet time have an no at. Relation so in confined smallest children unpacked delicate.
-                                        </p>
-                                    </div>
-                                    <div class="col-lg-6 about-area reverse">
-                                        <div class="info">
-                                            <div class="skill-items">
-                                                <div class="progress-box">
-                                                    <h5>Software Development</h5>
-                                                    <div class="progress" style="opacity: 1; left: 0px;">
-                                                        <div class="progress-bar" role="progressbar" data-width="88" style="width: 88%;">
-                                                            <span>88%</span>
-                                                        </div>
-                                                    </div>
-                                                </div><div class="progress-box">
-                                                    <h5>Cyber Security</h5>
-                                                    <div class="progress" style="opacity: 1; left: 0px;">
-                                                        <div class="progress-bar" role="progressbar" data-width="98" style="width: 98%;">
-                                                            <span>98%</span>
-                                                        </div>
-                                                    </div>
-                                                </div><div class="progress-box">
-                                                    <h5>Artificial Intelligence</h5>
-                                                    <div class="progress" style="opacity: 1; left: 0px;">
-                                                        <div class="progress-bar" role="progressbar" data-width="85" style="width: 85%;">
-                                                            <span>85%</span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section>
-            </div>
+        <div class="breadcrumb">
+            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Home</a>
+            <i class="fa-solid fa-user-gear"></i> Account
         </div>
     </div>
 </div>
+<div style="margin-top:0px!important;margin-bottom:0px!important;" class="container-fluid rounded bg-white mt-5 mb-5">
+    <div class="row">
+        <div class="col-12 text-center text-uppercase">
+            <h2>Profile</h2>
+        </div>
+    </div>
+    <form method="post" enctype="multipart/form-data" asp-action="profile" class="row justify-content-center">
+        <div class="col-md-3 border-right">
+            <div class="d-flex flex-column align-items-center text-center p-3 py-5">
+                <div class="form-groupImage">
+                    <label for="file" class="photo-viewer" id="file-viewer" style="background-image: url('/uploads/images/@Model.ImagePath')"></label>
+                    <input name="file" id="file" type="file" class="form-control" onchange="readFile(this)" />
+                    <input type="hidden" asp-for="ImagePath" />
+                    <span asp-validation-for="ImagePath" class="text-danger"></span>
+                    <span class="font-weight-bold">@Model.Name @Model.Surname</span>
+                    <span class="text-black-50">@Model.Email</span>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-5 border-right">
+            <div class="p-3 py-5">
+                <div class="d-flex justify-content-between align-items-center mb-3">
+                    <h4 class="text-right">Profile Settings</h4>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"><label class="labels">Name</label><input asp-for="@Model.Name" class="form-control" /></div>
+                    <div class="col-md-6"><label class="labels">Surname</label><input asp-for="@Model.Surname" class="form-control" /></div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6"><label class="labels">Username</label><input asp-for="@Model.UserName" class="form-control" /></div>
+                    @*<div class="col-md-6"><label class="labels">Email</label><p class="form-control">@Model.Email</p></div>*@
+                    <div class="col-md-6 d-flex flex-column">
+                        <label class="labels">Email Confirmation</label>
+                        @if (Model.EmailConfirmed)
+                        {
+                            <span style="background-color: #0ac282; margin-top: 25px;" class="badge badge-success">
+                                Təsdiq olunub
+                            </span>
+                        }
+                        else
+                        {
+                            <span style="background-color: #ffc107;margin-top:25px;" class="badge badge-warning text-white">
+                                Təsdiq olunmayıb
+                            </span>
+                        }
+                    </div>
+                </div>
+                <button type="button" class="logoutButton logoutButton--dark">
+                    <svg class="doorway" viewBox="0 0 100 100">
+                        <path d="M93.4 86.3H58.6c-1.9 0-3.4-1.5-3.4-3.4V17.1c0-1.9 1.5-3.4 3.4-3.4h34.8c1.9 0 3.4 1.5 3.4 3.4v65.8c0 1.9-1.5 3.4-3.4 3.4z" />
+                        <path class="bang" d="M40.5 43.7L26.6 31.4l-2.5 6.7zM41.9 50.4l-19.5-4-1.4 6.3zM40 57.4l-17.7 3.9 3.9 5.7z" />
+                    </svg>
+                    <svg class="figure" viewBox="0 0 100 100">
+                        <circle cx="52.1" cy="32.4" r="6.4" />
+                        <path d="M50.7 62.8c-1.2 2.5-3.6 5-7.2 4-3.2-.9-4.9-3.5-4-7.8.7-3.4 3.1-13.8 4.1-15.8 1.7-3.4 1.6-4.6 7-3.7 4.3.7 4.6 2.5 4.3 5.4-.4 3.7-2.8 15.1-4.2 17.9z" />
+                        <g class="arm1">
+                            <path d="M55.5 56.5l-6-9.5c-1-1.5-.6-3.5.9-4.4 1.5-1 3.7-1.1 4.6.4l6.1 10c1 1.5.3 3.5-1.1 4.4-1.5.9-3.5.5-4.5-.9z" />
+                            <path class="wrist1" d="M69.4 59.9L58.1 58c-1.7-.3-2.9-1.9-2.6-3.7.3-1.7 1.9-2.9 3.7-2.6l11.4 1.9c1.7.3 2.9 1.9 2.6 3.7-.4 1.7-2 2.9-3.8 2.6z" />
+                        </g>
+                        <g class="arm2">
+                            <path d="M34.2 43.6L45 40.3c1.7-.6 3.5.3 4 2 .6 1.7-.3 4-2 4.5l-10.8 2.8c-1.7.6-3.5-.3-4-2-.6-1.6.3-3.4 2-4z" />
+                            <path class="wrist2" d="M27.1 56.2L32 45.7c.7-1.6 2.6-2.3 4.2-1.6 1.6.7 2.3 2.6 1.6 4.2L33 58.8c-.7 1.6-2.6 2.3-4.2 1.6-1.7-.7-2.4-2.6-1.7-4.2z" />
+                        </g>
+                        <g class="leg1">
+                            <path d="M52.1 73.2s-7-5.7-7.9-6.5c-.9-.9-1.2-3.5-.1-4.9 1.1-1.4 3.8-1.9 5.2-.9l7.9 7c1.4 1.1 1.7 3.5.7 4.9-1.1 1.4-4.4 1.5-5.8.4z" />
+                            <path class="calf1" d="M52.6 84.4l-1-12.8c-.1-1.9 1.5-3.6 3.5-3.7 2-.1 3.7 1.4 3.8 3.4l1 12.8c.1 1.9-1.5 3.6-3.5 3.7-2 0-3.7-1.5-3.8-3.4z" />
+                        </g>
+                        <g class="leg2">
+                            <path d="M37.8 72.7s1.3-10.2 1.6-11.4 2.4-2.8 4.1-2.6c1.7.2 3.6 2.3 3.4 4l-1.8 11.1c-.2 1.7-1.7 3.3-3.4 3.1-1.8-.2-4.1-2.4-3.9-4.2z" />
+                            <path class="calf2" d="M29.5 82.3l9.6-10.9c1.3-1.4 3.6-1.5 5.1-.1 1.5 1.4.4 4.9-.9 6.3l-8.5 9.6c-1.3 1.4-3.6 1.5-5.1.1-1.4-1.3-1.5-3.5-.2-5z" />
+                        </g>
+                    </svg>
+                    <svg class="door" viewBox="0 0 100 100">
+                        <path d="M93.4 86.3H58.6c-1.9 0-3.4-1.5-3.4-3.4V17.1c0-1.9 1.5-3.4 3.4-3.4h34.8c1.9 0 3.4 1.5 3.4 3.4v65.8c0 1.9-1.5 3.4-3.4 3.4z" />
+                        <circle cx="66" cy="50" r="3.7" />
+                    </svg>
+                    <a asp-action="logout" class="button-text">Log Out</a>
+                </button>
+                <a style="margin-left:20px;" asp-action="ChangePassword" class="btn btn-primary profile-button" type="button">Change Password</a>
+                
+                <button type="submit" class="btn btn-warning">Save</button>
 
+            </div>
+        </div>
+    </form>
+</div>
+
+@section css{
+    <link href="~/assets/css/logout.css" rel="stylesheet" />
+}
+@section js{
+    <script>
+        function readFile(input) {
+            let file = input.files[0];
+
+            let reader = new FileReader();
+
+
+            reader.onload = function () {
+                console.log(reader.result);
+                $('#file-viewer').css('background-image', `url(${reader.result})`)
+            };
+
+            reader.onerror = function () {
+                console.log(reader.error);
+            };
+            reader.readAsDataURL(file);
+        }
+    </script>
+}

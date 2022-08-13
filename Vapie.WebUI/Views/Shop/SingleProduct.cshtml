@@ -303,14 +303,27 @@
             if (length > 0) return;
             items.push(cardId);
             $.cookie('cards', items.toString(), { expires: 7, path: '/' });
+            $.ajax({
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, "Error!");
+                        return;
+                    }
+                    toastr.success("Successfully Added", response.message)
+                    showCardCount();
+                },
+                error: function (response) {
+                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                }
+            })
         }
 
         function showCardCount() {
             let items = readFromBasket();
             $('#header-qty').html(items.length - 1);
-
         }
-        showCardCount();
+
+        
 
     </script>
 }

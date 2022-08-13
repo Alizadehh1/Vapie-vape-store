@@ -643,6 +643,16 @@ a.product-name:hover, a.product-name:focus {
     padding-right: 0;
 }
 
+.emptyBasket {
+    font-size: 100px;
+    color: #3BB77E;
+}
+.emptyBasketText{
+    margin-top:15px;
+}
+/*.continueShop {
+    color: #3BB77E;
+}*/
 table td, table th {
     vertical-align: middle !important;
 }
@@ -753,3 +763,172 @@ textarea {
     }
 
 }
+
+
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+@import url(https://fonts.googleapis.com/css?family=Josefin+Sans:700);
+
+
+.acc_ctrl h2 {
+    color: #282f35;
+    font-family: "Josefin Sans", Arial, sans-serif;
+    font-size: 18px;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+.acc_panel p {
+    color: #666666;
+    font-family: "Malgun Gothic", Arial, sans-serif;
+    font-size: 14px;
+    line-height: 1.5;
+    margin: 20px;
+}
+
+
+
+.acc {
+    margin: 90px 0;
+    overflow: hidden;
+    padding: 0;
+}
+
+    .acc li {
+        list-style-type: none;
+        padding: 0;
+    }
+
+.acc_ctrl {
+    background: #ffffff;
+    border: none;
+    border-bottom: solid 1px #f2f2f2;
+    cursor: pointer;
+    display: block;
+    outline: none;
+    padding: 2em;
+    position: relative;
+    text-align: center;
+    width: 100%;
+}
+
+    .acc_ctrl:before {
+        background: #44596b;
+        content: "";
+        height: 2px;
+        margin-right: 37px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        -webkit-transform: rotate(90deg);
+        -moz-transform: rotate(90deg);
+        -ms-transform: rotate(90deg);
+        -o-transform: rotate(90deg);
+        transform: rotate(90deg);
+        -webkit-transition: all 0.2s ease-in-out;
+        -moz-transition: all 0.2s ease-in-out;
+        -ms-transition: all 0.2s ease-in-out;
+        -o-transition: all 0.2s ease-in-out;
+        transition: all 0.2s ease-in-out;
+        width: 14px;
+    }
+
+    .acc_ctrl:after {
+        background: #44596b;
+        content: "";
+        height: 2px;
+        margin-right: 37px;
+        position: absolute;
+        right: 0;
+        top: 50%;
+        width: 14px;
+    }
+
+    .acc_ctrl.active:before {
+        -webkit-transform: rotate(0deg);
+        -moz-transform: rotate(0deg);
+        -ms-transform: rotate(0deg);
+        -o-transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+
+    .acc_ctrl.active h2,
+    .acc_ctrl:focus h2 {
+        position: relative;
+    }
+
+.acc_panel {
+    background: #f2f2f2;
+    display: none;
+    overflow: hidden;
+}
+.profileDrop{
+    color:black !important;
+
+}
+.profileDrop:hover {
+    background-color: #0d6efd !important;
+    color:white!important;
+}
+.settingsDrop {
+    color: black !important;
+}
+    .settingsDrop:hover {
+        background-color: #ffc107 !important;
+        color: white !important;
+    }
+.logoutDrop {
+    color: black !important;
+}
+    .logoutDrop:hover {
+        background-color: #dc3545 !important;
+        color: white !important;
+    }
+.adminDrop {
+    color: black !important;
+}
+    .adminDrop:hover {
+        background-color: #28a745 !important;
+        color: white !important;
+    }

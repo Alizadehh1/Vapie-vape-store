@@ -9,6 +9,9 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
+using Vapie.WebUI.AppCode.Modules.ProfileModule;
+using System;
+using MediatR;
 
 namespace Vapie.WebUI.Controllers
 {
@@ -20,16 +23,19 @@ namespace Vapie.WebUI.Controllers
         private readonly UserManager<VapieUser> userManager;
         private readonly IConfiguration configuration;
         private readonly IActionContextAccessor ctx;
+        private readonly IMediator mediator;
 
         public AccountController(VapieDbContext db, SignInManager<VapieUser> signInManager, UserManager<VapieUser> userManager,
             IConfiguration configuration,
-            IActionContextAccessor ctx)
+            IActionContextAccessor ctx,
+            IMediator mediator)
         {
             this.db = db;
             this.signInManager = signInManager;
             this.userManager = userManager;
             this.configuration = configuration;
             this.ctx = ctx;
+            this.mediator = mediator;
         }
         [Route("/signin.html")]
         [AllowAnonymous]
@@ -38,9 +44,32 @@ namespace Vapie.WebUI.Controllers
             return View();
         }
         [Route("/profile.html")]
-        public IActionResult Profile()
+        public async Task<IActionResult> Profile()
         {
-            return View();
+            var userId = User.GetUserId();
+            var user = await userManager.FindByIdAsync(userId);
+            var command = new ProfileEditCommand();
+            command.Id = user.Id;
+            command.Name = user.Name;
+            command.Surname = user.Surname;
+            command.UserName = user.UserName;
+            command.Email = user.Email;
+            command.EmailConfirmed = user.EmailConfirmed;
+            command.ImagePath = user.ImagePath;
+            return View(command);
+        }
+        [HttpPost]
+        [Route("/profile.html")]
+        public async Task<IActionResult> Profile(ProfileEditCommand command)
+        {
+            if (ModelState.IsValid)
+            {
+                var userId = User.GetUserId();
+                command.Id = Convert.ToInt32(userId);
+                var response = await mediator.Send(command);
+                return RedirectToAction(nameof(Profile));
+            }
+            return View(command);
         }
         [Route("/accessdenied.html")]
         public IActionResult AccessDenied()
@@ -52,6 +81,36 @@ namespace Vapie.WebUI.Controllers
         {
             await signInManager.SignOutAsync();
             return RedirectToAction(nameof(SignIn));
+        }
+        [Route("/changePassword.html")]
+        public IActionResult ChangePassword()
+        {
+
+            return View();
+        }
+        [HttpPost("/changePassword.html")]
+        public async Task<IActionResult> ChangePassword(ChangePasswordFormModel model)
+        {
+            
+            if (ModelState.IsValid)
+            {
+                var userId = User.GetUserId();
+                var user = await userManager.FindByIdAsync(userId);
+                var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+                if (result.Succeeded)
+                {
+                    ViewBag.IsSuccess = true;
+                    ModelState.Clear();
+                    return View();
+                }
+
+                foreach (var error in result.Errors)
+                {
+                    ModelState.AddModelError("", error.Description);
+                }
+            }
+
+            return View(model);
         }
         [HttpPost]
         [Route("/signin.html")]
@@ -114,8 +173,8 @@ namespace Vapie.WebUI.Controllers
                 user.Email = model.Email;
                 user.Name = model.Name;
                 user.Surname = model.Surname;
-                user.UserName = $"{model.Name}.{model.Surname}";
-
+                user.UserName = model.Username;
+                user.ImagePath = "avatar-profile.jpg";
                 var result = await userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)

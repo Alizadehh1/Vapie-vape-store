@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vapie.WebUI.AppCode.Infrastructure;
 using Vapie.WebUI.Models.DataContexts;
 using Vapie.WebUI.Models.Entities;
 using Vapie.WebUI.Models.ViewModels;
@@ -97,6 +98,21 @@ namespace Vapie.WebUI.Controllers
             return View(new List<Product>());
 
         }
+        //public CommandJsonResponse Delete(int id)
+        //{
+        //    if (Request.Cookies.TryGetValue("cards", out string cards))
+        //    {
+        //        int[] idsFromCookie = cards.Split(",").Where(CheckIsNumber)
+        //                .Select(item => int.Parse(item))
+        //                .ToArray();
+
+
+        //        idsFromCookie = idsFromCookie.Where(i => i != id).ToArray();
+        //        int count = Request.Cookies["cards"].Values.Count;
+        //        return new CommandJsonResponse(false, "Deleted Successfully");
+        //    }
+        //    return new CommandJsonResponse(true, "Qeyd Movcud Deyil!");
+        //}
 
         private bool CheckIsNumber(string value)
         {

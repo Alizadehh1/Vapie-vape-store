@@ -15,7 +15,7 @@
         <div class="col-12 py-3">
             <div class="row">
                 <div class="col-12 text-center text-uppercase">
-                    <h2>Vapie</h2>
+                    <h2>Shop</h2>
                 </div>
             </div>
             <div class="row">
@@ -91,6 +91,19 @@
             if (length > 0) return;
             items.push(cardId);
             $.cookie('cards', items.toString(), { expires: 7, path: '/' });
+            $.ajax({
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, "Error!");
+                        return;
+                    }
+                    toastr.success("Successfully Added", response.message)
+                    showCardCount();
+                },
+                error: function (response) {
+                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                }
+            })
         }
 
         function showCardCount() {

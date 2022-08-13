@@ -162,6 +162,36 @@ namespace Vapie.WebUI.Migrations
                     b.ToTable("Contacts");
                 });
 
+            modelBuilder.Entity("Vapie.WebUI.Models.Entities.Faq", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("Answer")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("Question")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("Faqs");
+                });
+
             modelBuilder.Entity("Vapie.WebUI.Models.Entities.Membership.VapieRole", b =>
                 {
                     b.Property<int>("Id")
@@ -234,6 +264,9 @@ namespace Vapie.WebUI.Migrations
 
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
+
+                    b.Property<string>("ImagePath")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
@@ -488,6 +521,23 @@ namespace Vapie.WebUI.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Subscribes");
+                });
+
+            modelBuilder.Entity("Vapie.WebUI.Models.FormModels.ChangePasswordFormModel", b =>
+                {
+                    b.Property<string>("ConfirmNewPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CurrentPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("NewPassword")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.ToTable("ChangePasswordFormModel");
                 });
 
             modelBuilder.Entity("Vapie.WebUI.Models.Entities.Blog", b =>

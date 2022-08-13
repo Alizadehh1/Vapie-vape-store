@@ -1,10 +1,11 @@
-﻿<!doctype html>
+﻿<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>E-Commerce</title>
+    <title>@ViewData["Title"] | Vapie</title>
+    <link rel="icon" type="image/svg" href="~/assets/images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
     <link href="~/fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
     <link href="~/fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700" rel="stylesheet">
@@ -40,8 +41,8 @@
                                     </div>
                                     <div class="col-12">
                                         <address>
-                                            221B Baker Street<br>
-                                            London, England
+                                            Nizami küçəsi 96<br>
+                                            Bakı, Azərbaycan
                                         </address>
                                     </div>
                                     <div class="col-12">
@@ -53,7 +54,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="col-lg-3 col-sm-8 text-center text-sm-left mb-sm-0 mb-3">
+                            @*<div class="col-lg-3 col-sm-8 text-center text-sm-left mb-sm-0 mb-3">
                                 <div class="row">
                                     <div class="col-12 text-uppercase">
                                         <h4>Who are we?</h4>
@@ -62,7 +63,7 @@
                                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam imperdiet vel ligula vel sodales. Aenean vel ullamcorper purus, ac pharetra arcu. Nam enim velit, ultricies eu orci nec, aliquam efficitur sem. Quisque in sapien a sem vestibulum volutpat at eu nibh. Suspendisse eget est metus. Maecenas mollis quis nisl ac malesuada. Donec gravida tortor massa, vitae semper leo sagittis a. Donec augue turpis, rutrum vitae augue ut, venenatis auctor nulla. Sed posuere at erat in consequat. Nunc congue justo ut ante sodales, bibendum blandit augue finibus.</p>
                                     </div>
                                 </div>
-                            </div>
+                            </div>*@
                             <div class="col-lg-2 col-sm-3 col-5 ms-lg-auto ms-sm-0 ms-auto mb-sm-0 mb-3">
                                 <div class="row">
                                     <div class="col-12 text-uppercase">
@@ -71,19 +72,13 @@
                                     <div class="col-12">
                                         <ul class="footer-nav">
                                             <li>
-                                                <a href="#">Home</a>
+                                                <a asp-action="Index" asp-controller="Home">Home</a>
                                             </li>
                                             <li>
-                                                <a href="#">Contact Us</a>
+                                                <a asp-action="Contact" asp-controller="Home">Contact Us</a>
                                             </li>
                                             <li>
                                                 <a href="#">About Us</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Privacy Policy</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Terms & Conditions</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -97,19 +92,7 @@
                                     <div class="col-12">
                                         <ul class="footer-nav">
                                             <li>
-                                                <a href="#">FAQs</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Shipping</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Returns</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Track Order</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Report Fraud</a>
+                                                <a asp-action="Faqs" asp-controller="Home">FAQs</a>
                                             </li>
                                         </ul>
                                     </div>
@@ -123,7 +106,7 @@
                                     <div class="col-12">
                                         <form method="post" id="subscribeForm">
                                             <div class="mb-3">
-                                                <input type="text" class="form-control" placeholder="Enter your email..." required>
+                                                <input type="email" name="Email" id="email" class="form-control" placeholder="Enter your email..." required>
                                             </div>
                                             <div class="mb-3">
                                                 <button id="btnSubs" type="submit" class="btn btn-outline-light text-uppercase">Subscribe</button>

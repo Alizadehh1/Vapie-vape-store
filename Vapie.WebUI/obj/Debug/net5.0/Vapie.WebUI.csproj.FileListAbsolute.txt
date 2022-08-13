@@ -354,3 +354,10 @@ C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Views\Shop\Category.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Views\Shop\_ProductListPartial.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Views\Shop\Basket.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Views\Home\Faqs.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Create.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Details.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Edit.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Faqs\Index.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Views\Account\ChangePassword.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Views\Home\Preloader.cshtml.g.cs

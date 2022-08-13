@@ -167,7 +167,7 @@
                                                      src="~/admin/files/assets/images/avatar-4.jpg"
                                                      alt="Generic placeholder image">
                                                 <div class="media-body">
-                                                    <h5 class="notification-user">Alizadehh</h5>
+                                                    <h5 class="notification-user">@User.GetPrincipalName()</h5>
                                                     <p class="notification-msg">
                                                         Lorem ipsum dolor sit amet, consectetuer
                                                         elit.
@@ -222,7 +222,7 @@
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="~/admin/files/assets/images/avatar-4.jpg" class="img-radius"
                                              alt="User-Profile-Image">
-                                        <span>Alizadehh</span>
+                                        <span>@User.GetPrincipalName()</span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu"
@@ -397,20 +397,8 @@
                                 </li>
                                 <li class="">
                                     <a asp-controller="brands" asp-action="index">
-                                        <span class="pcoded-micon"><i class="icofont-brand-nike"></i></span>
+                                        <span class="pcoded-micon"><i class="fa-solid fa-copyright"></i></span>
                                         <span class="pcoded-mtext">Brands</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a asp-controller="productcolors" asp-action="index">
-                                        <span class="pcoded-micon"><i class="fa-solid fa-paintbrush"></i></span>
-                                        <span class="pcoded-mtext">Product Colors</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a asp-controller="productsizes" asp-action="index">
-                                        <span class="pcoded-micon"><i class="fa-solid fa-shirt"></i></span>
-                                        <span class="pcoded-mtext">Product Sizes</span>
                                     </a>
                                 </li>
                                 <li class="">
@@ -439,8 +427,20 @@
                                 </li>
                                 <li class="">
                                     <a asp-controller="products" asp-action="index">
-                                        <span class="pcoded-micon"><i class="icofont-envelope"></i></span>
+                                        <span class="pcoded-micon"><i class="fa-solid fa-smoking"></i></span>
                                         <span class="pcoded-mtext">Products</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a asp-controller="users" asp-action="index">
+                                        <span class="pcoded-micon"><i class="icofont-users"></i></span>
+                                        <span class="pcoded-mtext">İstifadəçilər</span>
+                                    </a>
+                                </li>
+                                <li class="">
+                                    <a asp-area="" asp-controller="home" asp-action="index">
+                                        <span class="pcoded-micon"><i class="fa-solid fa-earth-americas"></i></span>
+                                        <span class="pcoded-mtext">Sayta keçid</span>
                                     </a>
                                 </li>
                             </ul>
@@ -463,51 +463,7 @@
         </div>
     </div>
 
-    <!-- Warning Section Starts -->
-    <!-- Older IE warning message -->
-    <!--[if lt IE 10]>
-    <div class="ie-warning">
-        <h1>Warning!!</h1>
-        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
-        <div class="iew-container">
-            <ul class="iew-download">
-                <li>
-                    <a href="~/admin/http://www.google.com/chrome/">
-                        <img src="~/admin/./files/assets/images/browser/chrome.png" alt="Chrome">
-                        <div>Chrome</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="~/admin/https://www.mozilla.org/en-US/firefox/new/">
-                        <img src="~/admin/./files/assets/images/browser/firefox.png" alt="Firefox">
-                        <div>Firefox</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="~/admin/http://www.opera.com">
-                        <img src="~/admin/./files/assets/images/browser/opera.png" alt="Opera">
-                        <div>Opera</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="~/admin/https://www.apple.com/safari/">
-                        <img src="~/admin/./files/assets/images/browser/safari.png" alt="Safari">
-                        <div>Safari</div>
-                    </a>
-                </li>
-                <li>
-                    <a href="~/admin/http://windows.microsoft.com/en-us/internet-explorer/download-ie">
-                        <img src="~/admin/./files/assets/images/browser/ie.png" alt="">
-                        <div>IE (9 & above)</div>
-                    </a>
-                </li>
-            </ul>
-        </div>
-        <p>Sorry for the inconvenience!</p>
-    </div>
-    <![endif]-->
-    <!-- Warning Section Ends -->
-    <!-- Required Jquery -->
+    
     <script type="text/javascript" src="~/admin/files/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/admin/files/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="~/admin/files/bower_components/popper.js/dist/umd/popper.min.js"></script>
