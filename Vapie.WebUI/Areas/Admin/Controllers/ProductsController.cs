@@ -7,6 +7,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using Vapie.WebUI.AppCode.Infrastructure;
 using Vapie.WebUI.AppCode.Modules.ProductModule;
 using Vapie.WebUI.Models.DataContexts;
 using Vapie.WebUI.Models.Entities;
@@ -78,7 +79,11 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                 return NotFound();
             }
 
-            var product = await db.Products.FindAsync(id);
+            var product = await db.Products
+                .Include(p=>p.Category)
+                .Include(p=>p.Brand)
+                .Include(p=>p.Images)
+                .FirstOrDefaultAsync(p => p.Id == id);
             if (product == null)
             {
                 return NotFound();
@@ -91,36 +96,17 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Name,Description,CategoryId,Capacity,Size,Flavor,NicotineStrength,Price,Id,CreatedById,CreatedDate,DeletedById,DeletedDate")] Product product)
+        public async Task<IActionResult> Edit([FromRoute] int id,ProductEditCommand model)
         {
-            if (id != product.Id)
+            if (id != model.Id)
             {
                 return NotFound();
             }
 
-            if (ModelState.IsValid)
-            {
-                try
-                {
-                    db.Update(product);
-                    await db.SaveChangesAsync();
-                }
-                catch (DbUpdateConcurrencyException)
-                {
-                    if (!ProductExists(product.Id))
-                    {
-                        return NotFound();
-                    }
-                    else
-                    {
-                        throw;
-                    }
-                }
-                return RedirectToAction(nameof(Index));
-            }
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", product.CategoryId);
-            ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Name", product.BrandId);
-            return View(product);
+            var product = await mediator.Send(model);
+
+
+            return RedirectToAction(nameof(Index));
         }
 
         

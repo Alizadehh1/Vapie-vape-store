@@ -75,6 +75,9 @@
                                                 <a asp-action="Index" asp-controller="Home">Home</a>
                                             </li>
                                             <li>
+                                                <a asp-action="index" asp-controller="blog">Blog</a>
+                                            </li>
+                                            <li>
                                                 <a asp-action="Contact" asp-controller="Home">Contact Us</a>
                                             </li>
                                             <li>
@@ -165,7 +168,15 @@
 
                 });
             });
+            function readFromCookie() {
+                return ($.cookie('cardsForCookie') || '').split(',');
+            }
+            function showWishlistCount() {
+                let items = readFromCookie();
+                $('#header-favorite').html(items.length - 1);
 
+            }
+            showWishlistCount();
         });
     </script>
     <script>

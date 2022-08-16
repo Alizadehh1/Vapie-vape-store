@@ -1,5 +1,7 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using System;
 using System.Collections.Generic;
@@ -10,9 +12,11 @@ using Vapie.WebUI.AppCode.Modules.SubscribeModule;
 using Vapie.WebUI.Models;
 using Vapie.WebUI.Models.DataContexts;
 using Vapie.WebUI.Models.Entities;
+using Vapie.WebUI.Models.ViewModels;
 
 namespace Vapie.WebUI.Controllers
 {
+    [AllowAnonymous]
     public class HomeController : Controller
     {
         private readonly VapieDbContext db;
@@ -25,7 +29,14 @@ namespace Vapie.WebUI.Controllers
         }
         public IActionResult Index()
         {
-            return View();
+            var viewModel = new HomeViewModel();
+            viewModel.Products = (from data in db.Products
+                                  orderby data.CreatedDate descending
+                                  select data).Take(4).Include(p => p.Images.Where(i => i.IsMain == true)).ToList();
+
+            
+
+            return View(viewModel);
         }
         public IActionResult Preloader()
         {

@@ -1,19 +1,14 @@
-﻿using FluentValidation;
-using FluentValidation.Results;
-using MediatR;
+﻿using MediatR;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc.Infrastructure;
 using System;
 using System.Collections.Generic;
-using System.IO;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
 using Vapie.WebUI.AppCode.Extensions;
 using Vapie.WebUI.Models.DataContexts;
 using Vapie.WebUI.Models.Entities;
-using System.Web;
 
 namespace Vapie.WebUI.AppCode.Modules.ProductModule
 {
@@ -34,33 +29,26 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
             readonly VapieDbContext db;
             readonly IActionContextAccessor ctx;
             readonly IWebHostEnvironment env;
-            readonly IValidator<ProductCreateCommand> validator;
 
             public ProductCreateCommandHandler(VapieDbContext db,
                 IActionContextAccessor ctx,
-                IWebHostEnvironment env,
-                IValidator<ProductCreateCommand> validator)
+                IWebHostEnvironment env)
             {
                 this.db = db;
                 this.ctx = ctx;
                 this.env = env;
-                this.validator = validator;
             }
 
             public async Task<ProductCreateCommandResponse> Handle(ProductCreateCommand request, CancellationToken cancellationToken)
             {
-                var result = validator.Validate(request);
 
-
-
-                if (!result.IsValid)
+                    
+                if (ctx.ModelIsValid())
                 {
                     var response = new ProductCreateCommandResponse
                     {
                         Product = null,
-                        ValidationResult = result
                     };
-
                     return response;
                 }
 
@@ -120,7 +108,6 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                     var response = new ProductCreateCommandResponse
                     {
                         Product = product,
-                        ValidationResult = result
                     };
                     return response;
                 }
@@ -129,10 +116,9 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                     var response = new ProductCreateCommandResponse
                     {
                         Product = null,
-                        ValidationResult = result
                     };
 
-                    response.ValidationResult.Errors.Add(new ValidationFailure("Name", "Xeta bash verdi,Biraz sonra yeniden yoxlayin"));
+                    ctx.AddModelError("Name", "Xeta bash verdi,Biraz sonra yeniden yoxlayin");
 
                     return response;
                 }
@@ -149,6 +135,5 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
     public class ProductCreateCommandResponse
     {
         public Product Product { get; set; }
-        public ValidationResult ValidationResult { get; set; }
     }
 }

@@ -1,0 +1,164 @@
+﻿@model List<Product>
+@{
+    ViewData["Title"] = "Wishlist";
+}
+<div class="page-header breadcrumb-wrap">
+    <div class="container">
+        <div class="breadcrumb">
+            <a class="me-1" asp-action="Index" asp-controller="home"><i class="fa-solid fa-house me-1"></i>Home</a>
+            <a class="me-1" style="color: #FDC040;" asp-action="Index" asp-controller="Shop"><i style="color: #FDC040;" class="fa-solid fa-basket-shopping me-1"></i>Shop</a>
+            > <i class="fa-solid fa-heart"></i> Wishlist
+        </div>
+    </div>
+    <div class="col-12 mt-3 text-center text-uppercase">
+        <h2>Wishlist</h2>
+    </div>
+</div>
+<div class="col-12 bg-white py-3 mb-3">
+    <div class="row">
+        <div class="col-lg-6 col-md-8 col-sm-10 mx-auto table-responsive">
+            @if (Model.Count == 0)
+            {
+                <div class="d-flex flex-column justify-content-center align-items-center">
+                    <i class="emptyWishlist fa-solid fa-heart-crack"></i>
+                    <h1 class="emptyBasketText">Your Wishlist is empty</h1>
+                </div>
+
+            }
+            else
+            {
+                <form class="row">
+                    <div class="col-12">
+                        <table class="table table-striped table-hover table-sm">
+                            <thead>
+                                <tr>
+                                    <th>Image</th>
+                                    <th>Name</th>
+                                    <th>Price</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    var imagePath = item.Images.FirstOrDefault(i => i.IsMain == true).ImagePath;
+                                    <tr id="entityTr" data-entity-id="@item.Id" data-quantity="1" data-price="@item.Price">
+                                        <td style="display:flex;justify-content:center;">
+                                            <a asp-action="singleproduct" asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId"><img src="~/uploads/images/@imagePath" class="img-fluid"></a>
+                                        </td>
+                                        <td>
+                                            <a asp-action="singleproduct" asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId">@item.Name</a>
+                                        </td>
+                                        <td>
+                                            @item.Price ₼
+                                        </td>
+                                        <td>
+                                            <a data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-link"><i class="fa-solid fa-cart-plus"></i></a>
+                                        </td>
+                                        <td>
+                                            <a onclick="removeEntity(@item.Id)" class="btn btn-link text-danger"><i class="fa-solid fa-heart-circle-minus"></i></a>
+                                        </td>
+                                    </tr>
+                                }
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 text-right">
+                        <a class="btn btn-outline-secondary me-3" asp-action="Index"><i class="fa-solid fa-arrow-left-long me-1"></i> Continue Shopping</a>
+                    </div>
+                </form>
+            }
+
+        </div>
+    </div>
+</div>
+
+@section js{ 
+    <script>
+        function checkCart() {
+            let items = readFromCookie();
+            var divContainer = $('<div>', {
+                class: 'd-flex flex-column justify-content-center align-items-center'
+            });
+            var iTag = $('<i>', {
+                class: 'emptyWishlist fa-solid fa-heart-crack'
+            });
+            var h1Tag = $('<h1>').text("Your Wishlist is empty").addClass("emptyBasketText");
+            let divTag = $('div.table-responsive');
+            if (items.length <= 1) {
+                $('form.row').remove();
+                iTag.appendTo(divContainer);
+                h1Tag.appendTo(divContainer);
+                divContainer.appendTo(divTag);
+            }
+        }
+        function addToCart(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            let data = $(ev.currentTarget).data();
+            addToBasket(data.itemId);
+
+            console.log(readFromBasket())
+        }
+        function readFromBasket() {
+            return ($.cookie('cards') || '').split(',');
+        }
+        function addToBasket(cardId) {
+            let items = readFromBasket();
+            let length = items.filter(item => item == cardId).length;
+            if (length > 0) return;
+            items.push(cardId);
+            $.cookie('cards', items.toString(), { expires: 7, path: '/' });
+            $.ajax({
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, "Error!");
+                        return;
+                    }
+                    toastr.success("Successfully Added", response.message)
+                    showCardCount();
+                },
+                error: function (response) {
+                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                }
+            })
+        }
+
+        function showWishlistCount() {
+            let items = readFromCookie();
+            $('#header-favorite').html(items.length - 1);
+
+        }
+        showWishlistCount();
+
+        function readFromCookie() {
+            return ($.cookie('cardsForCookie') || '').split(',');
+        }
+        function removeEntity(entityId) {
+            let items = readFromCookie();
+            let id = entityId.toString();
+            const index = items.indexOf(id);
+            if (index > -1) {
+                items.splice(index, 1);
+            }
+            $.cookie('cardsForCookie', items.toString(), { expires: 7, path: '/' });
+
+            $.ajax({
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, "Error!");
+                        return;
+                    }
+                    toastr.success("Successfully Deleted", response.message)
+                    $(`tr[data-entity-id=${entityId}]`).remove();
+                    showWishlistCount();
+                    checkCart();
+                },
+                error: function (response) {
+                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                }
+            })
+        }
+    </script>
+}

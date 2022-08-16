@@ -61,8 +61,15 @@ using Vapie.WebUI.AppCode.Modules.ProductModule;
 #line default
 #line hidden
 #nullable disable
+#nullable restore
+#line 9 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Areas\Admin\Views\_ViewImports.cshtml"
+using Vapie.WebUI.AppCode.Modules.SliderModule;
+
+#line default
+#line hidden
+#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"5b398c1bef935aee18efd0834fa3ececfda9eaf1", @"/Areas/Admin/Views/Faqs/Index.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"18eb8fa958da6f163ef3b7620c63e4591d672cad", @"/Areas/Admin/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"d84a0b72895bdd0488dddb71bd7bbed4404f9093", @"/Areas/Admin/Views/_ViewImports.cshtml")]
     public class Areas_Admin_Views_Faqs_Index : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<IEnumerable<Faq>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "index", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -114,7 +121,7 @@ using Vapie.WebUI.AppCode.Modules.ProductModule;
                 <ul class=""breadcrumb-title"">
                     <li class=""breadcrumb-item"" style=""float: left;"">
                         ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf17176", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf17401", async() => {
                 WriteLiteral(" <i class=\"feather icon-home\"></i> ");
             }
             );
@@ -172,7 +179,7 @@ using Vapie.WebUI.AppCode.Modules.ProductModule;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                            </th>\r\n                            <th class=\"actionBtns\">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf110133", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf110358", async() => {
                 WriteLiteral("<button class=\"btn btn-success btn-icon\"><i class=\"icofont-plus\"></i></button>");
             }
             );
@@ -221,7 +228,7 @@ using Vapie.WebUI.AppCode.Modules.ProductModule;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n                                </td>\r\n                                <td class=\"actionBtns\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf113032", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf113257", async() => {
                 WriteLiteral("<button class=\"btn btn-warning btn-icon\"><i class=\"icofont-pencil-alt-5\"></i></button>");
             }
             );
@@ -252,7 +259,7 @@ using Vapie.WebUI.AppCode.Modules.ProductModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral(" |\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf115338", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf115563", async() => {
                 WriteLiteral("<button class=\"btn btn-info btn-icon\"><i class=\"icofont icofont-eye-alt\"></i></button>");
             }
             );
@@ -313,7 +320,7 @@ WriteAttributeValue("", 3545, item.Question, 3545, 14, false);
             WriteLiteral("                    </tbody>\r\n                </table>\r\n            </div>\r\n            <!-- Page-body end -->\r\n        </div>\r\n    </div>\r\n</div>\r\n\r\n");
             DefineSection("js", async() => {
                 WriteLiteral("\r\n    ");
-                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf119209", async() => {
+                __tagHelperExecutionContext = __tagHelperScopeManager.Begin("script", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "5b398c1bef935aee18efd0834fa3ececfda9eaf119434", async() => {
                 }
                 );
                 __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();

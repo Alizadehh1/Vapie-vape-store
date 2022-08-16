@@ -1,4 +1,5 @@
 ﻿using System;
+using Vapie.WebUI.Models.Entities.Membership;
 
 namespace Vapie.WebUI.AppCode.Infrastructure
 {

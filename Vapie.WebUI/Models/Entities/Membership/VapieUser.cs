@@ -9,6 +9,7 @@ namespace Vapie.WebUI.Models.Entities.Membership
 {
     public class VapieUser : IdentityUser<int>
     {
+
         [Required]
         public string Name { get; set; }
         [Required]

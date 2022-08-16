@@ -21,8 +21,6 @@ namespace Vapie.WebUI.AppCode.Modules.BlogModule
         public string ImagePath { get; set; }
         public int? CategoryId { get; set; }
         public IFormFile File { get; set; }
-        //public int[] TagIds { get; set; }
-        //public ICollection<BlogPostTag> TagCloud { get; set; }
 
 
         public class BlogEditCommandHandler : IRequestHandler<BlogEditCommand, Blog>

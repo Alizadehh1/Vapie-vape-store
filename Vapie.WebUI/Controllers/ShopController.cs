@@ -33,7 +33,8 @@ namespace Vapie.WebUI.Controllers
         public IActionResult Category(int categoryId,int pageIndex = 1, int pageSize = 10)
         {
             var datas = db.Products
-                .Where(b => b.DeletedById == null && b.CategoryId==categoryId)
+                .Where(b => b.DeletedById == null && b.CategoryId == categoryId)
+                .Include(p => p.Category)
                 .Include(i => i.Images.Where(i => i.IsMain == true))
                 .ToList();
             var pagedModel = new PagedViewModel<Product>(datas, pageIndex, pageSize);
@@ -54,10 +55,31 @@ namespace Vapie.WebUI.Controllers
                 .Include(p=>p.Brand)
                 .ToList();
 
-            
-            //ViewBag.CategoryId = categoryId;
+            shopViewModel.Comments = db.ProductComments
+                .Where(c => c.DeletedById == null && c.ProductId == id)
+                .ToList();
+
 
             return View(shopViewModel);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Comment(ProductComment model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return Json(new
+                {
+                    error = true,
+                    message = ModelState.SelectMany(ms => ms.Value.Errors).First().ErrorMessage
+                });
+            }
+            await db.ProductComments.AddAsync(model);
+            await db.SaveChangesAsync();
+            return Json(new
+            {
+                error = false,
+                message = "Muracietiniz qeyde alindi!"
+            });
         }
 
         public async Task<IActionResult> SearchInput(string key)
@@ -98,21 +120,27 @@ namespace Vapie.WebUI.Controllers
             return View(new List<Product>());
 
         }
-        //public CommandJsonResponse Delete(int id)
-        //{
-        //    if (Request.Cookies.TryGetValue("cards", out string cards))
-        //    {
-        //        int[] idsFromCookie = cards.Split(",").Where(CheckIsNumber)
-        //                .Select(item => int.Parse(item))
-        //                .ToArray();
+        public IActionResult Wishlist()
+        {
+            if (Request.Cookies.TryGetValue("cardsForCookie", out string cardsForCookie))
+            {
+                int[] idsFromCookie = cardsForCookie.Split(",").Where(CheckIsNumber)
+                        .Select(item => int.Parse(item))
+                        .ToArray();
 
+                var products = from p in db.Products.Include(p=>p.Images).Where(p => p.DeletedById == null)
+                               where idsFromCookie.Contains(p.Id) && p.DeletedById == null
+                               select p;
 
-        //        idsFromCookie = idsFromCookie.Where(i => i != id).ToArray();
-        //        int count = Request.Cookies["cards"].Values.Count;
-        //        return new CommandJsonResponse(false, "Deleted Successfully");
-        //    }
-        //    return new CommandJsonResponse(true, "Qeyd Movcud Deyil!");
-        //}
+                return View(products.ToList());
+
+            }
+
+            return View(new List<Product>());
+
+        }
+        
+
 
         private bool CheckIsNumber(string value)
         {

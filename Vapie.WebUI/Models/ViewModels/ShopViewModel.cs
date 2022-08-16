@@ -12,6 +12,8 @@ namespace Vapie.WebUI.Models.ViewModels
         public List<Brand> Brands { get; set; }
         public List<Product> Products { get; set; }
         public Product Product { get; set; }
+        public ProductComment Comment { get; set; }
+        public List<ProductComment> Comments { get; set; }
         public PagedViewModel<Product> PagedViewModel { get; set; }
     }
 }

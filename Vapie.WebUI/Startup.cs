@@ -1,4 +1,3 @@
-using FluentValidation.AspNetCore;
 using MediatR;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
@@ -96,10 +95,6 @@ namespace Vapie.WebUI
             });
 
             services.AddMediatR(this.GetType().Assembly);
-            services.AddFluentValidation(cfg =>
-            {
-                cfg.RegisterValidatorsFromAssemblies(new[] { this.GetType().Assembly });
-            });
             services.AddScoped<UserManager<VapieUser>>();
             services.AddScoped<SignInManager<VapieUser>>();
             services.AddTransient<IActionContextAccessor, ActionContextAccessor>();

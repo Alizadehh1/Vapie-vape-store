@@ -6,8 +6,9 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a class="me-1" href="index.html"><i class="fa-solid fa-house me-1"></i>Home</a>
-            <i class="fa-solid fa-cart-shopping"></i> Cart
+            <a class="me-1" asp-action="Index" asp-controller="home"><i class="fa-solid fa-house me-1"></i>Home</a>
+            <a class="me-1" style="color: #FDC040;" asp-action="Index" asp-controller="Shop"><i style="color: #FDC040;" class="fa-solid fa-basket-shopping me-1"></i>Shop</a>
+            > <i class="fa-solid fa-cart-shopping"></i> Cart
         </div>
     </div>
     <div class="col-12 mt-3 text-center text-uppercase">
@@ -46,10 +47,10 @@
                                     var imagePath = item.Images.FirstOrDefault(i => i.IsMain == true).ImagePath;
                                     <tr id="entityTr" data-entity-id="@item.Id" data-quantity="1" data-price="@item.Price">
                                         <td style="display:flex;justify-content:center;">
-                                            <img src="~/uploads/images/@imagePath" class="img-fluid">
+                                            <a asp-action="singleproduct" asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId"><img src="~/uploads/images/@imagePath" class="img-fluid"></a>
                                         </td>
                                         <td>
-                                            <a>@item.Name</a>
+                                            <a asp-action="singleproduct" asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId">@item.Name</a>
                                         </td>
                                         <td>
                                             @item.Price ₼
@@ -91,11 +92,6 @@
     <script>
         function checkCart() {
             let items = readFromBasket();
-            //var img = $('<img />', {
-            //    class: 'Myid',
-            //    src: '~/assets/images/Empty-cart-by-RE-stock--580x362.jpg',
-            //    alt: 'MyAlt'
-            //});
             var divContainer = $('<div>', {
                 class: 'd-flex flex-column justify-content-center align-items-center'
             });
@@ -103,8 +99,6 @@
                 class: 'emptyBasket fa-solid fa-cart-shopping'
             });
             var h1Tag = $('<h1>').text("Your Cart is empty").addClass("emptyBasketText");
-            //iTag.style.color = "#3BB77E";
-            
             let divTag = $('div.table-responsive');
             if (items.length <= 1) {
                 $('form.row').remove();

@@ -4,7 +4,7 @@
             <div class="col-auto me-auto">
                 <ul class="top-nav">
                     <li>
-                        <a href="tel:+994105237585"><i class="fa fa-phone-square me-2"></i>+994105237585</a>
+                        <a href="tel:+994105237585"><i class="fa fa-phone-square me-2"></i>+994 10 523 75 85</a>
                     </li>
                     <li>
                         <a href="mailto:alizadehh541@gmail.com"><i class="fa fa-envelope me-2"></i>alizadehh541@gmail.com</a>
@@ -62,12 +62,11 @@
                 </div>
             </div>
             <div class="col-lg-auto text-center text-lg-left header-item-holder">
-                <a href="#" class="header-item">
+                <a asp-controller="Shop" asp-action="Wishlist" class="header-item">
                     <i class="fas fa-heart me-2"></i><span id="header-favorite">0</span>
                 </a>
                 <a asp-controller="Shop" asp-action="Basket" class="header-item">
                     <i class="fas fa-shopping-bag me-2"></i><span id="header-qty" class="me-3">2</span>
-                    <i class="fas fa-money-bill-wave me-2"></i><span id="header-price">$4,000</span>
                 </a>
             </div>
         </div>
@@ -83,11 +82,20 @@
                             <a class="nav-link" asp-controller="Home" asp-action="Index">Home <span class="sr-only">(current)</span></a>
                         </li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" asp-controller="Shop" asp-action="Index" id="electronics">Shop</a>
+                            <a class="nav-link dropdown-toggle" asp-controller="Shop" asp-action="Index">Shop</a>
                             <div class="dropdown-menu" aria-labelledby="shop">
                                 @foreach (var item in ViewBag.Categories)
                                 {
                                     <a class="dropdown-item" asp-controller="Shop" asp-action="Category" asp-route-categoryId="@item.Id">@item.Name</a>
+                                }
+                            </div>
+                        </li>
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" asp-controller="Blog" asp-action="Index">Blog</a>
+                            <div class="dropdown-menu" aria-labelledby="blog">
+                                @foreach (var item in ViewBag.Categories)
+                                {
+                                    <a class="dropdown-item" asp-controller="Blog" asp-action="Category" asp-route-categoryId="@item.Id">@item.Name</a>
                                 }
                             </div>
                         </li>

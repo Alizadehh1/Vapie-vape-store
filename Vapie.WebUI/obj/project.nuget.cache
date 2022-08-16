@@ -1,12 +1,9 @@
 {
   "version": 2,
-  "dgSpecHash": "/PjtOUplU5hIVQypc+3mrvpvQ0d/BUSbhEiRhXAs8IWnC2B2QLINsR2/i+JtZKsy6Js3MzCylTc35awZ4tuQUQ==",
+  "dgSpecHash": "u0+UtFIZacnIbH3gHONq3Kljhe2wqTwMQyu7sj0nY85I/itq5S9bQui/MU4P1IfIq8QIhcIIPTS8u4fKbjw5ig==",
   "success": true,
   "projectFilePath": "C:\\Users\\alide\\OneDrive\\Desktop\\final-project\\Vapie.WebUI\\Vapie.WebUI.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\alide\\.nuget\\packages\\fluentvalidation\\11.1.0\\fluentvalidation.11.1.0.nupkg.sha512",
-    "C:\\Users\\alide\\.nuget\\packages\\fluentvalidation.aspnetcore\\11.1.2\\fluentvalidation.aspnetcore.11.1.2.nupkg.sha512",
-    "C:\\Users\\alide\\.nuget\\packages\\fluentvalidation.dependencyinjectionextensions\\11.1.0\\fluentvalidation.dependencyinjectionextensions.11.1.0.nupkg.sha512",
     "C:\\Users\\alide\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\alide\\.nuget\\packages\\mediatr\\10.0.1\\mediatr.10.0.1.nupkg.sha512",
     "C:\\Users\\alide\\.nuget\\packages\\mediatr.contracts\\1.0.1\\mediatr.contracts.1.0.1.nupkg.sha512",

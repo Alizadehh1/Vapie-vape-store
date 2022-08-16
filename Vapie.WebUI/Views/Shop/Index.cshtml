@@ -6,7 +6,8 @@
     <div class="container">
         <div class="breadcrumb">
             <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Home</a>
-            <i class="fa-solid fa-basket-shopping"></i> Shop
+            <a class="me-1" style="color: #FDC040;" asp-action="Index" asp-controller="Shop"><i style="color: #FDC040;" class="fa-solid fa-basket-shopping me-1"></i>Shop</a>
+            > Index
         </div>
     </div>
 </div>
@@ -39,6 +40,7 @@
                                     </span>
                                 </div>
                                 <div class="col-12 mb-3 align-self-end">
+                                    <button data-item-id="@item.Id" onclick="addToWishlist(event)" class="btn mb-1 btn-outline-secondary btn-sm" type="button"><i class="fas fa-heart me-2"></i>Add to wishlist</button>
                                     <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Add to cart</button>
                                 </div>
                             </div>
@@ -112,6 +114,53 @@
 
         }
         showCardCount();
+
+    </script>
+    <script>
+        function addToWishlist(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            let data = $(ev.currentTarget).data();
+            addToCookie(data.itemId);
+
+            console.log(readFromCookie())
+        }
+        function readFromCookie() {
+            return ($.cookie('cardsForCookie') || '').split(',');
+        }
+        function addToCookie(cardId) {
+            let items = readFromCookie();
+            let length = items.filter(item => item == cardId).length;
+            if (length > 0) return;
+            items.push(cardId);
+            $.cookie('cardsForCookie', items.toString(), { expires: 7, path: '/' });
+            $.ajax({
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, "Error!");
+                        return;
+                    }
+                    toastr.success("Successfully Added", response.message)
+                    showWishlistCount();
+                },
+                error: function (response) {
+                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                }
+            })
+        }
+
+        function showCardCount() {
+            let items = readFromCookie();
+            $('#header-qty').html(items.length - 1);
+
+        }
+        showCardCount();
+        function showWishlistCount() {
+            let items = readFromCookie();
+            $('#header-favorite').html(items.length - 1);
+
+        }
+        showWishlistCount();
 
     </script>
 }
