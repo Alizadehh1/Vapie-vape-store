@@ -76,6 +76,11 @@
 
 @section js{ 
     <script>
+        function showCardCount() {
+            let items = readFromBasket();
+            $('#header-qty').html(items.length - 1);
+        }
+        showCardCount();
         function checkCart() {
             let items = readFromCookie();
             var divContainer = $('<div>', {

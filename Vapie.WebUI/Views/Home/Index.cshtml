@@ -172,7 +172,7 @@
                                     </a>
                                 </div>
                                 <div class="col-12 mb-3">
-                                    <a href="product.html" class="product-name">@item.Name</a>
+                                    <a asp-route-id="@item.Id" asp-action="singleproduct" asp-controller="shop" asp-route-categoryId="@item.CategoryId" class="product-name">@item.Name</a>
                                 </div>
                                 <div class="col-12 mb-3">
                                     <span class="product-price">

@@ -188,7 +188,7 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-12">
+                    <div class="col-12" id="commentFormComponent">
                         @foreach (var item in Model.Comments)
                         {
                             <div class="col-12 text-justify py-2 px-3 mb-3 bg-gray">
@@ -235,11 +235,8 @@
                                             </small>
                                         }
 
-
                                     </div>
-
                                 </div>
-
                             </div>
                         }
                     </div>
@@ -383,6 +380,9 @@
     <script src="~/admin/files/assets/js/customize.js"></script>
     <script>
         $(document).ready(function () {
+            function commentComponent() {
+
+            }
             $('#commentForm').submit(function (e) {
                 e.preventDefault();
                 let formData = new FormData(e.currentTarget);
@@ -394,6 +394,32 @@
                 formData.set(`ProductId`, entityId);
                 formData.set(`Comment`, comment);
                 formData.set(`UserName`, "@User.GetPrincipalName()");
+
+
+                var smallTag = $('<small>');
+                var divContainer = $('<div>', {
+                    class: 'col-12'
+                });
+
+                var strongTag = $('<strong>', {
+                    class: 'me-2',
+                    text: '@User.GetPrincipalName()'
+                });
+                var smallTag2 = $('<small>');
+                var divContainer1 = $('<div>', {
+                    class: 'col-12'
+                });
+                var divContainer2 = $('<div>', {
+                    class: 'col-12',
+                    text: comment
+                });
+                var divContainer3 = $('<div>', {
+                    class: 'row'
+                });
+                var divContainer4 = $('<div>', {
+                    class: 'col-12 text-justify py-2 px-3 mb-3 bg-gray'
+                });
+                var commentComponent = $('#commentFormComponent');
 
                 $.ajax({
                     type: "POST",
@@ -407,7 +433,20 @@
                             return;
                         }
                         toastr.success(response.message, 'Success!');
-
+                        smallTag.appendTo(divContainer);
+                        smallTag.html('<i class="fas fa-clock me-2"></i> just now');
+                        strongTag.appendTo(divContainer1);
+                        smallTag2.appendTo(divContainer1);
+                        smallTag2.html(`<i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="fas fa-star"></i>
+                                                            <i class="far fa-star"></i>
+                                                            <i class="far fa-star"></i>`);
+                        divContainer1.appendTo(divContainer3);
+                        divContainer2.appendTo(divContainer3);
+                        divContainer.appendTo(divContainer3);
+                        divContainer3.appendTo(divContainer4);
+                        divContainer4.appendTo(commentComponent);
                         e.currentTarget.reset();
                     }
                 });
