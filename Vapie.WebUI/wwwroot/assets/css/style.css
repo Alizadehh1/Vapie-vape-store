@@ -647,12 +647,12 @@ a.product-name:hover, a.product-name:focus {
     font-size: 100px;
     color: #3BB77E;
 }
+.emptyBasketText{
+    margin-top:15px;
+}
 .emptyWishlist {
     font-size: 100px;
     color: #dc3545;
-}
-.emptyBasketText{
-    margin-top:15px;
 }
 /*.continueShop {
     color: #3BB77E;
