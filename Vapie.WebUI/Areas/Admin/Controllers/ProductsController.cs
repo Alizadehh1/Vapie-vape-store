@@ -109,7 +109,27 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
             return RedirectToAction(nameof(Index));
         }
 
-        
+        [HttpPost]
+        public IActionResult Delete([FromRoute] int id)
+        {
+            var entity = db.Products.FirstOrDefault(c => c.Id == id);
+            if (entity == null)
+            {
+                return Json(new
+                {
+                    error = true,
+                    message = "Movcud deyil"
+                });
+            }
+            db.Products.Remove(entity);
+            db.SaveChanges();
+            return Json(new
+            {
+                error = false,
+                message = "Ugurla silindi"
+            });
+        }
+
 
         private bool ProductExists(int id)
         {

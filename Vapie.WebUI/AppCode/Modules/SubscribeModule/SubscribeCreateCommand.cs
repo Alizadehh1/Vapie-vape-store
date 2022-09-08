@@ -73,7 +73,7 @@ namespace Vapie.WebUI.AppCode.Modules.SubscribeModule
 
                     var from = new MailAddress(userName, displayName);
                     MailMessage message = new MailMessage(from, new MailAddress(subscribe.Email));
-                    message.Subject = "Riode Confirmation Mail";
+                    message.Subject = "Vapie Confirmation Mail";
                     message.Body = $"Please confirm subscribtion with <a href=\"{link}\">link</a>";
                     message.IsBodyHtml = true;
                     //string[] ccs = cc.Split(';', StringSplitOptions.RemoveEmptyEntries);

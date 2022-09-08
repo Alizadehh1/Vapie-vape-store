@@ -24,6 +24,7 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
             public async Task<Product> Handle(ProductSingleQuery request, CancellationToken cancellationToken)
             {
                 var entity = await db.Products
+                    .Include(p=>p.Images)
                     .Include(p=>p.Category)
                     .Include(p=>p.Brand)
                     .FirstOrDefaultAsync(p => p.Id == request.Id && p.DeletedById == null, cancellationToken);
