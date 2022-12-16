@@ -28,13 +28,12 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
             this.mediator = mediator;
         }
 
-        public async Task<IActionResult> Index(ProductAllQuery query, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(ProductAllQuery query)
         {
             var data = await mediator.Send(query);
 
-            var pagedModel = new PagedViewModel<Product>(data, pageIndex, pageSize);
 
-            return View(pagedModel);
+            return View(data);
         }
 
         public async Task<IActionResult> Details(ProductSingleQuery query)
@@ -62,13 +61,13 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(ProductCreateCommand command)
         {
-            var response = await mediator.Send(command);
+            var product = await mediator.Send(command);
+
             if (ModelState.IsValid)
             {
                 return RedirectToAction(nameof(Index));
             }
-            ViewData["CategoryId"] = new SelectList(db.Categories, "Id", "Name", command.CategoryId);
-            ViewData["BrandId"] = new SelectList(db.Brands, "Id", "Name", command.BrandId);
+
             return View(command);
         }
 
@@ -96,16 +95,9 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
         
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit([FromRoute] int id,ProductEditCommand model)
+        public async Task<IActionResult> Edit(ProductEditCommand model)
         {
-            if (id != model.Id)
-            {
-                return NotFound();
-            }
-
             var product = await mediator.Send(model);
-
-
             return RedirectToAction(nameof(Index));
         }
 

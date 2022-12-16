@@ -6,35 +6,52 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Home</a>
-            <a style="color: #FDC040;" class="me-1" asp-action="Index" asp-controller="Home"><i style="color: #FDC040;" class="fa-solid fa-quote-left me-1"></i>Blog</a>
-            > @Model.Items.FirstOrDefault().Category.Name
+            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Ana səhifə</a>
+            <a style="color: #FDC040;" class="me-1" asp-action="Index" asp-controller="Home"><i style="color: #FDC040;" class="fa-solid fa-quote-left me-1"></i>Bloq</a>
+            > @Model?.Items.FirstOrDefault().Category.Name
         </div>
     </div>
 </div>
 <div class="blog-wrapper section-padding-80">
     <div class="container">
         <div class="row">
-            @foreach (var item in Model.Items)
+            <div class="col-12 text-center text-uppercase">
+                <h2>Bloq</h2>
+            </div>
+        </div>
+        <div class="row">
+            @if (Model == null)
             {
-                <div class="col-12 col-lg-6 mt-5">
-                    <div class="single-blog-area mb-50">
-                        <img src="~/uploads/images/@item.ImagePath" alt="">
-                        <div class="post-title">
-                            <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">@item.Title</a>
-                        </div>
-                        <div class="hover-content">
-                            <div class="hover-post-title">
-                                <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">@item.Title</a>
-                            </div>
-                            <p>@item.Paragraph.HtmlToPlainText().ToEllipse(50)</p>
-                            <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">Continue reading <i class="fa fa-angle-right"></i></a>
-                        </div>
-                    </div>
+                <div class="col-12 text-center">
+                    <h2>Təəssüf ki Bu Kateqoriyadan məhsul yoxdur</h2>
                 </div>
             }
+            else
+            {
+                @foreach (var item in Model?.Items)
+                {
+                    <div class="col-12 col-lg-6 mt-5">
+                        <div class="single-blog-area mb-50">
+                            <img src="~/uploads/images/@item.ImagePath" alt="">
+                            <div class="post-title">
+                                <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">@item.Title</a>
+                            </div>
+                            <div class="hover-content">
+                                <div class="hover-post-title">
+                                    <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">@item.Title</a>
+                                </div>
+                                <p>@item.Paragraph.HtmlToPlainText().ToEllipse(50)</p>
+                                <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">Oxumağa davam et <i class="fa fa-angle-right"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                }
+            }
         </div>
-        @Model.GetPagenation(Url, "Index")
+        @if (Model != null)
+        {
+            @Model.GetPagenation(Url, "Index")
+        }
     </div>
 
 </div>

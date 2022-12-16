@@ -5,7 +5,7 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a class="me-1" asp-action="Index"><i class="fa-solid fa-house me-1"></i>Home</a>
+            <a class="me-1" asp-action="Index"><i class="fa-solid fa-house me-1"></i>Ana səhifə </a>
         </div>
     </div>
 </div>
@@ -50,7 +50,7 @@
         <div class="col-12 py-3">
             <div class="row">
                 <div class="col-12 text-center text-uppercase">
-                    <h2>Featured Products</h2>
+                    <h2>Populyar Məhsullar</h2>
                 </div>
             </div>
             <div class="row">
@@ -73,7 +73,8 @@
                                     </span>
                                 </div>
                                 <div class="col-12 mb-3 align-self-end">
-                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Add to cart</button>
+                                    <button data-item-id="@item.Id" onclick="addToWishlist(event)" class="btn mb-1 btn-outline-secondary btn-sm" type="button"><i class="fas fa-heart me-2"></i>Seçilmişlərə əlavə et</button>
+                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Səbətə əlavə et</button>
                                 </div>
                             </div>
                         </div>
@@ -94,7 +95,7 @@
         <div class="col-12 py-3">
             <div class="row">
                 <div class="col-12 text-center text-uppercase">
-                    <h2>Latest Products</h2>
+                    <h2>Yeni Məhsullar</h2>
                 </div>
             </div>
             <div class="row">
@@ -102,7 +103,7 @@
                 {
                     <div class="col-lg-3 col-sm-6 my-3">
                         <div class="col-12 bg-white text-center h-100 product-item">
-                            <span class="new">New</span>
+                            <span class="new">Yeni</span>
                             <div class="row h-100">
                                 <div class="col-12 p-0 mb-3">
                                     <a asp-route-id="@item.Id" asp-action="singleproduct" asp-controller="shop" asp-route-categoryId="@item.CategoryId">
@@ -118,7 +119,8 @@
                                     </span>
                                 </div>
                                 <div class="col-12 mb-3 align-self-end">
-                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Add to cart</button>
+                                    <button data-item-id="@item.Id" onclick="addToWishlist(event)" class="btn mb-1 btn-outline-secondary btn-sm" type="button"><i class="fas fa-heart me-2"></i>Seçilmişlərə əlavə et</button>
+                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Səbətə əlavə et</button>
                                 </div>
                             </div>
                         </div>
@@ -137,7 +139,7 @@
         <div class="col-12 py-3">
             <div class="row">
                 <div class="col-12 text-center text-uppercase">
-                    <h2>Top Selling Products</h2>
+                    <h2>Çox Satılan Məhsullar</h2>
                 </div>
             </div>
             <div class="row">
@@ -160,7 +162,8 @@
                                     </span>
                                 </div>
                                 <div class="col-12 mb-3 align-self-end">
-                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Add to cart</button>
+                                    <button data-item-id="@item.Id" onclick="addToWishlist(event)" class="btn mb-1 btn-outline-secondary btn-sm" type="button"><i class="fas fa-heart me-2"></i>Seçilmişlərə əlavə et</button>
+                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Səbətə əlavə et</button>
                                 </div>
                             </div>
                         </div>
@@ -178,7 +181,7 @@
                     <i class="fas fa-money-bill"></i>
                 </div>
                 <div class="col-auto me-auto large-text">
-                    Best Price
+                    Münasib Qiymət
                 </div>
             </div>
         </div>
@@ -188,7 +191,7 @@
                     <i class="fas fa-truck-moving"></i>
                 </div>
                 <div class="col-auto me-auto large-text">
-                    Fast Delivery
+                    Sürətli Çatdırılma
                 </div>
             </div>
         </div>
@@ -198,7 +201,7 @@
                     <i class="fas fa-check"></i>
                 </div>
                 <div class="col-auto me-auto large-text">
-                    Quality Products
+                    Keyfiyyətli Məhsullar
                 </div>
             </div>
         </div>

@@ -25,8 +25,9 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                 var entity = db.Products
                     .Include(c => c.Category)
                     .Include(c => c.Brand)
-                    .Include(i => i.Images.Where(i => i.IsMain == true))
-                    .Where(p => p.DeletedById == null);
+                    .Include(p=>p.Images.Where(i=>i.IsMain==true && i.DeletedById==null))
+                    .Where(p => p.DeletedById == null)
+                    .OrderByDescending(p => p.CreatedDate);
                 return entity;
             }
         }

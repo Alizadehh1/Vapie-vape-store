@@ -5,9 +5,9 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Home</a>
-            <a style="color: #FDC040;" class="me-1" asp-action="Index" asp-controller="Home"><i style="color: #FDC040;" class="fa-solid fa-quote-left me-1"></i>Blog</a>
-            > Index
+            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Ana səhifə</a>
+            <a style="color: #FDC040;" class="me-1" asp-action="Index" asp-controller="Home"><i style="color: #FDC040;" class="fa-solid fa-quote-left me-1"></i>Bloq</a>
+            > Bütün Bloqlar
         </div>
     </div>
 </div>
@@ -27,7 +27,7 @@
                                 <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">@item.Title</a>
                             </div>
                             <p>@item.Paragraph.HtmlToPlainText().ToEllipse(50)</p>
-                            <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">Continue reading <i class="fa fa-angle-right"></i></a>
+                            <a asp-route-id="@item.Id" asp-route-categoryId="@item.CategoryId" asp-action="SinglePost">Oxumağa davam et <i class="fa fa-angle-right"></i></a>
                         </div>
                     </div>
                 </div>

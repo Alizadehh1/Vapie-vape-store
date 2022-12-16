@@ -12,7 +12,7 @@ using Vapie.WebUI.Models.Entities;
 
 namespace Vapie.WebUI.AppCode.Modules.ProductModule
 {
-    public class ProductCreateCommand : IRequest<ProductCreateCommandResponse>
+    public class ProductCreateCommand : IRequest<Product>
     {
         public string Name { get; set; }
         public string Description { get; set; }
@@ -23,34 +23,28 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
         public string Flavor { get; set; }
         public string NicotineStrength { get; set; }
         public double Price { get; set; }
+        public int isMainIndex { get; set; }
         public ImageItem[] Images { get; set; }
-        public class ProductCreateCommandHandler : IRequestHandler<ProductCreateCommand, ProductCreateCommandResponse>
+        [Obsolete]
+        public class ProductCreateCommandHandler : IRequestHandler<ProductCreateCommand, Product>
         {
             readonly VapieDbContext db;
             readonly IActionContextAccessor ctx;
-            readonly IWebHostEnvironment env;
+            readonly IHostingEnvironment env;
 
             public ProductCreateCommandHandler(VapieDbContext db,
                 IActionContextAccessor ctx,
-                IWebHostEnvironment env)
+                IHostingEnvironment env)
             {
                 this.db = db;
                 this.ctx = ctx;
                 this.env = env;
             }
 
-            public async Task<ProductCreateCommandResponse> Handle(ProductCreateCommand request, CancellationToken cancellationToken)
+            public async Task<Product> Handle(ProductCreateCommand request, CancellationToken cancellationToken)
             {
 
-                    
-                if (ctx.ModelIsValid())
-                {
-                    var response = new ProductCreateCommandResponse
-                    {
-                        Product = null,
-                    };
-                    return response;
-                }
+
 
                 var product = new Product();
 
@@ -64,18 +58,15 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                 product.NicotineStrength = request.NicotineStrength;
                 product.Price = request.Price;
 
-
-
-
+                int count = 0;
                 if (request.Images != null && request.Images.Any(i => i.File != null))
                 {
                     product.Images = new List<ProductImage>();
-                    int count = 0;
+
                     foreach (var productFile in request.Images.Where(i => i.File != null))
                     {
                         string name = await env.SaveFile(productFile.File, cancellationToken, "product");
-                        count++;
-                        if (count==1)
+                        if (count==request.isMainIndex)
                         {
                             product.Images.Add(new ProductImage
                             {
@@ -91,6 +82,9 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                                 IsMain = false
                             });
                         }
+                        
+                        count++;
+
                     }
                 }
                 else
@@ -105,35 +99,19 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                 try
                 {
                     await db.SaveChangesAsync(cancellationToken);
-                    var response = new ProductCreateCommandResponse
-                    {
-                        Product = product,
-                    };
-                    return response;
+                    return product;
                 }
                 catch (Exception ex)
                 {
-                    var response = new ProductCreateCommandResponse
-                    {
-                        Product = null,
-                    };
 
                     ctx.AddModelError("Name", "Xeta bash verdi,Biraz sonra yeniden yoxlayin");
 
-                    return response;
+                    return product;
                 }
 
             l1:
                 return null;
             }
         }
-    }
-
-
-
-
-    public class ProductCreateCommandResponse
-    {
-        public Product Product { get; set; }
     }
 }

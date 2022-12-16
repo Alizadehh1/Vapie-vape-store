@@ -5,17 +5,17 @@
 <div class="page-header breadcrumb-wrap">
     <div class="container">
         <div class="breadcrumb">
-            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Home</a>
-            <i class="fa-solid fa-user-gear"></i> Account
+            <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Ana Səhifə</a>
+            <i class="fa-solid fa-user-gear"></i> Profil
         </div>
     </div>
 </div>
 <div style="margin-top:0px!important;margin-bottom:0px!important;" class="container-fluid rounded bg-white mt-5 mb-5">
-    <div class="row">
+    @*<div class="row">
         <div class="col-12 text-center text-uppercase">
             <h2>Profile</h2>
         </div>
-    </div>
+    </div>*@
     <form method="post" enctype="multipart/form-data" asp-action="profile" class="row justify-content-center">
         <div class="col-md-3 border-right">
             <div class="d-flex flex-column align-items-center text-center p-3 py-5">
@@ -32,17 +32,17 @@
         <div class="col-md-5 border-right">
             <div class="p-3 py-5">
                 <div class="d-flex justify-content-between align-items-center mb-3">
-                    <h4 class="text-right">Profile Settings</h4>
+                    <h4 class="text-right">Profil Ayarları</h4>
                 </div>
                 <div class="row">
-                    <div class="col-md-6"><label class="labels">Name</label><input asp-for="@Model.Name" class="form-control" /></div>
-                    <div class="col-md-6"><label class="labels">Surname</label><input asp-for="@Model.Surname" class="form-control" /></div>
+                    <div class="col-md-6"><label class="labels">Ad</label><input asp-for="@Model.Name" class="form-control" /></div>
+                    <div class="col-md-6"><label class="labels">Soyad</label><input asp-for="@Model.Surname" class="form-control" /></div>
                 </div>
                 <div class="row">
-                    <div class="col-md-6"><label class="labels">Username</label><input asp-for="@Model.UserName" class="form-control" /></div>
+                    <div class="col-md-6"><label class="labels">İstifadəçi adı</label><input asp-for="@Model.UserName" class="form-control" /></div>
                     @*<div class="col-md-6"><label class="labels">Email</label><p class="form-control">@Model.Email</p></div>*@
                     <div class="col-md-6 d-flex flex-column">
-                        <label class="labels">Email Confirmation</label>
+                        <label class="labels">Elektron Poçt təsdiqlənməsi</label>
                         @if (Model.EmailConfirmed)
                         {
                             <span style="background-color: #0ac282; margin-top: 25px;" class="badge badge-success">
@@ -86,11 +86,11 @@
                         <path d="M93.4 86.3H58.6c-1.9 0-3.4-1.5-3.4-3.4V17.1c0-1.9 1.5-3.4 3.4-3.4h34.8c1.9 0 3.4 1.5 3.4 3.4v65.8c0 1.9-1.5 3.4-3.4 3.4z" />
                         <circle cx="66" cy="50" r="3.7" />
                     </svg>
-                    <a asp-action="logout" class="button-text">Log Out</a>
+                    <a asp-action="logout" class="button-text">Çıxış et</a>
                 </button>
-                <a style="margin-left:20px;" asp-action="ChangePassword" class="btn btn-primary profile-button" type="button">Change Password</a>
+                <a style="margin-left:20px;" asp-action="ChangePassword" class="btn btn-primary profile-button" type="button">Parolu Dəyiş</a>
                 
-                <button type="submit" class="btn btn-warning">Save</button>
+                <button type="submit" class="btn btn-warning">Yaddaşda Saxla</button>
 
             </div>
         </div>

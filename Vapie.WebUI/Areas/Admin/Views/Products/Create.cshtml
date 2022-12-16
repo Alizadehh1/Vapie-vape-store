@@ -30,7 +30,7 @@
 <div class="page-body">
     <div class="card p-3">
         <div class="card-block">
-            <form class="row" method="post" asp-action="Create" enctype="multipart/form-data" id="productCreate">
+            <form class="row" asp-action="Create" enctype="multipart/form-data" id="productCreate">
                 <div class="col-12 col-lg-6">
                     <div class="form-group">
                         <div style="width: 100%" class="imager-container" id="viewer1" name="Images">
@@ -43,13 +43,6 @@
                             <div class="form-group">
                                 <label asp-for="Name" class="control-label"></label>
                                 <input asp-for="Name" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="Description" class="control-label"></label>
-                                <textarea asp-for="Description" class="form-control editor"></textarea>
-                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
@@ -94,6 +87,13 @@
                                 <input asp-for="Price" class="form-control" />
                             </div>
                         </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control editor"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
+                            </div>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">
@@ -128,6 +128,7 @@
         });
         $(document).ready(function () {
 
+
             $('#viewer1').imgadd({
                 tnWidth: '120px',
                 tnHeight: '120px',
@@ -142,13 +143,18 @@
 
                 e.preventDefault();
                 const btn = $(e.currentTarget).find('input[type=submit]');
-
+                
                 $(btn).attr('disable', 'disabled');
 
                 let formData = new FormData(e.currentTarget);
 
-                
-                
+                $('label.img-thumb').each(function (index,item) {
+                    if ($(item).hasClass('active')) {
+                        formData.set(`isMainIndex`, index);
+                    }
+                })
+
+
                 $.ajax({
                     url: '@Url.Action("Create")',
                     type: 'post',

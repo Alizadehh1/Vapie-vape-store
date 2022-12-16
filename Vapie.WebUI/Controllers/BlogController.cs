@@ -35,16 +35,23 @@ namespace Vapie.WebUI.Controllers
                 .Where(b => b.DeletedById == null && b.CategoryId == categoryId)
                 .Include(p => p.Category)
                 .ToList();
-            var pagedModel = new PagedViewModel<Blog>(datas, pageIndex, pageSize);
-            return View(pagedModel);
+            if (datas.Count > 0)
+            {
+                var pagedModel = new PagedViewModel<Blog>(datas, pageIndex, pageSize);
+                return View(pagedModel);
+            }
+            else
+            {
+                return View(null);
+            }
         }
 
-        public IActionResult SinglePost(int id,int categoryId)
+        public IActionResult SinglePost(int id, int categoryId)
         {
             var data = db.Blogs
                 .Where(b => b.DeletedById == null)
                 .ToList();
-            
+
             ViewBag.BlogId = id;
             ViewBag.CategoryId = categoryId;
             return View(data);

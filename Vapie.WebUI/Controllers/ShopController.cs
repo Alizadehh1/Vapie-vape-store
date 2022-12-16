@@ -30,29 +30,36 @@ namespace Vapie.WebUI.Controllers
             var pagedModel = new PagedViewModel<Product>(datas, pageIndex, pageSize);
             return View(pagedModel);
         }
-        public IActionResult Category(int categoryId,int pageIndex = 1, int pageSize = 10)
+        public IActionResult Category(int categoryId, int pageIndex = 1, int pageSize = 10)
         {
             var datas = db.Products
                 .Where(b => b.DeletedById == null && b.CategoryId == categoryId)
                 .Include(p => p.Category)
                 .Include(i => i.Images.Where(i => i.IsMain == true))
                 .ToList();
-            var pagedModel = new PagedViewModel<Product>(datas, pageIndex, pageSize);
-            return View(pagedModel);
+            if (datas.Count > 0)
+            {
+                var pagedModel = new PagedViewModel<Product>(datas, pageIndex, pageSize);
+                return View(pagedModel);
+            }
+            else
+            {
+                return View(null);
+            }
         }
-        public IActionResult SingleProduct(int id,int categoryId)
+        public IActionResult SingleProduct(int id, int categoryId)
         {
             var shopViewModel = new ShopViewModel();
             shopViewModel.Product = db.Products
                 .Include(p => p.Images)
-                .Include(p=>p.Category)
+                .Include(p => p.Category)
                 .Include(p => p.Brand)
                 .FirstOrDefault(p => p.DeletedById == null && p.Id == id);
 
             shopViewModel.Products = db.Products
-                .Where(p => p.DeletedById == null && p.CategoryId==categoryId && p.Id !=id)
-                .Include(p=>p.Images.Where(i => i.IsMain == true))
-                .Include(p=>p.Brand)
+                .Where(p => p.DeletedById == null && p.CategoryId == categoryId && p.Id != id)
+                .Include(p => p.Images.Where(i => i.IsMain == true))
+                .Include(p => p.Brand)
                 .ToList();
 
             shopViewModel.Comments = db.ProductComments
@@ -93,8 +100,8 @@ namespace Vapie.WebUI.Controllers
                 || p.Price.ToString().Contains(key)
                 || p.Category.Name.Contains(key)
                 || p.Brand.Name.Contains(key))
-                .Include(p=>p.Images)
-                .Include(p=>p.Category)
+                .Include(p => p.Images)
+                .Include(p => p.Category)
                 .ToListAsync();
             }
             return PartialView("_ProductListPartial", products);
@@ -109,7 +116,7 @@ namespace Vapie.WebUI.Controllers
                         .Select(item => int.Parse(item))
                         .ToArray();
 
-                var products = from p in db.Products.Include(p=>p.Images).Where(p => p.DeletedById == null)
+                var products = from p in db.Products.Include(p => p.Images).Where(p => p.DeletedById == null)
                                where idsFromCookie.Contains(p.Id) && p.DeletedById == null
                                select p;
 
@@ -128,7 +135,7 @@ namespace Vapie.WebUI.Controllers
                         .Select(item => int.Parse(item))
                         .ToArray();
 
-                var products = from p in db.Products.Include(p=>p.Images).Where(p => p.DeletedById == null)
+                var products = from p in db.Products.Include(p => p.Images).Where(p => p.DeletedById == null)
                                where idsFromCookie.Contains(p.Id) && p.DeletedById == null
                                select p;
 
@@ -139,7 +146,7 @@ namespace Vapie.WebUI.Controllers
             return View(new List<Product>());
 
         }
-        
+
 
 
         private bool CheckIsNumber(string value)

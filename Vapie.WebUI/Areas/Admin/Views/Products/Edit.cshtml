@@ -1,4 +1,4 @@
-﻿@model Vapie.WebUI.Models.Entities.Product
+﻿@model Product
 
 @{
     ViewData["Title"] = "Edit";
@@ -46,7 +46,7 @@
                 </div>
                 <div class="col-12 col-lg-6">
                     <div class="row">
-                        <div class="col-12">
+                        <div class="col-12 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="Name" class="control-label"></label>
                                 <input asp-for="Name" class="form-control" />
@@ -84,12 +84,6 @@
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="Description" class="control-label"></label>
-                                <input asp-for="Description" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="form-group">
                                 <label asp-for="CategoryId" class="control-label"></label>
                                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
                             </div>
@@ -97,7 +91,14 @@
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
                                 <label asp-for="Price" class="control-label"></label>
-                                <select asp-for="Price" class="form-control" asp-items="ViewBag.CategoryId"></select>
+                                <input asp-for="Price" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-12">
+                            <div class="form-group">
+                                <label asp-for="Description" class="control-label"></label>
+                                <textarea asp-for="Description" class="form-control editor"></textarea>
+                                <span asp-validation-for="Description" class="text-danger"></span>
                             </div>
                         </div>
                     </div>
@@ -118,8 +119,19 @@
 
 @section js{
     <script src="~/libs/multiple-imager-js/js/imager.js"></script>
+    <script src="~/libs/ckeditor5/ckeditor.min.js"></script>
     <script>
+        document.querySelectorAll('.editor').forEach(function (item, index) {
+            ClassicEditor
+                .create(item)
+                .then(editor => {
+                    console.log(editor);
+                })
+                .catch(error => {
+                    console.error(error);
+                });
 
+        });
 
         $(document).ready(function () {
 
@@ -144,6 +156,12 @@
                 $(btn).attr('disable', 'disabled');
 
                 let formData = new FormData(e.currentTarget);
+
+                $('label.img-thumb').each(function (index, item) {
+                    if ($(item).hasClass('active')) {
+                        formData.set(`isMainIndex`, index);
+                    }
+                })
 
                 $.ajax({
                     url: '@Url.Action("Edit")',
@@ -179,7 +197,7 @@
 
 
 
-        
+
 
         function newid() {
             return "s"+'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {

@@ -6,8 +6,8 @@
 <head>
     <title>@ViewData["Title"] | Adminty</title>
     <meta charset="utf-8">
-    <meta http-equiv="content-type" content="text/html;charset=UTF-8" /><!-- /Added by HTTrack -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=0, minimal-ui">
+    <meta http-equiv="content-type" content="text/html;charset=UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="description" content="#">
     <meta name="keywords"
@@ -16,7 +16,7 @@
     <!-- Favicon icon -->
     <link rel="icon" href="~/admin/files/assets/images/favicon.ico" type="image/x-icon">
     <!-- Google font-->
-    <link href="~/admin/https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,600" rel="stylesheet">
     <!-- Required Fremwork -->
     <link rel="stylesheet" type="text/css" href="~/admin/files/bower_components/bootstrap/dist/css/bootstrap.min.css">
     <!-- feather Awesome -->
@@ -28,7 +28,6 @@
     <link rel="stylesheet" type="text/css" href="~/admin/files/assets/css/jquery.mCustomScrollbar.css">
     <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
     <link href="~/admin/files/assets/css/customize.css" rel="stylesheet" />
-
     <style>
         .select2-container--default .select2-selection--single .select2-selection__rendered {
             background-color: unset;
@@ -66,6 +65,14 @@
             top: 1px !important;
             right: 3px !important;
         }
+
+        th.table-row-select,
+        td.table-row-select {
+            width: 50px;
+            min-width: 50px;
+            max-width: 50px;
+            text-align: center;
+        }
     </style>
     <link href="~/libs/select2/css/select2.min.css" rel="stylesheet" />
 
@@ -73,8 +80,6 @@
 </head>
 
 <body>
-
-    <!-- Pre-loader start -->
     <div class="theme-loader">
         <div class="ball-scale">
             <div class='contain'>
@@ -111,7 +116,6 @@
             </div>
         </div>
     </div>
-    <!-- Pre-loader end -->
     <div id="pcoded" class="pcoded">
         <div class="pcoded-overlay-box"></div>
         <div class="pcoded-container navbar-wrapper">
@@ -120,7 +124,7 @@
                 <div class="navbar-wrapper">
 
                     <div class="navbar-logo">
-                        <a class="mobile-menu" id="mobile-collapse" href="~/admin/#!">
+                        <a class="mobile-menu" id="mobile-collapse">
                             <i class="feather icon-menu"></i>
                         </a>
                         <a asp-action="index" asp-controller="dashboard">
@@ -143,7 +147,7 @@
                                 </div>
                             </li>
                             <li>
-                                <a href="~/admin/#!" onclick="javascript:toggleFullScreen()">
+                                <a onclick="javascript:toggleFullScreen()">
                                     <i class="feather icon-maximize full-screen"></i>
                                 </a>
                             </li>
@@ -167,7 +171,7 @@
                                                      src="~/admin/files/assets/images/avatar-4.jpg"
                                                      alt="Generic placeholder image">
                                                 <div class="media-body">
-                                                    <h5 class="notification-user">@User.GetPrincipalName()</h5>
+                                                    <h5 class="notification-user">@User.Identity.Name</h5>
                                                     <p class="notification-msg">
                                                         Lorem ipsum dolor sit amet, consectetuer
                                                         elit.
@@ -222,13 +226,13 @@
                                     <div class="dropdown-toggle" data-toggle="dropdown">
                                         <img src="~/admin/files/assets/images/avatar-4.jpg" class="img-radius"
                                              alt="User-Profile-Image">
-                                        <span>@User.GetPrincipalName()</span>
+                                        <span>@User.Identity.Name</span>
                                         <i class="feather icon-chevron-down"></i>
                                     </div>
                                     <ul class="show-notification profile-notification dropdown-menu"
                                         data-dropdown-in="fadeIn" data-dropdown-out="fadeOut">
                                         <li>
-                                            <a href="~/admin/#!">
+                                            <a>
                                                 <i class="feather icon-settings"></i> Settings
                                             </a>
                                         </li>
@@ -281,7 +285,7 @@
                                 <div class="media userlist-box" data-id="1" data-status="online"
                                      data-username="Josephin Doe" data-toggle="tooltip" data-placement="left"
                                      title="Josephin Doe">
-                                    <a class="media-left" href="~/admin/#!">
+                                    <a class="media-left">
                                         <img class="media-object img-radius img-radius"
                                              src="~/admin/files/assets/images/avatar-3.jpg" alt="Generic placeholder image ">
                                         <div class="live-status bg-success"></div>
@@ -293,7 +297,7 @@
                                 <div class="media userlist-box" data-id="2" data-status="online"
                                      data-username="Lary Doe" data-toggle="tooltip" data-placement="left"
                                      title="Lary Doe">
-                                    <a class="media-left" href="~/admin/#!">
+                                    <a class="media-left">
                                         <img class="media-object img-radius" src="~/admin/files/assets/images/avatar-2.jpg"
                                              alt="Generic placeholder image">
                                         <div class="live-status bg-success"></div>
@@ -304,7 +308,7 @@
                                 </div>
                                 <div class="media userlist-box" data-id="3" data-status="online" data-username="Alice"
                                      data-toggle="tooltip" data-placement="left" title="Alice">
-                                    <a class="media-left" href="~/admin/#!">
+                                    <a class="media-left">
                                         <img class="media-object img-radius" src="~/admin/files/assets/images/avatar-4.jpg"
                                              alt="Generic placeholder image">
                                         <div class="live-status bg-success"></div>
@@ -315,7 +319,7 @@
                                 </div>
                                 <div class="media userlist-box" data-id="4" data-status="online" data-username="Alia"
                                      data-toggle="tooltip" data-placement="left" title="Alia">
-                                    <a class="media-left" href="~/admin/#!">
+                                    <a class="media-left">
                                         <img class="media-object img-radius" src="~/admin/files/assets/images/avatar-3.jpg"
                                              alt="Generic placeholder image">
                                         <div class="live-status bg-success"></div>
@@ -326,7 +330,7 @@
                                 </div>
                                 <div class="media userlist-box" data-id="5" data-status="online" data-username="Suzen"
                                      data-toggle="tooltip" data-placement="left" title="Suzen">
-                                    <a class="media-left" href="~/admin/#!">
+                                    <a class="media-left">
                                         <img class="media-object img-radius" src="~/admin/files/assets/images/avatar-2.jpg"
                                              alt="Generic placeholder image">
                                         <div class="live-status bg-success"></div>
@@ -348,7 +352,7 @@
                     </a>
                 </div>
                 <div class="media chat-messages">
-                    <a class="media-left photo-table" href="~/admin/#!">
+                    <a class="media-left photo-table">
                         <img class="media-object img-radius img-radius m-t-5" src="~/admin/files/assets/images/avatar-3.jpg"
                              alt="Generic placeholder image">
                     </a>
@@ -367,7 +371,7 @@
                         </div>
                     </div>
                     <div class="media-right photo-table">
-                        <a href="~/admin/#!">
+                        <a>
                             <img class="media-object img-radius img-radius m-t-5"
                                  src="~/admin/files/assets/images/avatar-4.jpg" alt="Generic placeholder image">
                         </a>
@@ -443,6 +447,12 @@
                                         <span class="pcoded-mtext">Sayta keçid</span>
                                     </a>
                                 </li>
+                                <li class="">
+                                    <a asp-area="" asp-controller="home" asp-action="index">
+                                        <span class="pcoded-micon"><i class="fa-solid fa-earth-americas"></i></span>
+                                        <span class="pcoded-mtext">Sayta keçid</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </nav>
@@ -463,7 +473,51 @@
         </div>
     </div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.1/jquery.min.js" integrity="sha512-aVKKRRi/Q/YV+4mjoKBsE4x3H+BkegoM/em46NNlCqNTmUYADjBbeNefNxYV7giUp0VxICtqdrbqU7iVaeZNXA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <!-- Warning Section Starts -->
+    <!-- Older IE warning message -->
+    <!--[if lt IE 10]>
+    <div class="ie-warning">
+        <h1>Warning!!</h1>
+        <p>You are using an outdated version of Internet Explorer, please upgrade <br/>to any of the following web browsers to access this website.</p>
+        <div class="iew-container">
+            <ul class="iew-download">
+                <li>
+                    <a href="~/admin/http://www.google.com/chrome/">
+                        <img src="~/admin/./files/assets/images/browser/chrome.png" alt="Chrome">
+                        <div>Chrome</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="~/admin/https://www.mozilla.org/en-US/firefox/new/">
+                        <img src="~/admin/./files/assets/images/browser/firefox.png" alt="Firefox">
+                        <div>Firefox</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="~/admin/http://www.opera.com">
+                        <img src="~/admin/./files/assets/images/browser/opera.png" alt="Opera">
+                        <div>Opera</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="~/admin/https://www.apple.com/safari/">
+                        <img src="~/admin/./files/assets/images/browser/safari.png" alt="Safari">
+                        <div>Safari</div>
+                    </a>
+                </li>
+                <li>
+                    <a href="~/admin/http://windows.microsoft.com/en-us/internet-explorer/download-ie">
+                        <img src="~/admin/./files/assets/images/browser/ie.png" alt="">
+                        <div>IE (9 & above)</div>
+                    </a>
+                </li>
+            </ul>
+        </div>
+        <p>Sorry for the inconvenience!</p>
+    </div>
+    <![endif]-->
+    <!-- Warning Section Ends -->
+    <!-- Required Jquery -->
     <script type="text/javascript" src="~/admin/files/bower_components/jquery/dist/jquery.min.js"></script>
     <script type="text/javascript" src="~/admin/files/bower_components/jquery-ui/jquery-ui.min.js"></script>
     <script type="text/javascript" src="~/admin/files/bower_components/popper.js/dist/umd/popper.min.js"></script>
@@ -475,14 +529,15 @@
 
     @RenderSection("js", required: false)
 
-    <script src="~/libs/select2/js/select2.min.js"></script>
-    <script>
-        $(document).ready(function () {
-            $('.select2').select2();
-        });
-    </script>
+
+
+
+
+
+
+
     <!-- Chart js -->
-    <script type="text/javascript" src="~/admin/files/bower_components/chart.js/dist/Chart.js"></script>
+    @*<script type="text/javascript" src="~/admin/files/bower_components/chart.js/dist/Chart.js"></script>*@
     <!-- amchart js -->
     <script src="~/admin/files/assets/pages/widget/amchart/amcharts.js"></script>
     <script src="~/admin/files/assets/pages/widget/amchart/serial.js"></script>
@@ -494,10 +549,15 @@
     <!-- custom js -->
     <script src="~/admin/files/assets/js/vartical-layout.min.js"></script>
     <script type="text/javascript" src="~/admin/files/assets/js/script.min.js"></script>
+    <script src="~/libs/select2/js/select2.min.js"></script>
+    <script>
+        $(document).ready(function () {
+            $('.select2').select2();
+        });
+    </script>
     <script src="~/admin/files/assets/js/customize.js"></script>
 </body>
 
 
-<!-- Mirrored from demo.dashboardpack.com/adminty-html/index.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 19 Sep 2021 04:27:47 GMT -->
 </html>
 

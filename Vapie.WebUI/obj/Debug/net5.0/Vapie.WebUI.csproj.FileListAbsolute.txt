@@ -337,7 +337,6 @@ C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\bin\Debug\net5.0\Microsoft.AspNetCore.Http.Features.dll
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\bin\Debug\net5.0\Microsoft.Extensions.Primitives.dll
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\bin\Debug\net5.0\System.IO.Pipelines.dll
-C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Create.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Delete.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Details.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Edit.cshtml.g.cs
@@ -364,3 +363,4 @@ C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sliders\Details.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sliders\Edit.cshtml.g.cs
 C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Sliders\Index.cshtml.g.cs
+C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\obj\Debug\net5.0\Razor\Areas\Admin\Views\Products\Create.cshtml.g.cs

@@ -1,4 +1,4 @@
-﻿.imager-container::after {
+.imager-container::after{
     content: '';
     display: block;
     clear: both;
@@ -70,7 +70,8 @@
         line-height: unset;
     }
 
-    .imager-container > .viewer-thumbs > .img-thumb input[type="file"], .imager-container > .viewer-thumbs > .img-thumb input[type="checkbox"], .imager-container > .viewer-thumbs > .img-thumb input[type="radio"] {
+    .imager-container > .viewer-thumbs > .img-thumb input[type="file"], .imager-container > .viewer-thumbs > .img-thumb input[type="checkbox"]
+    , .imager-container > .viewer-thumbs > .img-thumb input[type="radio"] {
         display: none
     }
 

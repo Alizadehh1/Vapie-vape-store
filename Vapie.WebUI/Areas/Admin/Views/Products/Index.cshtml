@@ -1,4 +1,4 @@
-﻿@model PagedViewModel<Product>
+﻿@model IEnumerable<Product>
 
 @{
     ViewData["Title"] = "Index";
@@ -8,11 +8,10 @@
         <div class="col-lg-8">
             <div class="page-header-title">
                 <div class="d-inline">
-                    <h4>List Of Products</h4>
-                    @*<span>
-                            lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit
-                        </span>*@
+                    <h4>Məhsulların siyahısı</h4>
+                    <span>
+                        Məhsul əlavə et, düzəliş et, ətraflı bax və ya sil.
+                    </span>
                 </div>
             </div>
         </div>
@@ -35,9 +34,10 @@
         <div class="card-header">
             <h5>Products</h5>
         </div>
-        <div class="card-block table-border-style">
-            <div class="table-responsive">
-                <table class="table table-hover">
+        <div class="card-block">
+            <div class="dt-responsive table-responsive">
+                <table id="simpletable"
+                       class="table table-striped table-bordered nowrap">
                     <thead>
                         <tr>
                             <th>
@@ -58,13 +58,13 @@
                             <th>
                                 Qiymət
                             </th>
-                            <th class="actionBtns">
+                            <th>
                                 <a asp-action="Create"><button class="btn btn-success btn-icon"><i class="icofont-plus"></i></button></a>
                             </th>
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach (var item in Model.Items)
+                        @foreach (var item in Model)
                         {
                             var imagePath = item.Images.FirstOrDefault(i => i.IsMain == true).ImagePath;
                             <tr data-entity-id="@item.Id">
@@ -86,7 +86,7 @@
                                 <td>
                                     @item.Price  ₼
                                 </td>
-                                <td class="actionBtns">
+                                <td>
                                     <a asp-action="Edit" asp-route-id="@item.Id"><button class="btn btn-warning btn-icon"><i class="icofont-pencil-alt-5"></i></button></a> |
                                     <a asp-action="Details" asp-route-id="@item.Id"><button class="btn btn-info btn-icon"><i class="icofont icofont-eye-alt"></i></button></a> |
                                     <a onclick="removeEntity(event,@item.Id, '@item.Name')" class="btn btn-danger btn-icon">
@@ -98,12 +98,22 @@
                     </tbody>
                 </table>
             </div>
-            @Model.GetPagenation(Url, "Index", "Admin")
         </div>
     </div>
 </div>
 
 @section js{
+    <script src="~/admin/files/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/admin/files/bower_components/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+    <script src="~/admin/files/assets/pages/data-table/js/jszip.min.js"></script>
+    <script src="~/admin/files/assets/pages/data-table/js/pdfmake.min.js"></script>
+    <script src="~/admin/files/assets/pages/data-table/js/vfs_fonts.js"></script>
+    <script src="~/admin/files/bower_components/datatables.net-buttons/js/buttons.print.min.js"></script>
+    <script src="~/admin/files/bower_components/datatables.net-buttons/js/buttons.html5.min.js"></script>
+    <script src="~/admin/files/assets/pages/data-table/js/dataTables.bootstrap4.min.js"></script>
+    <script src="~/admin/files/bower_components/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/admin/files/bower_components/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+    <script src="~/admin/files/assets/pages/data-table/js/data-table-custom.js"></script>
     <script src="~/libs/sweetalert/sweetalert.min.js"></script>
     <script>
         function removeEntity(ev, entityId, name) {
@@ -135,7 +145,4 @@
                 });
         }
     </script>
-}
-@section css{
-    <link href="~/assets/css/pagination.css" rel="stylesheet" />
 }

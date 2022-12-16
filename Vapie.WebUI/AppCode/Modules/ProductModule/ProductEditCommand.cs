@@ -13,7 +13,7 @@ using Vapie.WebUI.Models.Entities;
 
 namespace Vapie.WebUI.AppCode.Modules.ProductModule
 {
-    public class ProductEditCommand : IRequest<ProductEditCommandResponse>
+    public class ProductEditCommand : IRequest<Product>
     {
         public int Id { get; set; }
         public string Name { get; set; }
@@ -24,42 +24,35 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
         public string Size { get; set; }
         public string Flavor { get; set; }
         public string NicotineStrength { get; set; }
+        public int isMainIndex { get; set; }
         public double Price { get; set; }
         public ImageItem[] Images { get; set; }
-
-        public class ProductEditCommandHandler : IRequestHandler<ProductEditCommand, ProductEditCommandResponse>
+        [Obsolete]
+        public class ProductEditCommandHandler : IRequestHandler<ProductEditCommand, Product>
         {
             readonly VapieDbContext db;
-            readonly IWebHostEnvironment env;
+            readonly IHostingEnvironment env;
             readonly IActionContextAccessor ctx;
 
-            public ProductEditCommandHandler(VapieDbContext db, IWebHostEnvironment env, IActionContextAccessor ctx)
+            public ProductEditCommandHandler(VapieDbContext db, IHostingEnvironment env, IActionContextAccessor ctx)
             {
                 this.db = db;
                 this.env = env;
                 this.ctx = ctx;
             }
-            public async Task<ProductEditCommandResponse> Handle(ProductEditCommand request, CancellationToken cancellationToken)
+            public async Task<Product> Handle(ProductEditCommand request, CancellationToken cancellationToken)
             {
 
-                var response = new ProductEditCommandResponse
-                {
-                    Product = null,
-                };
-
-                if (!ctx.ModelIsValid())
-                {
-
-                    return response;
-                }
-
                 var product = await db.Products
-                    .Include(p => p.Images)
+                    .Include(p=>p.Category)
+                    .Include(p=>p.Brand)
+                    .Include(p => p.Images.Where(i=>i.DeletedById==null))
                     .FirstOrDefaultAsync(p => p.Id == request.Id, cancellationToken);
+
                 if (product == null)
                 {
                     ctx.AddModelError("Name", "Product tapilmadi");
-                    return response;
+                    return product;
                 }
 
 
@@ -73,14 +66,14 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                 product.Flavor = request.Flavor;
                 product.Price = request.Price;
 
-
+                int count = 0;
                 if (request.Images != null)
                 {
                     if (product.Images == null)
                     {
                         product.Images = new List<ProductImage>();
                     }
-                    int count = 0;
+
                     foreach (var productFile in request.Images)
                     {
                         if (productFile.File == null && string.IsNullOrWhiteSpace(productFile.TempPath))
@@ -98,8 +91,7 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                         {
                             string name = await env.SaveFile(productFile.File, cancellationToken, "product");
 
-                            count++;
-                            if (count == 1)
+                            if (count == request.isMainIndex)
                             {
                                 product.Images.Add(new ProductImage
                                 {
@@ -122,9 +114,17 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
 
                             if (dbProductImage != null)
                             {
-                                dbProductImage.IsMain = false;
+                                if (count == request.isMainIndex)
+                                {
+                                    dbProductImage.IsMain = true;
+                                }
+                                else
+                                {
+                                    dbProductImage.IsMain = false;
+                                }
                             }
                         }
+                        count++;
                     }
                 }
                 else
@@ -134,27 +134,25 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                 }
 
 
-                
+
 
                 try
                 {
                     await db.SaveChangesAsync(cancellationToken);
-                    response.Product = product;
-                    return response;
+                    
+                    return product;
                 }
                 catch (Exception ex)
                 {
-                    response.Product = product;
 
                     ctx.AddModelError("Name", "Xeta bash verdi,Biraz sonra yeniden yoxlayin");
 
-                    return response;
+                    return product;
                 }
 
             l1:
                 return null;
             }
-        
         }
     }
 }
