@@ -435,16 +435,19 @@
                                         <span class="pcoded-mtext">Products</span>
                                     </a>
                                 </li>
+                                @*@if (User.HasAccess("admin.orders.index"))
+                                {*@
+                                    <li class="">
+                                        <a asp-controller="orders" asp-action="index">
+                                            <span class="pcoded-micon"><i class="fa-solid fa-basket-shopping"></i></span>
+                                            <span class="pcoded-mtext">Sifarişlər</span>
+                                        </a>
+                                    </li>
+                                    @*}*@
                                 <li class="">
                                     <a asp-controller="users" asp-action="index">
                                         <span class="pcoded-micon"><i class="icofont-users"></i></span>
                                         <span class="pcoded-mtext">İstifadəçilər</span>
-                                    </a>
-                                </li>
-                                <li class="">
-                                    <a asp-area="" asp-controller="home" asp-action="index">
-                                        <span class="pcoded-micon"><i class="fa-solid fa-earth-americas"></i></span>
-                                        <span class="pcoded-mtext">Sayta keçid</span>
                                     </a>
                                 </li>
                                 <li class="">

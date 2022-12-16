@@ -50,11 +50,11 @@
         <div class="col-12 py-3">
             <div class="row">
                 <div class="col-12 text-center text-uppercase">
-                    <h2>Populyar Məhsullar</h2>
+                    <h2>Endirimdə olan Məhsullar</h2>
                 </div>
             </div>
             <div class="row">
-                @foreach (var item in Model.FeaturedProducts)
+                @foreach (var item in Model.SaleProducts)
                 {
                     <div class="col-lg-3 col-sm-6 my-3">
                         <div class="col-12 bg-white text-center h-100 product-item">
@@ -69,8 +69,9 @@
                                 </div>
                                 <div class="col-12 mb-3">
                                     <span class="product-price">
-                                        @item.Price ₼
+                                        @item.Price&#8380;
                                     </span>
+                                    <del class="old-price">@(item.OldPrice != null ? item.OldPrice + "₼" : null)</del>
                                 </div>
                                 <div class="col-12 mb-3 align-self-end">
                                     <button data-item-id="@item.Id" onclick="addToWishlist(event)" class="btn mb-1 btn-outline-secondary btn-sm" type="button"><i class="fas fa-heart me-2"></i>Seçilmişlərə əlavə et</button>
@@ -99,54 +100,11 @@
                 </div>
             </div>
             <div class="row">
-                @foreach (var item in Model.Products)
+                @foreach (var item in Model.LastestProducts)
                 {
                     <div class="col-lg-3 col-sm-6 my-3">
                         <div class="col-12 bg-white text-center h-100 product-item">
                             <span class="new">Yeni</span>
-                            <div class="row h-100">
-                                <div class="col-12 p-0 mb-3">
-                                    <a asp-route-id="@item.Id" asp-action="singleproduct" asp-controller="shop" asp-route-categoryId="@item.CategoryId">
-                                        <img src="~/uploads/images/@item.Images.FirstOrDefault().ImagePath" class="img-fluid">
-                                    </a>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <a asp-route-id="@item.Id" asp-action="singleproduct" asp-controller="shop" asp-route-categoryId="@item.CategoryId" class="product-name">@item.Name</a>
-                                </div>
-                                <div class="col-12 mb-3">
-                                    <span class="product-price">
-                                        @item.Price ₼
-                                    </span>
-                                </div>
-                                <div class="col-12 mb-3 align-self-end">
-                                    <button data-item-id="@item.Id" onclick="addToWishlist(event)" class="btn mb-1 btn-outline-secondary btn-sm" type="button"><i class="fas fa-heart me-2"></i>Seçilmişlərə əlavə et</button>
-                                    <button data-item-id="@item.Id" onclick="addToCart(event)" class="btn btn-outline-dark" type="button"><i class="fas fa-cart-plus me-2"></i>Səbətə əlavə et</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                }
-            </div>
-        </div>
-    </div>
-</div>
-
-<div class="col-12">
-    <hr>
-</div>
-<div class="col-12">
-    <div class="row">
-        <div class="col-12 py-3">
-            <div class="row">
-                <div class="col-12 text-center text-uppercase">
-                    <h2>Çox Satılan Məhsullar</h2>
-                </div>
-            </div>
-            <div class="row">
-                @foreach (var item in Model.TopSellingProducts)
-                {
-                    <div class="col-lg-3 col-sm-6 my-3">
-                        <div class="col-12 bg-white text-center h-100 product-item">
                             <div class="row h-100">
                                 <div class="col-12 p-0 mb-3">
                                     <a asp-route-id="@item.Id" asp-action="singleproduct" asp-controller="shop" asp-route-categoryId="@item.CategoryId">
@@ -207,48 +165,89 @@
         </div>
     </div>
 </div>
+@section js{ 
+<script>
+    function showCardCount() {
+        let items = readFromBasket();
+        $('#header-qty').html(items.length - 1);
 
+    }
+    showCardCount();
+    function showWishlistCount() {
+        let items = readFromCookie();
+        $('#header-favorite').html(items.length - 1);
 
-@section js{
-    <script>
-        function addToCart(ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            let data = $(ev.currentTarget).data();
-            addToBasket(data.itemId);
+    }
+    showWishlistCount();
+    function readFromCookie() {
+        return ($.cookie('cardsForCookie') || '').split(',');
+    }
 
-            console.log(readFromBasket())
+    function readFromBasket() {
+        return ($.cookie('cards') || '').split(',');
+    }
+    function addToWishlist(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        let data = $(ev.currentTarget).data();
+        addToCookie(data.itemId);
+
+        console.log(readFromCookie())
+    }
+    function addToCookie(cardId) {
+        let items = readFromCookie();
+        let length = items.filter(item => item == cardId).length;
+        if (length > 0) {
+            toastr.warning("Bu məhsulu artıq seçilmişlərə əlavə etmisiniz!", "Uğursuz");
+            return;
         }
-        function readFromBasket() {
-            return ($.cookie('cards') || '').split(',');
-        }
-        function addToBasket(cardId) {
-            let items = readFromBasket();
-            let length = items.filter(item => item == cardId).length;
-            if (length > 0) return;
-            items.push(cardId);
-            $.cookie('cards', items.toString(), { expires: 7, path: '/' });
-            $.ajax({
-                success: function (response) {
-                    if (response.error == true) {
-                        toastr.error(response.message, "Error!");
-                        return;
-                    }
-                    toastr.success("Successfully Added", response.message)
-                    showCardCount();
-                },
-                error: function (response) {
-                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+        items.push(cardId);
+        $.cookie('cardsForCookie', items.toString(), { expires: 7, path: '/' });
+        $.ajax({
+            success: function (response) {
+                if (response.error == true) {
+                    toastr.error(response.message, "Error!");
+                    return;
                 }
-            })
+                toastr.success("Successfully Added", response.message)
+                showWishlistCount();
+            },
+            error: function (response) {
+                toastr["error"]("Unsuccessfully", "Data has not been deleted")
+            }
+        })
+    }
+    function addToCart(ev) {
+        ev.preventDefault();
+        ev.stopPropagation();
+        let data = $(ev.currentTarget).data();
+        addToBasket(data.itemId);
+
+        console.log(readFromBasket())
+    }
+    function addToBasket(cardId) {
+        let items = readFromBasket();
+        let length = items.filter(item => item == cardId).length;
+        if (length > 0) {
+            toastr.warning("Bu məhsulu artıq səbətə əlavə etmisiniz!", "Uğursuz");
+            return;
         }
+        items.push(cardId);
+        $.cookie('cards', items.toString(), { expires: 7, path: '/' });
+        $.ajax({
+            success: function (response) {
+                if (response.error == true) {
+                    toastr.error(response.message, "Error!");
+                    return;
+                }
+                toastr.success("Successfully Added", response.message)
+                showCardCount();
+            },
+            error: function (response) {
+                toastr["error"]("Unsuccessfully", "Data has not been deleted")
+            }
+        })
+    }
 
-        function showCardCount() {
-            let items = readFromBasket();
-            $('#header-qty').html(items.length - 1);
-
-        }
-        showCardCount();
-
-    </script>
+</script>
 }

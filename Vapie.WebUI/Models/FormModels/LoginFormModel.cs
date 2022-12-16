@@ -4,9 +4,10 @@ namespace Vapie.WebUI.Models.FormModels
 {
     public class LoginFormModel
     {
-        [Required]
-        public string UserName { get; set; }
-        [Required]
+        [Required(ErrorMessage = "'Email' Xanasını boş saxlamayın!")]
+        [EmailAddress]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "'Şifrə' Xanasını boş saxlamayın!")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
     }

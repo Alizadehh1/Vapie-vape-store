@@ -8,9 +8,7 @@ namespace Vapie.WebUI.Models.ViewModels
 {
     public class HomeViewModel
     {
-        public List<Product> Products { get; set; }
-        public List<Product> FeaturedProducts { get; set; }
-        public List<Product> TopSellingProducts { get; set; }
-        public List<Slider> Sliders { get; set; }
+        public List<Product> LastestProducts { get; set; }
+        public List<Product> SaleProducts { get; set; }
     }
 }

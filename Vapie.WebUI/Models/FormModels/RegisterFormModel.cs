@@ -4,19 +4,18 @@ namespace Vapie.WebUI.Models.FormModels
 {
     public class RegisterFormModel
     {
-        [Required]
+        [Required(ErrorMessage = "'Email' Xanasını boş saxlamayın!")]
         [EmailAddress]
         public string Email { get; set; }
-        [Required]
+        [Required(ErrorMessage = "'Əlaqə Nömrəsi' Xanasını boş saxlamayın!")]
+        public string PhoneNumber { get; set; }
+        [Required(ErrorMessage = "'Şifrə' Xanasını boş saxlamayın!")]
         [DataType(DataType.Password)]
         public string Password { get; set; }
-        [Required]
+        [Required(ErrorMessage = "'Şifrənın təkrarı' Xanasını boş saxlamayın!")]
         [DataType(DataType.Password)]
-        [Compare("Password",ErrorMessage ="Şifrələr Uyğun Deyil!")]
+        [Compare("Password", ErrorMessage = "Şifrələr Uyğun Deyil!")]
         public string ConfirmPassword { get; set; }
-        public string Name { get; set; }
-        public string Surname { get; set; }
-        public string Username { get; set; }
 
     }
 }

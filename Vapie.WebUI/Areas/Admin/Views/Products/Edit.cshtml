@@ -9,9 +9,9 @@
         <div class="col-lg-8">
             <div class="page-header-title">
                 <div class="d-inline">
-                    <h4>Brands</h4>
+                    <h4>Məhsul</h4>
                     <span>
-                        Butun brandlar
+                        Dəyişiklik etmək
                     </span>
                 </div>
             </div>
@@ -23,7 +23,7 @@
                         <a asp-controller="dashboard" asp-action="index"> <i class="feather icon-home"></i> </a>
                     </li>
                     <li class="breadcrumb-item" style="float: left;">
-                        <a href="#!">Brendler</a>
+                        <a href="#!">Məhsul</a>
                     </li>
                 </ul>
             </div>
@@ -48,55 +48,61 @@
                     <div class="row">
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="Name" class="control-label"></label>
+                                <label asp-for="Name" class="control-label">Ad</label>
                                 <input asp-for="Name" class="form-control" />
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="BrandId" class="control-label"></label>
+                                <label asp-for="BrandId" class="control-label">Marka</label>
                                 <select asp-for="BrandId" class="form-control" asp-items="ViewBag.BrandId"></select>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="Flavor" class="control-label"></label>
+                                <label asp-for="Flavor" class="control-label">Dad</label>
                                 <input asp-for="Flavor" class="form-control" />
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="Capacity" class="control-label"></label>
+                                <label asp-for="Capacity" class="control-label">Həcm</label>
                                 <input asp-for="Capacity" class="form-control" />
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="NicotineStrength" class="control-label"></label>
+                                <label asp-for="NicotineStrength" class="control-label">Nikotin miqdarı</label>
                                 <input asp-for="NicotineStrength" class="form-control" />
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
                             <div class="form-group">
-                                <label asp-for="Size" class="control-label"></label>
-                                <input asp-for="Size" class="form-control" />
-                            </div>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="CategoryId" class="control-label"></label>
+                                <label asp-for="CategoryId" class="control-label">Kateqoriya</label>
                                 <select asp-for="CategoryId" class="form-control" asp-items="ViewBag.CategoryId"></select>
                             </div>
                         </div>
                         <div class="col-12 col-lg-6">
-                            <div class="form-group">
-                                <label asp-for="Price" class="control-label"></label>
+                            <label asp-for="Price" class="control-label">Qiymət</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">&#8380;</span>
+                                </div>
                                 <input asp-for="Price" class="form-control" />
+                            </div>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <label asp-for="OldPrice" class="control-label">Köhnə Qiymət(Məhsul endirimdədirsə)</label>
+                            <div class="input-group">
+                                <div class="input-group-prepend">
+                                    <span class="input-group-text" id="basic-addon1">&#8380;</span>
+                                </div>
+                                <input asp-for="OldPrice" class="form-control" />
                             </div>
                         </div>
                         <div class="col-12">
                             <div class="form-group">
-                                <label asp-for="Description" class="control-label"></label>
+                                <label asp-for="Description" class="control-label">Detallı</label>
                                 <textarea asp-for="Description" class="form-control editor"></textarea>
                                 <span asp-validation-for="Description" class="text-danger"></span>
                             </div>

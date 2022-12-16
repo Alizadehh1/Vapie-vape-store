@@ -265,18 +265,11 @@ namespace Vapie.WebUI.Migrations
                     b.Property<bool>("EmailConfirmed")
                         .HasColumnType("bit");
 
-                    b.Property<string>("ImagePath")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<bool>("LockoutEnabled")
                         .HasColumnType("bit");
 
                     b.Property<DateTimeOffset?>("LockoutEnd")
                         .HasColumnType("datetimeoffset");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("NormalizedEmail")
                         .HasMaxLength(256)
@@ -296,10 +289,6 @@ namespace Vapie.WebUI.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("SecurityStamp")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Surname")
-                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<bool>("TwoFactorEnabled")
@@ -400,6 +389,72 @@ namespace Vapie.WebUI.Migrations
                     b.ToTable("UserTokens", "Membership");
                 });
 
+            modelBuilder.Entity("Vapie.WebUI.Models.Entities.Order", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int?>("CreatedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<int?>("DeletedById")
+                        .HasColumnType("int");
+
+                    b.Property<DateTime?>("DeletedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<double>("TotalAmount")
+                        .HasColumnType("float");
+
+                    b.Property<string>("VapieUserId")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("VapieUserId1")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("isConfirmed")
+                        .HasColumnType("bit");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("VapieUserId1");
+
+                    b.ToTable("Orders");
+                });
+
+            modelBuilder.Entity("Vapie.WebUI.Models.Entities.OrderItem", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<int>("OrderId")
+                        .HasColumnType("int");
+
+                    b.Property<double>("Price")
+                        .HasColumnType("float");
+
+                    b.Property<int>("ProductId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Quantity")
+                        .HasColumnType("int");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("OrderId");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("OrderItems");
+                });
+
             modelBuilder.Entity("Vapie.WebUI.Models.Entities.Product", b =>
                 {
                     b.Property<int>("Id")
@@ -440,11 +495,11 @@ namespace Vapie.WebUI.Migrations
                     b.Property<string>("NicotineStrength")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<decimal>("Price")
+                    b.Property<decimal?>("OldPrice")
                         .HasColumnType("decimal(18,2)");
 
-                    b.Property<string>("Size")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<decimal>("Price")
+                        .HasColumnType("decimal(18,2)");
 
                     b.HasKey("Id");
 
@@ -671,6 +726,34 @@ namespace Vapie.WebUI.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("Vapie.WebUI.Models.Entities.Order", b =>
+                {
+                    b.HasOne("Vapie.WebUI.Models.Entities.Membership.VapieUser", "VapieUser")
+                        .WithMany()
+                        .HasForeignKey("VapieUserId1");
+
+                    b.Navigation("VapieUser");
+                });
+
+            modelBuilder.Entity("Vapie.WebUI.Models.Entities.OrderItem", b =>
+                {
+                    b.HasOne("Vapie.WebUI.Models.Entities.Order", "Order")
+                        .WithMany("OrderItems")
+                        .HasForeignKey("OrderId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Vapie.WebUI.Models.Entities.Product", "Product")
+                        .WithMany()
+                        .HasForeignKey("ProductId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Order");
+
+                    b.Navigation("Product");
+                });
+
             modelBuilder.Entity("Vapie.WebUI.Models.Entities.Product", b =>
                 {
                     b.HasOne("Vapie.WebUI.Models.Entities.Brand", "Brand")
@@ -715,6 +798,11 @@ namespace Vapie.WebUI.Migrations
             modelBuilder.Entity("Vapie.WebUI.Models.Entities.Category", b =>
                 {
                     b.Navigation("Children");
+                });
+
+            modelBuilder.Entity("Vapie.WebUI.Models.Entities.Order", b =>
+                {
+                    b.Navigation("OrderItems");
                 });
 
             modelBuilder.Entity("Vapie.WebUI.Models.Entities.Product", b =>

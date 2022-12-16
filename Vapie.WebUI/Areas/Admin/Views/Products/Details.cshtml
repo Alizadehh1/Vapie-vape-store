@@ -9,11 +9,10 @@
         <div class="col-lg-8">
             <div class="page-header-title">
                 <div class="d-inline">
-                    <h4>Product</h4>
-                    @*<span>
-                            lorem ipsum dolor sit amet, consectetur adipisicing
-                            elit
-                        </span>*@
+                    <h4>Məhsul</h4>
+                    <span>
+                        Ətraflı baxış
+                    </span>
                 </div>
             </div>
         </div>
@@ -24,7 +23,7 @@
                         <a asp-action="index" asp-controller="dashboard"> <i class="feather icon-home"></i> </a>
                     </li>
                     <li class="breadcrumb-item" style="float: left;">
-                        <a href="#!">Product</a>
+                        <a href="#!">Məhsul</a>
                     </li>
                 </ul>
             </div>
@@ -44,13 +43,13 @@
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Name" class="col-sm-2 col-form-label"></label>
+                    <label asp-for="Name" class="col-sm-2 col-form-label">Ad</label>
                     <div class="col-sm-5">
                         <p class="form-control">@Model.Name</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Category" class="col-sm-2 col-form-label"></label>
+                    <label asp-for="Category" class="col-sm-2 col-form-label">Kateqoriya</label>
                     <div class="col-sm-5">
                         <p class="form-control">@Model.Category.Name</p>
                     </div>
@@ -58,43 +57,43 @@
                 <div class="form-group row">
                     <label asp-for="Description" class="col-sm-2 col-form-label">Detallı</label>
                     <div class="col-sm-5">
-                        <p class="form-control">@Html.Raw(Model.Description)</p>
+                        @Html.Raw(Model.Description)
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Brand" class="col-sm-2 col-form-label"></label>
+                    <label asp-for="Brand" class="col-sm-2 col-form-label">Marka</label>
                     <div class="col-sm-5">
                         <p class="form-control">@Model.Brand.Name</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Capacity" class="col-sm-2 col-form-label"></label>
+                    <label asp-for="Capacity" class="col-sm-2 col-form-label">Həcm</label>
                     <div class="col-sm-5">
                         <p class="form-control">@Model.Capacity</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Size" class="col-sm-2 col-form-label"></label>
-                    <div class="col-sm-5">
-                        <p class="form-control">@Model.Size</p>
-                    </div>
-                </div>
-                <div class="form-group row">
-                    <label asp-for="Flavor" class="col-sm-2 col-form-label"></label>
+                    <label asp-for="Flavor" class="col-sm-2 col-form-label">Dad</label>
                     <div class="col-sm-5">
                         <p class="form-control">@Model.Flavor</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="NicotineStrength" class="col-sm-2 col-form-label"></label>
+                    <label asp-for="NicotineStrength" class="col-sm-2 col-form-label">Nikotin miqdarı</label>
                     <div class="col-sm-5">
                         <p class="form-control">@Model.NicotineStrength</p>
                     </div>
                 </div>
                 <div class="form-group row">
-                    <label asp-for="Price" class="col-sm-2 col-form-label"></label>
+                    <label asp-for="Price" class="col-sm-2 col-form-label">Qiymət</label>
                     <div class="col-sm-5">
-                        <p class="form-control">@Model.Price</p>
+                        <p class="form-control">@Model.Price&#8380;</p>
+                    </div>
+                </div>
+                <div class="form-group row">
+                    <label asp-for="OldPrice" class="col-sm-2 col-form-label">Köhnə Qiymət(Məhsul endirimdədirsə)</label>
+                    <div class="col-sm-5">
+                        <p class="form-control">@Model.OldPrice&#8380;</p>
                     </div>
                 </div>
                 <div class="form-group row">

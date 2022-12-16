@@ -23,6 +23,8 @@ namespace Vapie.WebUI.Models.DataContexts
         public DbSet<Faq> Faqs { get; set; }
         public DbSet<Slider> Sliders { get; set; }
         public DbSet<ProductComment> ProductComments { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderItem> OrderItems { get; set; }
 
         protected override void OnModelCreating(ModelBuilder builder)
         {

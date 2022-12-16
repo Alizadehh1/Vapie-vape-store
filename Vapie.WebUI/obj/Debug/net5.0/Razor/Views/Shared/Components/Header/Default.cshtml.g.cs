@@ -61,15 +61,8 @@ using Vapie.WebUI.Models.Entities.Membership;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 8 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Views\_ViewImports.cshtml"
-using Vapie.WebUI.AppCode.Modules.ProfileModule;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"7776cef2f64b87cab9d9f07640a11b5bbcf36172", @"/Views/Shared/Components/Header/Default.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"125fed54020bbc083de127e5474ec48233b6911f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cb2701bea3d6abcf67c1e98cb0873156e6a7b9c2", @"/Views/_ViewImports.cshtml")]
     public class Views_Shared_Components_Header_Default : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("asp-action", "Profile", global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -153,7 +146,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                        <li class=\"nav-item dropdown\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617215431", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617215217", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-user me-1\"></i>");
 #nullable restore
 #line 19 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Views\Shared\Components\Header\Default.cshtml"
@@ -187,7 +180,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617217608", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617217394", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-lock-open\"></i>Admin Panel");
             }
             );
@@ -216,7 +209,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617219580", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617219366", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-user\"></i>Profil");
             }
             );
@@ -235,7 +228,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617221091", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617220877", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-gear\"></i> Parol dəyişdir");
             }
             );
@@ -254,7 +247,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617222611", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617222397", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-arrow-right-from-bracket\"></i>Çıxış et");
             }
             );
@@ -283,7 +276,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                        <li>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617224533", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617224319", async() => {
                 WriteLiteral("<i class=\"fas fa-user-edit me-2\"></i>Qeydiyyat");
             }
             );
@@ -301,7 +294,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </li>\r\n                        <li>\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617226032", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617225818", async() => {
                 WriteLiteral("<i class=\"fas fa-sign-in-alt me-2\"></i>Giriş");
             }
             );
@@ -335,7 +328,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             <div class=""col-lg-auto"">
                 <div class=""site-logo text-center text-lg-left"">
                     ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617227980", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617227766", async() => {
                 WriteLiteral("Vapie");
             }
             );
@@ -353,7 +346,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                </div>\r\n            </div>\r\n            <div class=\"col-lg-5 mx-auto mt-4 mt-lg-0\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617229470", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("form", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617229256", async() => {
                 WriteLiteral(@"
                     <div class=""form-group"">
                         <div class=""input-group"">
@@ -384,7 +377,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                <div id=\"productList\" class=\"row\">\r\n\r\n                </div>\r\n            </div>\r\n            <div class=\"col-lg-auto text-center text-lg-left header-item-holder\">\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617232133", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617231919", async() => {
                 WriteLiteral("\r\n                    <i class=\"fas fa-heart me-2\"></i><span id=\"header-favorite\">0</span>\r\n                ");
             }
             );
@@ -403,7 +396,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617233709", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617233495", async() => {
                 WriteLiteral("\r\n                    <i class=\"fas fa-shopping-bag me-2\"></i><span id=\"header-qty\" class=\"me-3\">0</span>\r\n                ");
             }
             );
@@ -434,7 +427,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
                     <ul class=""navbar-nav mx-auto mt-2 mt-lg-0"">
                         <li class=""nav-item active"">
                             ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617235893", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617235679", async() => {
                 WriteLiteral("Ana səhifə");
             }
             );
@@ -453,7 +446,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </li>\r\n                        <li class=\"nav-item dropdown\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617237468", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617237254", async() => {
                 WriteLiteral("Mağaza");
             }
             );
@@ -481,7 +474,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617239366", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617239152", async() => {
 #nullable restore
 #line 89 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Views\Shared\Components\Header\Default.cshtml"
                                                                                                                                     Write(item.Name);
@@ -529,7 +522,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                            </div>\r\n                        </li>\r\n                        <li class=\"nav-item dropdown\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617242647", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617242433", async() => {
                 WriteLiteral("Bloq");
             }
             );
@@ -557,7 +550,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617244543", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617244329", async() => {
 #nullable restore
 #line 98 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Views\Shared\Components\Header\Default.cshtml"
                                                                                                                                     Write(item.Name);
@@ -605,7 +598,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                            </div>\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617247815", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617247601", async() => {
                 WriteLiteral("Bizimlə Əlaqə");
             }
             );
@@ -624,7 +617,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                        </li>\r\n                        <li class=\"nav-item\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617249384", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "7776cef2f64b87cab9d9f07640a11b5bbcf3617249170", async() => {
                 WriteLiteral("Tez-Tez verilən suallar");
             }
             );

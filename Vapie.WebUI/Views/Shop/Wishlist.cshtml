@@ -112,7 +112,10 @@
         function addToBasket(cardId) {
             let items = readFromBasket();
             let length = items.filter(item => item == cardId).length;
-            if (length > 0) return;
+            if (length > 0) {
+                toastr.warning("Bu məhsulu artıq səbətə əlavə etmisiniz!", "Uğursuz");
+                return;
+            }
             items.push(cardId);
             $.cookie('cards', items.toString(), { expires: 7, path: '/' });
             $.ajax({

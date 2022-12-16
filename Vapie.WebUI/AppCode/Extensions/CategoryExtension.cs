@@ -11,32 +11,39 @@ namespace Vapie.WebUI.AppCode.Extensions
         public static HtmlString GetCategoriesRaw(this List<Category> categories)
         {
             StringBuilder sb = new StringBuilder();
-            sb.Append("<ul class=\"widget-body filter-items search-ul\">");
+            sb.Append("<div class=\"sidenav\">");
             foreach (var category in categories.Where(c => c.ParentId == null))
             {
                 AppendCategory(category, sb);
             }
-            sb.Append("</ul>");
+            sb.Append("</div>");
             return new HtmlString(sb.ToString());
         }
         static void AppendCategory(Category category, StringBuilder sb)
         {
+            if (category.Children == null)
+            {
+                return;
+            }
             bool hasChild = category.Children.Any();
-            sb.Append($"<li {(hasChild ? "class=with-ul" : "")}>" +
-                $"<a href=\"#\">{category.Name}");
-            if (hasChild)
-                sb.Append("<i class=\"fas fa-chevron-down\"></i>");
-            sb.Append("</a>");
             if (hasChild)
             {
-                sb.Append("<ul style=\"display: none\">");
+                sb.Append("<button class=\"dropdown-btn\">" +
+                    $"<a style=\"display:contents;\" href=\"/shop/category?categoryId={category.Id}\">{category.Name}</a>" +
+                    "<i class=\"fas fa-caret-down\"></i>" +
+                    "</button>");
+                sb.Append("<div class=\"dropdown-container\">");
                 foreach (var item in category.Children)
                 {
                     AppendCategory(item, sb);
                 }
-                sb.Append("</ul>");
+                sb.Append("</div>");
             }
-            sb.Append("</li>");
+            else
+            {
+                sb.Append($"<a href=\"/shop/category?categoryId={category.Id}\">{category.Name}</a>");
+            }
+            
         }
         static public IEnumerable<Category> GetAllChildren(this Category category)
         {

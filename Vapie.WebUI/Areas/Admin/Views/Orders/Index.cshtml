@@ -1,0 +1,203 @@
+﻿@model OrderViewModel
+@{
+    ViewData["Title"] = "Index";
+}
+
+<div class="page-header">
+    <div class="row align-items-end">
+        <div class="col-lg-8">
+            <div class="page-header-title">
+                <div class="d-inline">
+                    <h4>Sifarişlərin hamısı</h4>
+                    @*<span>
+                            lorem ipsum dolor sit amet, consectetur adipisicing
+                            elit
+                        </span>*@
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-4">
+            <div class="page-header-breadcrumb">
+                <ul class="breadcrumb-title">
+                    <li class="breadcrumb-item" style="float: left;">
+                        <a asp-action="index" asp-controller="dashboard"> <i class="feather icon-home"></i> </a>
+                    </li>
+                    <li class="breadcrumb-item" style="float: left;">
+                        <a href="#!">Orders</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="page-body">
+    <div class="card">
+        <div class="card-header">
+            <h5>Orders</h5>
+        </div>
+        <div class="card-block table-border-style">
+            <div class="table-responsive">
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th>
+                                #Id
+                            </th>
+                            <th>
+                                Elektron poçtu
+                            </th>
+                            <th>
+                                Əlaqə nömrəsi
+                            </th>
+                            <th>
+                                Ümumi məbləğ
+                            </th>
+                            <th>
+                                Məhsul sayı
+                            </th>
+                            <th>
+                                Status
+                            </th>
+                            <th>
+                                Tarix
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var item in Model.PagedViewModel.Items)
+                        {
+                            <tr data-entity-id="@item.Id">
+                                <td>
+                                    #@item.Id
+                                </td>
+                                <td>
+                                    @Model.Users.FirstOrDefault(u => u.Id.ToString() == item.VapieUserId).Email
+                                </td>
+                                <td>
+                                    @Model.Users.FirstOrDefault(u => u.Id.ToString() == item.VapieUserId).PhoneNumber
+                                </td>
+                                <td>
+                                    @item.TotalAmount ₼
+                                </td>
+                                <td>
+                                    @item.OrderItems.Where(oi => oi.OrderId == item.Id).Count() ədəd
+                                </td>
+                                <td>
+                                    @if (item.isConfirmed)
+                                    {
+                                        <span id="status-@item.Id" class="badge badge-success text-white">
+                                            Təsdiqlənib
+                                        </span>
+                                    }
+                                    else if (item.DeletedById != null)
+                                    {
+                                        <span id="status-@item.Id" class="badge badge-danger text-white">
+                                            Ləğv olunub
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span id="status-@item.Id" class="badge badge-warning text-white">
+                                            Gözləmədə
+                                        </span>
+                                    }
+
+                                </td>
+                                <td>
+                                    @item.CreatedDate.ToString("dd.MM.yyyy HH:mm:ss")
+                                </td>
+                                <td class="actionBtns">
+                                    @if (!item.isConfirmed && item.DeletedById == null)
+                                    {
+                                        <a  onclick="removeEntity(event,@item.Id, '@item.Id')" class="btn btn-danger btn-icon cancel-@item.Id">
+                                            <i class="fa-solid fa-ban"></i>
+                                        </a>
+                                    }
+                                    |
+                                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-icon"><i class="icofont icofont-eye-alt"></i></a> |
+                                    @if (!item.isConfirmed && item.DeletedById == null)
+                                    {
+                                        <a onclick="confirmEntity(event,@item.Id, '@item.Id')" class="btn btn-success btn-icon confirm-@item.Id"><i class="fa-solid fa-check"></i></a>
+                                    }
+                                    
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+            @Model.PagedViewModel.GetPagenation(Url, "Index", "Admin")
+        </div>
+    </div>
+</div>
+@section css{
+    <link rel="stylesheet" type="text/css" href="~/assets/css/pagination.css" />
+}
+@section js{
+    <script src="~/libs/sweetalert/sweetalert.min.js"></script>
+    <script>
+        function removeEntity(ev, entityId, name) {
+                swal({
+                    title: "Are you sure?",
+                    text: `${name} will be canceled, Are you sure?`,
+                    icon: "warning",
+                    buttons: true,
+                    dangerMode: true,
+                })
+                    .then((willDelete) => {
+                        if (willDelete) {
+                            $.ajax({
+                                url: `@Url.Action("Cancel")/${entityId}`,
+                                type: 'post',
+                                success: function (response) {
+                                    if (response.error==true) {
+                                        toastr.error(response.message, "Error!");
+                                        return;
+                                    }
+                                    toastr.success("Successfully", response.message)
+                                    $(`span#status-${entityId}`).addClass('badge-danger');
+                                    $(`span#status-${entityId}`).html("Ləğv olunub");
+                                    $(`a.confirm-${entityId}`).remove();
+                                    $(`a.cancel-${entityId}`).remove();
+                                },
+                                error: function (response) {
+                                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                                }
+                            })
+                        }
+                    });
+        }
+        function confirmEntity(ev, entityId, name) {
+            swal({
+                title: "Are you sure?",
+                text: `${name} nömrəli sifariş təsdiqlənəcək, əminsiniz mi?`,
+                icon: "success",
+                buttons: true,
+                dangerMode: false,
+            })
+                .then((willDelete) => {
+                    if (willDelete) {
+                        $.ajax({
+                            url: `@Url.Action("Confirm")/${entityId}`,
+                            type: 'post',
+                            success: function (response) {
+                                if (response.error==true) {
+                                    toastr.error(response.message, "Error!");
+                                    return;
+                                }
+                                toastr.success("Successfully", response.message)
+                                $(`span#status-${entityId}`).removeClass('badge-warning');
+                                $(`span#status-${entityId}`).addClass('badge-success');
+                                $(`span#status-${entityId}`).html("Təsdiqlənib");
+                                $(`a.confirm-${entityId}`).remove();
+                                $(`a.cancel-${entityId}`).remove();
+                            },
+                            error: function (response) {
+                                toastr["error"]("Unsuccessfully", "Data has not been Confirmed")
+                            }
+                        })
+                    }
+                });
+        }
+    </script>
+}

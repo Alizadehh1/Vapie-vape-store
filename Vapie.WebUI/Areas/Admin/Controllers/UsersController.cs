@@ -110,7 +110,7 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                     return Json(new
                     {
                         error = true,
-                        message = $"'{user.Name} {user.Surname}' adlı istifadəçi '{role.Name}' adlı roldadır!"
+                        message = $"'{user.Email}' adlı istifadəçi '{role.Name}' adlı roldadır!"
                     });
                 }
                 else
@@ -126,7 +126,7 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                     return Json(new
                     {
                         error = false,
-                        message = $"'{user.Name} {user.Surname}' adlı istifadəçi '{role.Name}' rola əlavə edildi!"
+                        message = $"'{user.Email}' adlı istifadəçi '{role.Name}' rola əlavə edildi!"
                     });
                 }
             }
@@ -139,7 +139,7 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                     return Json(new
                     {
                         error = true,
-                        message = $"'{user.Name} {user.Surname}' adlı istifadəçi '{role.Name}' adlı rolda deyil!"
+                        message = $"'{user.Email}' adlı istifadəçi '{role.Name}' adlı rolda deyil!"
                     });
                 }
                 else
@@ -151,7 +151,7 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                     return Json(new
                     {
                         error = false,
-                        message = $"'{user.Name} {user.Surname}' adlı istifadəçi '{role.Name}' adlı roldan çıxarıldı!"
+                        message = $"'{user.Email}' adlı istifadəçi '{role.Name}' adlı roldan çıxarıldı!"
                     });
                 }
             }
@@ -191,7 +191,7 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                     return Json(new
                     {
                         error = true,
-                        message = $"'{user.Name} {user.Surname}' adlı istifadəçi '{principalName}' adlı səlahiyyətə sahibdir!"
+                        message = $"'{user.Email}' adlı istifadəçi '{principalName}' adlı səlahiyyətə sahibdir!"
                     });
                 }
                 else
@@ -208,7 +208,7 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                     return Json(new
                     {
                         error = false,
-                        message = $"'{user.Name} {user.Surname}' adlı istifadəçiyə '{principalName}' adlı səlahiyyət əlavə edildi!"
+                        message = $"'{user.Email}' adlı istifadəçiyə '{principalName}' adlı səlahiyyət əlavə edildi!"
                     });
                 }
             }
@@ -221,7 +221,7 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                     return Json(new
                     {
                         error = true,
-                        message = $"'{user.Name} {user.Surname}' adlı istifadəçi '{principalName}' adlı səlahiyyətə sahib deyil!"
+                        message = $"'{user.Email}' adlı istifadəçi '{principalName}' adlı səlahiyyətə sahib deyil!"
                     });
                 }
                 else
@@ -233,7 +233,7 @@ namespace Vapie.WebUI.Areas.Admin.Controllers
                     return Json(new
                     {
                         error = false,
-                        message = $"'{user.Name} {user.Surname}' adlı istifadəçi '{principalName}' adlı səlahiyyətdən azad edildi!"
+                        message = $"'{user.Email}' adlı istifadəçi '{principalName}' adlı səlahiyyətdən azad edildi!"
                     });
                 }
             }

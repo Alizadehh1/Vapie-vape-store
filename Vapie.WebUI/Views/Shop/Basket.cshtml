@@ -22,7 +22,7 @@
             {
                 <div class="d-flex flex-column justify-content-center align-items-center">
                     <i class="emptyBasket fa-solid fa-cart-shopping"></i>
-                    <h1 class="emptyBasketText">Your Cart is empty</h1>
+                    <h1 class="emptyBasketText">Səbətiniz boşdur</h1>
                 </div>
 
             }
@@ -71,8 +71,10 @@
                             </tbody>
                             <tfoot>
                                 <tr>
-                                    <th colspan="3" class="text-right">Total</th>
-                                    <th id="totalPrice">$4,000</th>
+                                    <th colspan="3" class="text-right">Ümumi:</th>
+                                    <th>
+                                        <span id="totalPrice">0</span><b>₼</b>
+                                    </th>
                                     <th></th>
                                 </tr>
                             </tfoot>
@@ -80,7 +82,7 @@
                     </div>
                     <div class="col-12 text-right">
                         <a class="btn btn-outline-secondary me-3" asp-action="Index"><i class="fa-solid fa-arrow-left-long me-1"></i> Continue Shopping</a>
-                        <a href="#" class="btn btn-outline-success">Checkout</a>
+                        <button id="placeOrderBtn" onclick="placeOrder()" class="btn btn-outline-success">Səbəti Təsdiqlə</button>
                     </div>
                 </form>
             }
@@ -98,7 +100,7 @@
             var iTag = $('<i>', {
                 class: 'emptyBasket fa-solid fa-cart-shopping'
             });
-            var h1Tag = $('<h1>').text("Your Cart is empty").addClass("emptyBasketText");
+            var h1Tag = $('<h1>').text("Səbətiniz boşdur").addClass("emptyBasketText");
             let divTag = $('div.table-responsive');
             if (items.length <= 1) {
                 $('form.row').remove();
@@ -113,7 +115,7 @@
             for (var i = 0; i < items.length; i++) {
                 totalPrice = totalPrice + parseInt(items[i].textContent);
             }
-            $('#totalPrice').html(`${totalPrice}₼`);
+            $('#totalPrice').html(`${totalPrice}`);
             console.log(totalPrice);
         }
         setTotalPrice();
@@ -184,6 +186,43 @@
             $(row).find('td.product-price .amount').html(`${(data.price * quantity)}₼`)
             setTotalPrice();
             console.log(data);
+        }
+        function placeOrder() {
+            let btn = document.getElementById('placeOrderBtn');
+            btn.disabled = true;
+            let items = document.querySelectorAll('#entityTr');
+            let productIds = [];
+            let quantity = [];
+            let price = [];
+            for (var i = 0; i < items.length; i++) {
+                let data = $(items[i]).data();
+                productIds.push(data.entityId);
+                quantity.push(data.quantity);
+                price.push(data.price);
+            }
+            let totalAmount = $('span#totalPrice').html();
+            let itemsIds = readFromBasket();
+            itemsIds.splice(0, itemsIds.length);
+            $.cookie('cards', itemsIds.toString(), { expires: 7, path: '/' });
+            $.ajax({
+                url: "@Url.Action("PlaceOrder")",
+                data: {
+                    productIds: productIds.toString(),
+                    quantities: quantity.toString(),
+                    totalAmount: totalAmount,
+                    prices: price.toString()
+                },
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, 'Error!');
+                        btn.disabled = false;
+                        return;
+                    }
+                    btn.disabled = false;
+                    toastr.success(response.message, 'Success!');
+                    location.href = `@Url.Action("Index")`;
+                }
+            });
         }
     </script>
 }

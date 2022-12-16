@@ -22,11 +22,7 @@ namespace Vapie.WebUI.AppCode.Providers
             {
                 var userId = Convert.ToInt32(currentIdentity.Claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.NameIdentifier))?.Value);
                 var user = await db.Users.FirstOrDefaultAsync(u => u.Id == userId);
-                if (user != null)
-                {
-                    currentIdentity.AddClaim(new Claim("name", user.Name));
-                    currentIdentity.AddClaim(new Claim("surname", user.Surname));
-                }
+                
                 var role = currentIdentity.Claims.FirstOrDefault(c => c.Type.Equals(ClaimTypes.Role));
                 while (role != null)
                 {

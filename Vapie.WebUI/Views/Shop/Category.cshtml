@@ -1,4 +1,4 @@
-﻿@model PagedViewModel<Product>
+﻿@model ShopViewModel
 @{
     ViewData["Title"] = "Category";
 }
@@ -7,12 +7,22 @@
         <div class="breadcrumb">
             <a class="me-1" asp-action="Index" asp-controller="Home"><i class="fa-solid fa-house me-1"></i>Ana səhifə</a>
             <a class="me-1" style="color: #FDC040;" asp-action="Index" asp-controller="Shop"><i style="color: #FDC040;" class="fa-solid fa-basket-shopping me-1"></i>Mağaza</a>
-            > @Model?.Items.FirstOrDefault().Category.Name
+            > @Model?.PagedViewModel.Items.FirstOrDefault().Category.Name
         </div>
     </div>
 </div>
-<div class="col-12">
-    <div class="row">
+<div class="col-12 @(Model != null ? "d-flex" : "")">
+    @if (Model != null)
+    {
+        <nav class="py-3">
+            <h3 class="text-center">Kateqoriyalar</h3>
+
+
+            @Extension.GetCategoriesRaw(Model?.Categories)
+
+        </nav>
+    }
+    <div class="row justify-content-end">
         <div class="col-12 py-3">
             <div class="row">
                 <div class="col-12 text-center text-uppercase">
@@ -28,10 +38,10 @@
                 }
                 else
                 {
-                    @foreach (var item in Model.Items)
+                    @foreach (var item in Model.PagedViewModel.Items)
                     {
                         var imagePath = item.Images.FirstOrDefault(i => i.IsMain == true).ImagePath;
-                        <div class="col-xl-2 col-lg-3 col-sm-6 my-3">
+                        <div class="col-xl-3 col-lg-4 col-sm-6 my-3">
                             <div class="col-12 bg-white text-center h-100 product-item">
                                 <div class="row h-100">
                                     <div class="col-12 p-0 mb-3">
@@ -63,7 +73,7 @@
 </div>
 @if (Model != null)
 {
-    @Model.GetPagenation(Url, "Index")
+    @Model.PagedViewModel.GetPagenation(Url, "Index")
 
 }
 @*<div class="col-12">
@@ -86,50 +96,107 @@
 
 @section css{
     <link rel="stylesheet" href="~/assets/css/pagination.css" />
+    <style>
+        @@media only screen and (max-width: 500px) {
+            .sidenav {
+                width: 120px !important;
+            }
+        }
+
+        .sidenav {
+            height: 100%;
+            width: 200px;
+            /*position: fixed;*/
+            z-index: 1;
+            top: 0;
+            left: 0;
+            /*background-color: #111;*/
+            overflow-x: hidden;
+            padding-top: 20px;
+        }
+
+            /* Style the sidenav links and the dropdown button */
+            .sidenav a, .dropdown-btn {
+                padding: 6px 8px 6px 16px;
+                text-decoration: none;
+                font-size: 20px;
+                /*color: #818181;*/
+                display: block;
+                border: none;
+                background: none;
+                width: 100%;
+                text-align: left;
+                cursor: pointer;
+                outline: none;
+            }
+
+        /* On mouse-over */
+        /*.sidenav a:hover, .dropdown-btn:hover {
+                    color: #f1f1f1;
+                }*/
+
+        /* Main content */
+        .main {
+            margin-left: 200px; /* Same as the width of the sidenav */
+            font-size: 20px; /* Increased text to enable scrolling */
+            padding: 0px 10px;
+        }
+
+        /* Add an active class to the active dropdown button */
+        /*.active {
+            background-color: green;
+            color: white;
+        }*/
+
+        /* Dropdown container (hidden by default). Optional: add a lighter background color and some left padding to change the design of the dropdown content */
+        .dropdown-container {
+            display: none;
+            background-color: #262626;
+            padding-left: 8px;
+        }
+
+        /* Optional: Style the caret down icon */
+        .fa-caret-down {
+            float: right;
+            padding-right: 8px;
+        }
+    </style>
 }
 @section js{
     <script>
-        function addToCart(ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            let data = $(ev.currentTarget).data();
-            addToBasket(data.itemId);
+        var dropdown = document.getElementsByClassName("fa-caret-down");
+        var i;
 
-            console.log(readFromBasket())
-        }
-        function readFromBasket() {
-            return ($.cookie('cards') || '').split(',');
-        }
-        function addToBasket(cardId) {
-            let items = readFromBasket();
-            let length = items.filter(item => item == cardId).length;
-            if (length > 0) return;
-            items.push(cardId);
-            $.cookie('cards', items.toString(), { expires: 7, path: '/' });
-            $.ajax({
-                success: function (response) {
-                    if (response.error == true) {
-                        toastr.error(response.message, "Error!");
-                        return;
-                    }
-                    toastr.success("Successfully Added", response.message)
-                    showCardCount();
-                },
-                error: function (response) {
-                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+        for (i = 0; i < dropdown.length; i++) {
+            dropdown[i].addEventListener("click", function () {
+                this.classList.toggle("active");
+                var dropdownContent = this.parentElement.nextElementSibling;
+                if (dropdownContent.style.display === "block") {
+                    dropdownContent.style.display = "none";
+                } else {
+                    dropdownContent.style.display = "block";
                 }
-            })
+            });
         }
-
         function showCardCount() {
             let items = readFromBasket();
             $('#header-qty').html(items.length - 1);
 
         }
         showCardCount();
+        function showWishlistCount() {
+            let items = readFromCookie();
+            $('#header-favorite').html(items.length - 1);
 
-    </script>
-    <script>
+        }
+        showWishlistCount();
+        function readFromCookie() {
+            return ($.cookie('cardsForCookie') || '').split(',');
+        }
+
+        function readFromBasket() {
+            return ($.cookie('cards') || '').split(',');
+        }
         function addToWishlist(ev) {
             ev.preventDefault();
             ev.stopPropagation();
@@ -138,13 +205,13 @@
 
             console.log(readFromCookie())
         }
-        function readFromCookie() {
-            return ($.cookie('cardsForCookie') || '').split(',');
-        }
         function addToCookie(cardId) {
             let items = readFromCookie();
             let length = items.filter(item => item == cardId).length;
-            if (length > 0) return;
+            if (length > 0) {
+                toastr.warning("Bu məhsulu artıq seçilmişlərə əlavə etmisiniz!", "Uğursuz");
+                return;
+            }
             items.push(cardId);
             $.cookie('cardsForCookie', items.toString(), { expires: 7, path: '/' });
             $.ajax({
@@ -161,20 +228,37 @@
                 }
             })
         }
+        function addToCart(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            let data = $(ev.currentTarget).data();
+            addToBasket(data.itemId);
 
-        function showCardCount() {
-            let items = readFromCookie();
-            $('#header-qty').html(items.length - 1);
-
+            console.log(readFromBasket())
         }
-        showCardCount();
-        function showWishlistCount() {
-            let items = readFromCookie();
-            $('#header-favorite').html(items.length - 1);
-
+        function addToBasket(cardId) {
+            let items = readFromBasket();
+            let length = items.filter(item => item == cardId).length;
+            if (length > 0) {
+                toastr.warning("Bu məhsulu artıq səbətə əlavə etmisiniz!", "Uğursuz");
+                return;
+            }
+            items.push(cardId);
+            $.cookie('cards', items.toString(), { expires: 7, path: '/' });
+            $.ajax({
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, "Error!");
+                        return;
+                    }
+                    toastr.success("Successfully Added", response.message)
+                    showCardCount();
+                },
+                error: function (response) {
+                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                }
+            })
         }
-        showWishlistCount();
-
     </script>
 }
 

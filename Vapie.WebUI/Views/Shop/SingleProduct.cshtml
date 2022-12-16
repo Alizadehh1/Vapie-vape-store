@@ -42,7 +42,6 @@
                     <li>Tüstü sayı: @Model.Product.Capacity puff</li>
                     <li>Tərkibi: @Model.Product.Flavor</li>
                     <li>Nikotin miqdarı: @Model.Product.NicotineStrength</li>
-                    <li>Ölçüsü: @Model.Product.Size</li>
                     <li>Kateqoriyası: @Model.Product.Category.Name</li>
                 </ul>
             </div>
@@ -234,6 +233,56 @@
 }
 @section js{
     <script>
+        function showCardCount() {
+            let items = readFromBasket();
+            $('#header-qty').html(items.length - 1);
+
+        }
+        showCardCount();
+        function showWishlistCount() {
+            let items = readFromCookie();
+            $('#header-favorite').html(items.length - 1);
+
+        }
+        showWishlistCount();
+        function readFromCookie() {
+            return ($.cookie('cardsForCookie') || '').split(',');
+        }
+
+        function readFromBasket() {
+            return ($.cookie('cards') || '').split(',');
+        }
+        function addToWishlist(ev) {
+            ev.preventDefault();
+            ev.stopPropagation();
+            let data = $(ev.currentTarget).data();
+            addToCookie(data.itemId);
+
+            console.log(readFromCookie())
+        }
+        function addToCookie(cardId) {
+            let items = readFromCookie();
+            let length = items.filter(item => item == cardId).length;
+            if (length > 0) {
+                toastr.warning("Bu məhsulu artıq seçilmişlərə əlavə etmisiniz!", "Uğursuz");
+                return;
+            }
+            items.push(cardId);
+            $.cookie('cardsForCookie', items.toString(), { expires: 7, path: '/' });
+            $.ajax({
+                success: function (response) {
+                    if (response.error == true) {
+                        toastr.error(response.message, "Error!");
+                        return;
+                    }
+                    toastr.success("Successfully Added", response.message)
+                    showWishlistCount();
+                },
+                error: function (response) {
+                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
+                }
+            })
+        }
         function addToCart(ev) {
             ev.preventDefault();
             ev.stopPropagation();
@@ -242,13 +291,13 @@
 
             console.log(readFromBasket())
         }
-        function readFromBasket() {
-            return ($.cookie('cards') || '').split(',');
-        }
         function addToBasket(cardId) {
             let items = readFromBasket();
             let length = items.filter(item => item == cardId).length;
-            if (length > 0) return;
+            if (length > 0) {
+                toastr.warning("Bu məhsulu artıq səbətə əlavə etmisiniz!", "Uğursuz");
+                return;
+            }
             items.push(cardId);
             $.cookie('cards', items.toString(), { expires: 7, path: '/' });
             $.ajax({
@@ -266,68 +315,11 @@
             })
         }
 
-        function showCardCount() {
-            let items = readFromBasket();
-            $('#header-qty').html(items.length - 1);
-        }
-
-
-
-    </script>
-    <script>
-        function addToWishlist(ev) {
-            ev.preventDefault();
-            ev.stopPropagation();
-            let data = $(ev.currentTarget).data();
-            addToCookie(data.itemId);
-
-            console.log(readFromCookie())
-        }
-        function readFromCookie() {
-            return ($.cookie('cardsForCookie') || '').split(',');
-        }
-        function addToCookie(cardId) {
-            let items = readFromCookie();
-            let length = items.filter(item => item == cardId).length;
-            if (length > 0) return;
-            items.push(cardId);
-            $.cookie('cardsForCookie', items.toString(), { expires: 7, path: '/' });
-            $.ajax({
-                success: function (response) {
-                    if (response.error == true) {
-                        toastr.error(response.message, "Error!");
-                        return;
-                    }
-                    toastr.success("Successfully Added", response.message)
-                    showWishlistCount();
-                },
-                error: function (response) {
-                    toastr["error"]("Unsuccessfully", "Data has not been deleted")
-                }
-            })
-        }
-
-        function showCardCount() {
-            let items = readFromCookie();
-            $('#header-qty').html(items.length - 1);
-
-        }
-        showCardCount();
-        function showWishlistCount() {
-            let items = readFromCookie();
-            $('#header-favorite').html(items.length - 1);
-
-        }
-        showWishlistCount();
-
     </script>
     <script src="~/libs/toastr.js/toastr.min.js"></script>
     <script src="~/admin/files/assets/js/customize.js"></script>
     <script>
         $(document).ready(function () {
-            function commentComponent() {
-
-            }
             $('#commentForm').submit(function (e) {
                 e.preventDefault();
                 let formData = new FormData(e.currentTarget);

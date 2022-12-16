@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Vapie.WebUI.AppCode.Extensions;
 using Vapie.WebUI.AppCode.Infrastructure;
 using Vapie.WebUI.Models.DataContexts;
 using Vapie.WebUI.Models.Entities;
@@ -21,26 +22,37 @@ namespace Vapie.WebUI.Controllers
         {
             this.db = db;
         }
-        public IActionResult Index(int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Index(int pageIndex = 1, int pageSize = 12)
         {
-            var datas = db.Products
+            var viewModel = new ShopViewModel();
+            var query = db.Products
                 .Where(b => b.DeletedById == null)
                 .Include(i => i.Images.Where(i => i.IsMain == true))
                 .ToList();
-            var pagedModel = new PagedViewModel<Product>(datas, pageIndex, pageSize);
-            return View(pagedModel);
+            viewModel.Categories = await db.Categories
+                .Where(c => c.DeletedById == null)
+                .Include(c => c.Children.Where(c => c.DeletedById == null))
+                .ToListAsync();
+
+            viewModel.PagedViewModel = new PagedViewModel<Product>(query, pageIndex, pageSize);
+            return View(viewModel);
         }
-        public IActionResult Category(int categoryId, int pageIndex = 1, int pageSize = 10)
+        public async Task<IActionResult> Category(int categoryId, int pageIndex = 1, int pageSize = 12)
         {
-            var datas = db.Products
+            var viewModel = new ShopViewModel();
+            var query = db.Products
                 .Where(b => b.DeletedById == null && b.CategoryId == categoryId)
                 .Include(p => p.Category)
                 .Include(i => i.Images.Where(i => i.IsMain == true))
                 .ToList();
-            if (datas.Count > 0)
+            viewModel.Categories = await db.Categories
+                .Where(c => c.DeletedById == null)
+                .Include(c => c.Children.Where(c => c.DeletedById == null))
+                .ToListAsync();
+            if (query.Count > 0)
             {
-                var pagedModel = new PagedViewModel<Product>(datas, pageIndex, pageSize);
-                return View(pagedModel);
+                viewModel.PagedViewModel = new PagedViewModel<Product>(query, pageIndex, pageSize);
+                return View(viewModel);
             }
             else
             {
@@ -147,11 +159,52 @@ namespace Vapie.WebUI.Controllers
 
         }
 
+        public async Task<IActionResult> PlaceOrder(string productIds, string totalAmount, string quantities, string prices)
+        {
+            int[] productId = productIds.Split(",").Where(CheckIsNumber)
+                        .Select(item => int.Parse(item))
+                        .ToArray();
+            int[] quantity = quantities.Split(",").Where(CheckIsNumber)
+                        .Select(item => int.Parse(item))
+                        .ToArray();
 
+            double[] price = prices.Split(",").Where(CheckIsDouble)
+                        .Select(item => double.Parse(item))
+                        .ToArray();
+
+
+            var newOrder = new Order();
+            newOrder.VapieUserId = User.GetUserId();
+            newOrder.TotalAmount = Convert.ToDouble(totalAmount);
+            if (productId != null)
+            {
+                newOrder.OrderItems = new List<OrderItem>();
+                int i = 0;
+                foreach (var id in productId)
+                {
+
+                    newOrder.OrderItems.Add(new OrderItem
+                    {
+                        ProductId = id,
+                        OrderId = newOrder.Id,
+                        Quantity = quantity[i],
+                        Price = price[i]
+                    });
+                    i++;
+                }
+            }
+            await db.Orders.AddAsync(newOrder);
+            await db.SaveChangesAsync();
+            return RedirectToAction("Index");
+        }
 
         private bool CheckIsNumber(string value)
         {
             return int.TryParse(value, out int v);
+        }
+        private bool CheckIsDouble(string value)
+        {
+            return double.TryParse(value, out double v);
         }
     }
 }

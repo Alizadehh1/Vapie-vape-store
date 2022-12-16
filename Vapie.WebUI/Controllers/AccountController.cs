@@ -1,7 +1,4 @@
-﻿using Vapie.WebUI.AppCode.Extensions;
-using Vapie.WebUI.Models.DataContexts;
-using Vapie.WebUI.Models.Entities.Membership;
-using Vapie.WebUI.Models.FormModels;
+﻿using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -9,13 +6,14 @@ using Microsoft.AspNetCore.Mvc.Infrastructure;
 using Microsoft.Extensions.Configuration;
 using System.Linq;
 using System.Threading.Tasks;
-using Vapie.WebUI.AppCode.Modules.ProfileModule;
-using System;
-using MediatR;
+using Vapie.WebUI.AppCode.Extensions;
+using Vapie.WebUI.Models.DataContexts;
+using Vapie.WebUI.Models.Entities.Membership;
+using Vapie.WebUI.Models.FormModels;
 
 namespace Vapie.WebUI.Controllers
 {
-    
+
     public class AccountController : Controller
     {
         private readonly VapieDbContext db;
@@ -46,30 +44,8 @@ namespace Vapie.WebUI.Controllers
         [Route("/profile.html")]
         public async Task<IActionResult> Profile()
         {
-            var userId = User.GetUserId();
-            var user = await userManager.FindByIdAsync(userId);
-            var command = new ProfileEditCommand();
-            command.Id = user.Id;
-            command.Name = user.Name;
-            command.Surname = user.Surname;
-            command.UserName = user.UserName;
-            command.Email = user.Email;
-            command.EmailConfirmed = user.EmailConfirmed;
-            command.ImagePath = user.ImagePath;
-            return View(command);
-        }
-        [HttpPost]
-        [Route("/profile.html")]
-        public async Task<IActionResult> Profile(ProfileEditCommand command)
-        {
-            if (ModelState.IsValid)
-            {
-                var userId = User.GetUserId();
-                command.Id = Convert.ToInt32(userId);
-                var response = await mediator.Send(command);
-                return RedirectToAction(nameof(Profile));
-            }
-            return View(command);
+            var user = await userManager.FindByIdAsync(User.GetUserId());
+            return View(user);
         }
         [Route("/accessdenied.html")]
         public IActionResult AccessDenied()
@@ -82,36 +58,36 @@ namespace Vapie.WebUI.Controllers
             await signInManager.SignOutAsync();
             return RedirectToAction(nameof(SignIn));
         }
-        [Route("/changePassword.html")]
-        public IActionResult ChangePassword()
-        {
+        //[Route("/changePassword.html")]
+        //public IActionResult ChangePassword()
+        //{
 
-            return View();
-        }
-        [HttpPost("/changePassword.html")]
-        public async Task<IActionResult> ChangePassword(ChangePasswordFormModel model)
-        {
+        //    return View();
+        //}
+        //[HttpPost("/changePassword.html")]
+        //public async Task<IActionResult> ChangePassword(ChangePasswordFormModel model)
+        //{
             
-            if (ModelState.IsValid)
-            {
-                var userId = User.GetUserId();
-                var user = await userManager.FindByIdAsync(userId);
-                var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
-                if (result.Succeeded)
-                {
-                    ViewBag.IsSuccess = true;
-                    ModelState.Clear();
-                    return View();
-                }
+        //    if (ModelState.IsValid)
+        //    {
+        //        var userId = User.GetUserId();
+        //        var user = await userManager.FindByIdAsync(userId);
+        //        var result = await userManager.ChangePasswordAsync(user, model.CurrentPassword, model.NewPassword);
+        //        if (result.Succeeded)
+        //        {
+        //            ViewBag.IsSuccess = true;
+        //            ModelState.Clear();
+        //            return View();
+        //        }
 
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError("", error.Description);
-                }
-            }
+        //        foreach (var error in result.Errors)
+        //        {
+        //            ModelState.AddModelError("", error.Description);
+        //        }
+        //    }
 
-            return View(model);
-        }
+        //    return View(model);
+        //}
         [HttpPost]
         [Route("/signin.html")]
         [AllowAnonymous]
@@ -121,14 +97,7 @@ namespace Vapie.WebUI.Controllers
             {
                 VapieUser foundedUser = null;
 
-                if (user.UserName.IsEmail())
-                {
-                    foundedUser = await userManager.FindByEmailAsync(user.UserName);
-                }
-                else
-                {
-                    foundedUser = await userManager.FindByNameAsync(user.UserName);
-                }
+                foundedUser = await userManager.FindByEmailAsync(user.Email);
 
 
                 if (foundedUser == null)
@@ -171,10 +140,14 @@ namespace Vapie.WebUI.Controllers
             {
                 var user = new VapieUser();
                 user.Email = model.Email;
-                user.Name = model.Name;
-                user.Surname = model.Surname;
-                user.UserName = model.Username;
-                user.ImagePath = "avatar-profile.jpg";
+                if (db.Users.Any(u => u.Email == model.Email))
+                {
+                    ViewBag.Message = "Bu email ilə artıq qeydiyyatdan keçmisiniz";
+                    goto end;
+                }
+                user.UserName = model.Email;
+                user.PhoneNumber = model.PhoneNumber;
+                user.PhoneNumberConfirmed = true;
                 var result = await userManager.CreateAsync(user, model.Password);
 
                 if (result.Succeeded)
@@ -184,14 +157,14 @@ namespace Vapie.WebUI.Controllers
                     var emailResponse = configuration.SendEmail(user.Email, "Vapie istifadəçi qeydiyyatı", $"Zəhmət olmasa <a href=\"{path}\">link</a> vasitəsilə qeydiyyatı tamamlayasınız");
                     if (emailResponse)
                     {
-                        ViewBag.Message = "Təbriklər qeydiyyat Tamamlandı, Sizinlə Tezliklə Əlaqə Saxlanılacaq";
+                        ViewBag.Message = "Təbriklər qeydiyyat tamamlandı, zəhmət olmasa elektron poçtunuza gələn mail'i təsdiqləyəsiniz. ";
                     }
                     else
                     {
                         ViewBag.Message = "E-mailə göndərərkən səhv aşkar olundu, yenidən cəhd edin";
                     }
 
-                    return RedirectToAction(nameof(SignIn));
+                    return View();
                 }
 
                 foreach (var error in result.Errors)
@@ -199,6 +172,7 @@ namespace Vapie.WebUI.Controllers
                     ModelState.AddModelError(error.Code, error.Description);
                 }
             }
+        end:
             return View(model);
         }
         [HttpGet]
@@ -219,7 +193,7 @@ namespace Vapie.WebUI.Controllers
                 ViewBag.Message = "Xətalı Token göndərilib";
                 goto end;
             }
-            ViewBag.Message = "Hesabınız təsdiqləndi, sizinlə tezliklə əlaqə saxlanılacaq";
+            ViewBag.Message = "Hesabınız təsdiqləndi";
         end:
             return RedirectToAction(nameof(SignIn));
         }

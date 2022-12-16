@@ -7,9 +7,9 @@
     <title>@ViewData["Title"] | Vapie</title>
     <link rel="icon" type="image/svg" href="~/assets/images/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css" integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link href="~/fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
-    <link href="~/fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700" rel="stylesheet">
-    <link href="~/fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Righteous" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300,300i,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i" rel="stylesheet">
     <link rel="stylesheet" href="~/assets/css/bootstrap.min.css">
     <link rel="stylesheet" href="~/assets/css/style.css">
     <link href="~/libs/toastr.js/toastr.css" rel="stylesheet" />
@@ -168,6 +168,17 @@
             function readFromCookie() {
                 return ($.cookie('cardsForCookie') || '').split(',');
             }
+            
+            function readFromBasket() {
+                return ($.cookie('cards') || '').split(',');
+            }
+            
+            function showCardCount() {
+                let items = readFromBasket();
+                $('#header-qty').html(items.length - 1);
+
+            }
+            showCardCount();
             function showWishlistCount() {
                 let items = readFromCookie();
                 $('#header-favorite').html(items.length - 1);
@@ -188,19 +199,6 @@
             })
         })
     </script>
-    <!--Start of Tawk.to Script-->
-    <script type="text/javascript">
-        var Tawk_API = Tawk_API || {}, Tawk_LoadStart = new Date();
-        (function () {
-            var s1 = document.createElement("script"), s0 = document.getElementsByTagName("script")[0];
-            s1.async = true;
-            s1.src = 'https://embed.tawk.to/6306afae37898912e964fd3b/1gb91sh0v';
-            s1.charset = 'UTF-8';
-            s1.setAttribute('crossorigin', '*');
-            s0.parentNode.insertBefore(s1, s0);
-        })();
-    </script>
-    <!--End of Tawk.to Script-->
     @RenderSection("js", required: false)
 </body>
 </html>

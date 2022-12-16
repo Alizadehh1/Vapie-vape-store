@@ -26,6 +26,7 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
         public string NicotineStrength { get; set; }
         public int isMainIndex { get; set; }
         public double Price { get; set; }
+        public double? OldPrice { get; set; }
         public ImageItem[] Images { get; set; }
         [Obsolete]
         public class ProductEditCommandHandler : IRequestHandler<ProductEditCommand, Product>
@@ -61,10 +62,10 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                 product.CategoryId = request.CategoryId;
                 product.Description = request.Description;
                 product.Capacity = request.Capacity;
-                product.Size = request.Size;
                 product.NicotineStrength = request.NicotineStrength;
                 product.Flavor = request.Flavor;
                 product.Price = request.Price;
+                product.OldPrice = request.OldPrice;
 
                 int count = 0;
                 if (request.Images != null)

@@ -13,11 +13,12 @@ namespace Vapie.WebUI.Models.Entities
         public int BrandId { get; set; }
         public virtual Brand Brand { get; set; }
         public string Capacity { get; set; }
-        public string Size { get; set; }
         public string Flavor { get; set; }
         public string NicotineStrength { get; set; }
         [Column(TypeName = "decimal(18,2)")]
         public double Price { get; set; }
+        [Column(TypeName = "decimal(18,2)")]
+        public double? OldPrice { get; set; }
         public virtual ICollection<ProductImage> Images { get; set; }
     }
 }

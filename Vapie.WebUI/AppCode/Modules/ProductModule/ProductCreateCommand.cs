@@ -23,6 +23,7 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
         public string Flavor { get; set; }
         public string NicotineStrength { get; set; }
         public double Price { get; set; }
+        public double? OldPrice { get; set; }
         public int isMainIndex { get; set; }
         public ImageItem[] Images { get; set; }
         [Obsolete]
@@ -53,10 +54,10 @@ namespace Vapie.WebUI.AppCode.Modules.ProductModule
                 product.BrandId = request.BrandId;
                 product.Description = request.Description;
                 product.Capacity = request.Capacity;
-                product.Size = request.Size;
                 product.Flavor = request.Flavor;
                 product.NicotineStrength = request.NicotineStrength;
                 product.Price = request.Price;
+                product.OldPrice = request.OldPrice;
 
                 int count = 0;
                 if (request.Images != null && request.Images.Any(i => i.File != null))

@@ -30,18 +30,15 @@ namespace Vapie.WebUI.Controllers
         public IActionResult Index()
         {
             var viewModel = new HomeViewModel();
-            viewModel.Products = (from data in db.Products
+            viewModel.LastestProducts = (from data in db.Products
                                   orderby data.CreatedDate descending
                                   select data).Take(4).Include(p => p.Images.Where(i => i.IsMain == true)).ToList();
-            viewModel.FeaturedProducts = db.Products
-                .Where(p => p.DeletedById == null)
-                .Take(4).Include(p=>p.Images.Where(i=>i.IsMain==true))
-                .ToList();
-            viewModel.TopSellingProducts = db.Products
-                .Where(p => p.DeletedById == null)
-                .Take(4).Include(p => p.Images.Where(i => i.IsMain == true))
-                .OrderByDescending(p=>p.Price)
-                .ToList();
+            viewModel.SaleProducts = db.Products
+               .Where(p => p.OldPrice != null)
+               .Take(3)
+               .Include(p => p.Images.Where(i => i.IsMain == true))
+               .Include(p => p.Category)
+               .ToList();
 
             return View(viewModel);
         }

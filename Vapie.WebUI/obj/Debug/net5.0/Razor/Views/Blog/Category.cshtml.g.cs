@@ -61,15 +61,8 @@ using Vapie.WebUI.Models.Entities.Membership;
 #line default
 #line hidden
 #nullable disable
-#nullable restore
-#line 8 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Views\_ViewImports.cshtml"
-using Vapie.WebUI.AppCode.Modules.ProfileModule;
-
-#line default
-#line hidden
-#nullable disable
     [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"ba75a32e43074999e3f8094410bb1382f7712268", @"/Views/Blog/Category.cshtml")]
-    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"125fed54020bbc083de127e5474ec48233b6911f", @"/Views/_ViewImports.cshtml")]
+    [global::Microsoft.AspNetCore.Razor.Hosting.RazorSourceChecksumAttribute(@"SHA1", @"cb2701bea3d6abcf67c1e98cb0873156e6a7b9c2", @"/Views/_ViewImports.cshtml")]
     public class Views_Blog_Category : global::Microsoft.AspNetCore.Mvc.Razor.RazorPage<PagedViewModel<Blog>>
     {
         private static readonly global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute __tagHelperAttribute_0 = new global::Microsoft.AspNetCore.Razor.TagHelpers.TagHelperAttribute("class", new global::Microsoft.AspNetCore.Html.HtmlString("me-1"), global::Microsoft.AspNetCore.Razor.TagHelpers.HtmlAttributeValueStyle.DoubleQuotes);
@@ -112,7 +105,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("\r\n<div class=\"page-header breadcrumb-wrap\">\r\n    <div class=\"container\">\r\n        <div class=\"breadcrumb\">\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f77122686774", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f77122686560", async() => {
                 WriteLiteral("<i class=\"fa-solid fa-house me-1\"></i>Ana səhifə");
             }
             );
@@ -131,7 +124,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f77122688274", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f77122688060", async() => {
                 WriteLiteral("<i style=\"color: #FDC040;\" class=\"fa-solid fa-quote-left me-1\"></i>Bloq");
             }
             );
@@ -199,7 +192,7 @@ using Vapie.WebUI.AppCode.Modules.ProfileModule;
 #line hidden
 #nullable disable
             WriteLiteral("                    <div class=\"col-12 col-lg-6 mt-5\">\r\n                        <div class=\"single-blog-area mb-50\">\r\n                            ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ba75a32e43074999e3f8094410bb1382f771226811504", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("img", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagOnly, "ba75a32e43074999e3f8094410bb1382f771226811290", async() => {
             }
             );
             __Microsoft_AspNetCore_Mvc_Razor_TagHelpers_UrlResolutionTagHelper = CreateTagHelper<global::Microsoft.AspNetCore.Mvc.Razor.TagHelpers.UrlResolutionTagHelper>();
@@ -223,7 +216,7 @@ AddHtmlAttributeValue("", 1315, item.ImagePath, 1315, 15, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            <div class=\"post-title\">\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f771226813176", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f771226812962", async() => {
 #nullable restore
 #line 37 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Views\Blog\Category.cshtml"
                                                                                                                       Write(item.Title);
@@ -271,7 +264,7 @@ AddHtmlAttributeValue("", 1315, item.ImagePath, 1315, 15, false);
             Write(__tagHelperExecutionContext.Output);
             __tagHelperExecutionContext = __tagHelperScopeManager.End();
             WriteLiteral("\r\n                            </div>\r\n                            <div class=\"hover-content\">\r\n                                <div class=\"hover-post-title\">\r\n                                    ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f771226816559", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f771226816345", async() => {
 #nullable restore
 #line 41 "C:\Users\alide\OneDrive\Desktop\final-project\Vapie.WebUI\Views\Blog\Category.cshtml"
                                                                                                                           Write(item.Title);
@@ -327,7 +320,7 @@ AddHtmlAttributeValue("", 1315, item.ImagePath, 1315, 15, false);
 #line hidden
 #nullable disable
             WriteLiteral("</p>\r\n                                ");
-            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f771226820151", async() => {
+            __tagHelperExecutionContext = __tagHelperScopeManager.Begin("a", global::Microsoft.AspNetCore.Razor.TagHelpers.TagMode.StartTagAndEndTag, "ba75a32e43074999e3f8094410bb1382f771226819937", async() => {
                 WriteLiteral("Oxumağa davam et <i class=\"fa fa-angle-right\"></i>");
             }
             );
